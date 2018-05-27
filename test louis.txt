@@ -1,0 +1,14 @@
+drop table if exists tmp1;
+create table tmp1
+(
+idvente INT,
+Annee INT,
+Nom VARCHAR(45)
+);
+
+insert into tmp1
+select vente.ID_Vente, vente.Annee, lieu.Nom
+from vente inner join lieu on lieu.ID=vente.ID_Lieu;
+
+select tmp1.idvente,tmp1.Nom, guerre.Annee, if(guerre.Annee IS NULL, 'PAS GUERRE', 'GUERRE')AS 'GUERRE OU PAS ?'
+from tmp1 left join guerre on guerre.Annee=tmp1.Annee;
