@@ -27,7 +27,7 @@
     <property name="java.vm.specification.vendor" value="Oracle Corporation"/>
     <property name="user.variant" value=""/>
     <property name="os.name" value="Windows 10"/>
-    <property name="classworlds.conf" value="E:\Programmation\Java Eclipse\.metadata\.plugins\org.eclipse.m2e.launching\launches\m2conf5339232566329432862.tmp"/>
+    <property name="classworlds.conf" value="E:\Programmation\Java Eclipse\.metadata\.plugins\org.eclipse.m2e.launching\launches\m2conf4363148898308590696.tmp"/>
     <property name="sun.jnu.encoding" value="Cp1252"/>
     <property name="java.library.path" value="D:\JavaJDK\bin;C:\WINDOWS\Sun\Java\bin;C:\WINDOWS\system32;C:\WINDOWS;C:\Program Files (x86)\Common Files\Oracle\Java\javapath;D:\VulkanSDK\1.1.70.1\Bin;C:\ProgramData\Oracle\Java\javapath;D:\Python\Scripts\;D:\Python\;C:\Windows\system32;C:\Windows;C:\Windows\System32\Wbem;C:\Windows\System32\WindowsPowerShell\v1.0\;C:\Program Files\Microsoft SQL Server\130\Tools\Binn\;D:\Program Files\CMake\bin;C:\Program Files (x86)\NVIDIA Corporation\PhysX\Common;D:\Program Files\Git\cmd;C:\WINDOWS\system32;C:\WINDOWS;C:\WINDOWS\System32\Wbem;C:\WINDOWS\System32\WindowsPowerShell\v1.0\;C:\Program Files (x86)\GtkSharp\2.12\bin;D:\Program Files\OpenJDK\bin;D:\Program Files\apache-maven-3.5.2\bin;D:\JavaJDK;C:\WINDOWS\System32\OpenSSH\;C:\Users\Euxiniar\AppData\Local\Microsoft\WindowsApps;;D:\Program Files\Microsoft VS Code\bin;."/>
     <property name="jdk.debug" value="release"/>
