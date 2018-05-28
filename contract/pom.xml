@@ -7,11 +7,4 @@
   </parent>
   <artifactId>contract</artifactId>
   <name>lorann.contract</name>
-  <dependencies>
-    <dependency>
-      <groupId>fr.exia</groupId>
-      <artifactId>showboard</artifactId>
-      <version>0.0.1-SNAPSHOT</version>
-    </dependency>
-  </dependencies>
 </project>
