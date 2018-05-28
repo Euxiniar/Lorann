@@ -1,9 +1,0 @@
-model\Element.class
-model\Position.class
-model\Sprite.class
-model\dao\LorannBDDConnector.class
-model\IElement.class
-model\dao\AbstractDAO.class
-model\dao\ExampleDAO.class
-model\Permeability.class
-model\ModelFacade.class

@@ -1,5 +1,8 @@
 package model;
 
-public class Sprite {
+import java.awt.image.BufferedImage;
 
+public class Sprite {
+	BufferedImage image;
+	String imageName;
 }

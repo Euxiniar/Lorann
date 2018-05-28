@@ -1,5 +1,9 @@
 package model;
 
-public interface IElement {
+import java.awt.image.BufferedImage;
 
+public interface IElement {
+	Sprite getSprite();
+	Permeability getPermeability();
+	BufferedImage getImage();
 }
