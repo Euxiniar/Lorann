@@ -1,0 +1,6 @@
+/contract/target/*
+/controller/target/*
+/main/target/*
+/model/target/*
+/view/target/*
+/target/
