@@ -11,15 +11,12 @@ public class EventPerformer implements IEventPerformer{
 	
 	//-----------------------------Boolean to know witch key is in use---------------------
 	
-	boolean boolZ = false;
-	boolean boolD = false;
-	boolean boolS = false;
-	boolean boolQ = false;
-	
 	boolean boolUP    = false;
 	boolean boolRIGHT = false;
 	boolean boolDOWN  = false;
 	boolean boolLEFT  = false;
+	
+	UserOrder userOrder = new UserOrder(null);
 	
 	boolean[] boolsKeys = {boolZ,boolD,boolS,boolQ,boolUP,boolRIGHT,boolDOWN,boolLEFT};
 	int[] allKeys = {KeyEvent.VK_Z,KeyEvent.VK_D,KeyEvent.VK_S,KeyEvent.VK_Q,KeyEvent.VK_UP,KeyEvent.VK_RIGHT,KeyEvent.VK_DOWN,KeyEvent.VK_LEFT};

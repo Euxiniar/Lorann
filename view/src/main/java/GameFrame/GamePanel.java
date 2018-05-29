@@ -12,10 +12,6 @@ public class GamePanel extends JPanel {
 
 	public void paintComponent(Graphics g) {
 		
-		
-		
-		
-		
 		if (true) { //modify later
 			player.update(System.currentTimeMillis());
 			

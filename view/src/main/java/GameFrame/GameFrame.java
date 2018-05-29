@@ -10,6 +10,12 @@ import view.EventPerformer;
 	
 	public class GameFrame extends JFrame implements KeyListener {
 		
+		//----------------------------Key Boolean------------------------------------------
+		
+		public boolean boolZ = false;
+		public boolean boolD = false;
+		public boolean boolS = false;
+		public boolean boolQ = false;
 		
 		//-----------------------------eventPerformer---------------------------------------
 		IEventPerformer eventPerformer = new EventPerformer();
