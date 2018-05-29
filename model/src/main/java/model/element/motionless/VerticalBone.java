@@ -10,7 +10,7 @@ import model.element.Permeability;
  * @author Charles Agostini
  * @version 1.0
  */
-class VerticalBone extends MotionlessElement {
+public class VerticalBone extends MotionlessElement {
     
     /**
      * Instantiates a new VerticalBone.

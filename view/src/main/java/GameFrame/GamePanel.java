@@ -12,22 +12,24 @@ public class GamePanel extends JPanel {
 
 	public void paintComponent(Graphics g) {
 		
-		if (true) { //modify later
-			player.update(System.currentTimeMillis());
-			
-			g.drawImage(Lorann.sprite, x, y, widthEntity ,heightEntity , null);
-		}
-		if (true) { //modify later
-			Monster1.update(System.currentTimeMillis());
-			
-			g.drawImage(Monster1.sprite, monster.getX(), monster.getY(), widthEntity ,heightEntity , null);
-		}
-
-		if (Spell.spellLance) {//modify later
-			Spell.update(System.currentTimeMillis());
-			
-			g.drawImage(Spell.sprite, spell.getX(), spell.getY(), widthEntity ,heightEntity , null);
-		}
+		g.drawImage(player.sprite, x, y, 50 ,50 , null);
+		
+//		if (true) { //modify later
+//			player.update(System.currentTimeMillis());
+//			
+//			g.drawImage(Lorann.sprite, x, y, widthEntity ,heightEntity , null);
+//		}
+//		if (true) { //modify later
+//			Monster1.update(System.currentTimeMillis());
+//			
+//			g.drawImage(Monster1.sprite, monster.getX(), monster.getY(), widthEntity ,heightEntity , null);
+//		}
+//
+//		if (Spell.spellLance) {//modify later
+//			Spell.update(System.currentTimeMillis());
+//			
+//			g.drawImage(Spell.sprite, spell.getX(), spell.getY(), widthEntity ,heightEntity , null);
+//		}
 		
 		repaint();
 

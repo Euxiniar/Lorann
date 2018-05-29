@@ -5,6 +5,8 @@ import java.util.List;
 
 import model.Example;
 import model.IModel;
+import model.element.motionless.MotionlessElement;
+import model.element.motionless.VerticalBone;
 import view.IView;
 
 /**
@@ -17,6 +19,9 @@ public class ControllerFacade implements IController {
 
     /** The view. */
     private final IView  view;
+    
+    /** The Map. */
+    public static MotionlessElement[][] map = {{new VerticalBone()},{new BallBone()}};
 
     /** The model. */
     private final IModel model;
