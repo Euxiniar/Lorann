@@ -42,12 +42,12 @@ public abstract class Element implements IElement{
 		this.permeability = permeability;
 	}
 	
-	public BufferedImage getSelectedImage(int selectedSprite) {
-		return spriteArray.get(selectedSprite).getImage();
+	public BufferedImage getSelectedImage() {
+		return spriteArray.get(this.selectedSpriteValue).getImage();
 	}
 	
-	public char getSelectedSymbol(int selectedSprite) {
-		return spriteArray.get(selectedSprite).getSymbol();
+	public char getSymbol() {
+		return spriteArray.get(0).getSymbol();
 	}
 	
 	private void createSpriteArray(char character, BufferedImage spriteSheet, int xPos, int yPos, int nbSprites) {

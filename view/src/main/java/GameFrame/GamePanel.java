@@ -11,6 +11,11 @@ public class GamePanel extends JPanel {
 	private static final long serialVersionUID = 1L;
 
 	public void paintComponent(Graphics g) {
+		
+		
+		
+		
+		
 		if (true) { //modify later
 			player.update(System.currentTimeMillis());
 			

@@ -4,6 +4,8 @@ import java.awt.event.KeyEvent;
 import java.util.ArrayList;
 
 import GameFrame.IEventPerformer;
+import controller.Order;
+import controller.UserOrder;
 
 public class EventPerformer implements IEventPerformer{
 	
@@ -24,10 +26,10 @@ public class EventPerformer implements IEventPerformer{
 	Enum[] enumOrder = {Order.UP,Order.RIGHT,Order.DOWN,Order.LEFT};
 	
 	public void eventPerform(int key) {
-			TrueKeyInUse(key);
+			trueKeyInUse(key);
 		}
 	
-	public void TrueKeyInUse(int key) {
+	public void trueKeyInUse(int key) {
 		for(int i = 0;i < this.boolsKeys.length;i++) {
 			if (key == allKeys[i])
 				boolsKeys[i] = true;
