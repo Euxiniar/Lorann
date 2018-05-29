@@ -4,7 +4,7 @@
  * @author Charles Agostini
  * @version 1.0
  */
-package model.element.mobile;
+package model.element;
 
 /**
  * @author Euxiniar

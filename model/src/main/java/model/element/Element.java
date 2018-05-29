@@ -3,8 +3,6 @@ package model.element;
 import java.awt.image.BufferedImage;
 import java.util.ArrayList;
 
-import model.element.mobile.Position;
-
 /**
  * <h1>The Element Class.</h1>
  *

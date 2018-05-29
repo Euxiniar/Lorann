@@ -5,8 +5,8 @@ package controller;
 
 import GameFrame.GamePanel;
 import model.element.Direction;
+import model.element.Position;
 import model.element.mobile.Player;
-import model.element.mobile.Position;
 
 /**
  * @author Snargol
@@ -15,10 +15,12 @@ import model.element.mobile.Position;
 public class TryMove {
 	
 	public TryMove(Player player, Direction direction) {
-		Position position = new Position();
-		position = getTheoricalPositionPlayer(player, direction);
-		Collisions.testNextCaseWall(player, position);
-		GamePanel.paintComponent(null);
+		Position theoricalPosition = new Position();
+		theoricalPosition = getTheoricalPositionPlayer(player, direction);
+		if (!Collisions.testNextCaseWall(player, theoricalPosition)) {
+			//appliquer le mouvement
+			//peindre composants
+		}
 		
 	}
 	

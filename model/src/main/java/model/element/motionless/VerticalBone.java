@@ -15,7 +15,7 @@ public class VerticalBone extends MotionlessElement {
     /**
      * Instantiates a new VerticalBone.
      */
-    VerticalBone(BufferedImage spriteSheet) {
+    public VerticalBone(BufferedImage spriteSheet) {
     	super('|', spriteSheet, 1, 6, Permeability.BLOCKING);
     }
 }

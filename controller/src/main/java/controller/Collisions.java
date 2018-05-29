@@ -6,9 +6,9 @@ package controller;
 import java.util.ArrayList;
 
 import model.element.Permeability;
+import model.element.Position;
 import model.element.mobile.MobileElement;
 import model.element.mobile.Player;
-import model.element.mobile.Position;
 import model.element.mobile.Spell;
 import model.element.motionless.MotionlessElement;
 

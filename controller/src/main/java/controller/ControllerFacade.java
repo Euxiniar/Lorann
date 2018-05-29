@@ -1,10 +1,15 @@
 package controller;
 
+import java.awt.image.BufferedImage;
+import java.io.IOException;
 import java.sql.SQLException;
+import java.util.ArrayList;
 import java.util.List;
 
 import model.Example;
 import model.IModel;
+import model.element.BufferedImageLoader;
+import model.element.mobile.Skeleton;
 import model.element.motionless.MotionlessElement;
 import model.element.motionless.VerticalBone;
 import view.IView;
@@ -21,7 +26,7 @@ public class ControllerFacade implements IController {
     private final IView  view;
     
     /** The Map. */
-    public static MotionlessElement[][] map = {{new VerticalBone()},{new BallBone()}};
+    public static MotionlessElement[][] map ;
 
     /** The model. */
     private final IModel model;
@@ -39,6 +44,7 @@ public class ControllerFacade implements IController {
         this.view = view;
         this.model = model;
     }
+    
 
     /**
      * Start.
@@ -47,17 +53,22 @@ public class ControllerFacade implements IController {
      *             the SQL exception
      */
     public void start() throws SQLException {
-        this.getView().displayMessage(this.getModel().getExampleById(1).toString());
-
-        this.getView().displayMessage(this.getModel().getExampleByName("Example 2").toString());
-
-        final List<Example> examples = this.getModel().getAllExamples();
-        final StringBuilder message = new StringBuilder();
-        for (final Example example : examples) {
-            message.append(example);
-            message.append('\n');
-        }
-        this.getView().displayMessage(message.toString());
+    	BufferedImage sprite;
+    	
+    	
+    	
+    	
+//        this.getView().displayMessage(this.getModel().getExampleById(1).toString());
+//
+//        this.getView().displayMessage(this.getModel().getExampleByName("Example 2").toString());
+//
+//        final List<Example> examples = this.getModel().getAllExamples();
+//        final StringBuilder message = new StringBuilder();
+//        for (final Example example : examples) {
+//            message.append(example);
+//            message.append('\n');
+//        }
+//        this.getView().displayMessage(message.toString());
     }
 
     /**
