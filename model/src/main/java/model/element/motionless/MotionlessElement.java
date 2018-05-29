@@ -11,7 +11,7 @@ import model.element.Permeability;
  * @author Charles Agostini
  * @version 1.0
  */
-abstract class MotionlessElement extends Element {
+public abstract class MotionlessElement extends Element {
 
     /**
      * Instantiates a new motionless element.

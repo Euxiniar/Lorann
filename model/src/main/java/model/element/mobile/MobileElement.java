@@ -12,7 +12,7 @@ import model.element.Direction;
 import model.element.Element;
 import model.element.Permeability;
 
-abstract class MobileElement extends Element {
+public abstract class MobileElement extends Element {
 
 	Position position;
 	Direction defaultDirection;
@@ -69,5 +69,9 @@ abstract class MobileElement extends Element {
 	
 	public void setPosition(int x, int y) {
 		position.setPosition(x, y);
+	}
+	
+	public Position getPosition() {
+		return position;
 	}
 }
