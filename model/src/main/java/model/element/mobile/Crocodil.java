@@ -10,7 +10,7 @@ import java.awt.image.BufferedImage;
 
 import model.element.Permeability;
 
-public class Crocodil extends MobileElement{
+public class Crocodil extends Monster{
 
 	public Crocodil(BufferedImage spriteSheet, int xPos, int yPos) {
     	super('4', spriteSheet, 0, 4, 1, Permeability.KILLER, xPos, yPos);

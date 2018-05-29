@@ -11,7 +11,7 @@ import java.awt.image.BufferedImage;
 import model.element.Permeability;
 
 
-public class Skeleton extends MobileElement{
+public class Skeleton extends Monster{
 
 	public Skeleton(BufferedImage spriteSheet, int xPos, int yPos) {
     	super('1', spriteSheet, 0, 1, 8, Permeability.KILLER, xPos, yPos);
