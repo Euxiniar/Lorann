@@ -14,7 +14,7 @@ import model.element.mobile.Player;
  */
 public class TryMove {
 	
-	public TryMove(Player player, Direction direction) {
+	public void tryMove(Player player, Direction direction) {
 		Position theoricalPosition = new Position();
 		theoricalPosition = getTheoricalPositionPlayer(player, direction);
 		if (!Collisions.testNextCaseWall(player, theoricalPosition)) {

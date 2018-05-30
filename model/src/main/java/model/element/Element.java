@@ -15,7 +15,7 @@ public abstract class Element implements IElement{
 	private Permeability permeability;
 	private int selectedSpriteValue = 0;
 	private boolean isAlive = true;
-	protected Position position;
+	protected Position position = new Position();
 	
 	public Element(char character, BufferedImage spriteSheet, int xImagePos, int yImagePos, int nbSprites, Permeability permeability) {
 		this.setPermability(permeability);
