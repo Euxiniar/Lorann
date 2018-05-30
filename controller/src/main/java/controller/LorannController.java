@@ -46,7 +46,7 @@ public class LorannController implements IOrderPerformer{
 				Thread.currentThread().interrupt();
 			}
 
-			final ArrayList<MobielElement> initialMobileElement = new ArrayList<MobileElement>();
+			final ArrayList<MobileElement> initialMobileElement = new ArrayList<MobileElement>();
 			for (final MobileElement element : this.lorannModel.getElement()) {
 				initialMobilesElement.add(element);
 			}
