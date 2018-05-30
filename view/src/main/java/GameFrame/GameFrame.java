@@ -19,7 +19,8 @@ import view.EventPerformer;
 		public boolean boolQ = false;
 		
 		//-----------------------------eventPerformer---------------------------------------
-		IEventPerformer eventPerformer = new EventPerformer();
+		//modify later
+		IEventPerformer eventPerformer = new EventPerformer(null, boolD, boolD, boolD, boolD);
 		
 		
 		//D---------------------------detect the key in use and start eventPerform--------------

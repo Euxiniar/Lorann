@@ -28,4 +28,8 @@ public class Map {
 	public void setOnTheMap(IElement element, Position position) {
 		map[position.getX()][position.getY()] = element;
 	}
+	
+	public IElement getOnTheMap(Position position) {
+		return map[position.getX()][position.getY()];
+	}
 }
