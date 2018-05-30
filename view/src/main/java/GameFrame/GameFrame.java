@@ -8,9 +8,7 @@ import java.util.Observable;
 
 import javax.swing.JFrame;
 
-import jpu2016.gameframe.GamePanel;
-import jpu2016.gameframe.IEventPerformer;
-import jpu2016.gameframe.IGraphicsBuilder;
+
 import view.EventPerformer;
 	
 	public class GameFrame extends JFrame implements KeyListener {
