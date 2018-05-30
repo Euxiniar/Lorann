@@ -19,12 +19,12 @@ public class EventPerformer implements IEventPerformer{
 
 		}
 	
-	public EventPerformer (IOrderPerformer orderPerformer,boolean boolZ ,boolean boold ,boolean boolS,boolean boolQ) {
+	public EventPerformer (IOrderPerformer orderPerformer) {
 		
 	}
 
 	@Override
-	public void eventPerform(int key) {
+	public void eventPerform(int key,boolean boolZ ,boolean boold ,boolean boolS,boolean boolQ) {
 		// TODO Auto-generated method stub
 		
 	}

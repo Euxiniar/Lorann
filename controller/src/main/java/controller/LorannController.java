@@ -38,6 +38,7 @@ public class LorannController implements IOrderPerformer{
 	public void setViewSystem(IViewSystem viewSystem) {
 		
 	}
+	
 	private void gameLoop() {
 		while (!this.isGameOver) {
 			try {

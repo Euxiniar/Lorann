@@ -27,3 +27,5 @@ public interface ILorannModel {
 	ArrayList<IMonster> getMonsters();
 	void addMonster(IMonster monster);
 }
+
+
