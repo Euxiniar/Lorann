@@ -2,22 +2,15 @@
  * 
  */
 package controller;
-import java.util.ArrayList;
-
-import jpu2016.dogfight.model.Direction;
-import jpu2016.dogfight.model.IMobile;
-
-import java.io.IOException;
 
 import model.ILorannModel;
-import model.element.IElement;
 import model.element.Map;
 import model.element.Position;
 import model.element.mobile.*;
 import model.element.mobile.MonsterFactory;
 import model.element.mobile.Player;
-import model.element.mobile.Position;
 import model.element.motionless.MotionlessElementFactory;
+import view.IViewSystem;
 
 /**
  * @author vazvi
@@ -28,9 +21,10 @@ public class LorannController implements IOrderPerformer{
 	private boolean isGameOver	= false;
 	private final ILorannModel lorannModel;
 	private IViewSystem viewSystem;
+	private String mapString = "|";
 	
 	public LorannController(ILorannModel lorannModel) {
-	
+		this.lorannModel = lorannModel;
 	}
 	
 	public void orderPerform(UserOrder userOrder) {
@@ -38,7 +32,8 @@ public class LorannController implements IOrderPerformer{
 	}
 	
 	public void play() {
-		
+		buildMap(mapString);
+		gameLoop();
 	}
 	
 	public void setViewSystem(IViewSystem viewSystem) {
@@ -53,23 +48,23 @@ public class LorannController implements IOrderPerformer{
 				Thread.currentThread().interrupt();
 			}
 
-			final ArrayList<MobileElement> initialMobileElement = new ArrayList<MobileElement>();
-			for (final MobileElement element : this.lorannModel.getElement()) {
-				initialMobilesElement.add(element);
-			}
+//			final ArrayList<MobileElement> initialMobileElement = new ArrayList<MobileElement>();
+//			for (final MobileElement element : this.lorannModel.getElement()) {
+//				initialMobilesElement.add(element);
+//			}
 //			for (final IMobile mobile : initialMobiles) {
 //				mobile.move();
 //				if (mobile.isWeapon()) {
 //					this.manageCollision(mobile);
 //				}
 //			}
-//			this.lorannModel.setMobilesHavesMoved();
+			this.lorannModel.setMobilesHavesMoved();
 		}
 	}
-	public Map buildMap(String mapString) {
+	public void buildMap(String mapString) {
 		int i = 0, j = 0;
 		Map map = new Map();
-		Position position = null;
+		Position position = new Position();
 			
 		while(mapString.charAt(j) != 'F') {
 			while (mapString.charAt(i) != 'E') {

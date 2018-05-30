@@ -52,8 +52,8 @@ public class LorannControllerTest {
 	 */
 	@Test
 	public void testBuildMap() {
-		final int expected = 1;
-		if(!assertEquals(expected, buildMap(stringTest)).getSelectedSpriteValue()) {
+		final char expected = "|";
+		if(!assertEquals(expected, buildMap(stringTest)).getSymbol()) {
 			fail("The built element doesn't match");
 		}
 	}

@@ -17,6 +17,7 @@ public class Collisions {
 
 	//------------------Test position of a player or a spell with all the others Movable Entity
 	public static boolean testCaseMob(IElement element) {
+		return false;
 		
 //		for (IElement e2 : listeEntity) {
 //			if (e1.getPosition().getX() == e2.getPosition().getX() && e1.getPosition().getY() == e2.getPosition().getY()) {

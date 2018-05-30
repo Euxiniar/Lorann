@@ -1,5 +1,5 @@
 package GameFrame;
 
 public interface IEventPerformer {
-	public void eventPerform(int key,boolean boolZ ,boolean boold ,boolean boolS,boolean boolQ);
+	public void eventPerform(boolean boolZ ,boolean boolD ,boolean boolS,boolean boolQ, boolean boolUP, boolean boolRIGHT, boolean boolDOWN, boolean boolLEFT);
 }
