@@ -4,6 +4,7 @@
 package controller;
 
 import static org.junit.Assert.*;
+import model.element.Element;
 
 import org.junit.After;
 import org.junit.AfterClass;
@@ -16,6 +17,7 @@ import org.junit.Test;
  *
  */
 public class LorannControllerTest {
+	private String stringtest = "|";
 
 	/**
 	 * @throws java.lang.Exception
@@ -50,7 +52,10 @@ public class LorannControllerTest {
 	 */
 	@Test
 	public void testBuildMap() {
-		fail("Not yet implemented");
+		final int expected = 1;
+		if(!assertEquals(expected, buildMap(stringTest)).getSelectedSpriteValue()) {
+			fail("The built element doesn't match");
+		}
 	}
 
 }
