@@ -8,7 +8,8 @@ import GameFrame.GameFrame;
 import controller.IOrderPerformer;
 import model.ILorannModel;
 
-public class LorannView implements IViewSystem{
+@SuppressWarnings("deprecation")
+public class LorannView implements ILorannView{
 	private final GraphicsBuilder graphicsBuilder;
 	private final EventPerformer eventPerformer;
 	private final Observable observable;

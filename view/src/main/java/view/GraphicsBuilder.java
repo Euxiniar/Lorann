@@ -1,20 +1,14 @@
 package view;
 
 import java.awt.Graphics;
-import java.awt.Graphics2D;
-import java.awt.Transparency;
 import java.awt.image.BufferedImage;
 import java.awt.image.ImageObserver;
-import java.util.ArrayList;
 
 import GameFrame.IGraphicsBuilder;
 import model.ILorannModel;
 import model.element.IElement;
-import model.element.Map;
 import model.element.Position;
 import model.element.mobile.IMonster;
-import model.element.mobile.Player;
-import model.element.mobile.Spell;
 
 class GraphicsBuilder implements IGraphicsBuilder {
 	private final ILorannModel lorannModel;

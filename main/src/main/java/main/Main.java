@@ -3,8 +3,10 @@ package main;
 import java.sql.SQLException;
 
 import controller.ControllerFacade;
+import controller.LorannController;
+import model.LorannModel;
 import model.ModelFacade;
-import view.ViewFacade;
+import view.LorannView;
 
 /**
  * <h1>The Class Main.</h1>
@@ -21,10 +23,10 @@ public abstract class Main {
      *            the arguments
      */
     public static void main(final String[] args) {
-        final ControllerFacade controller = new ControllerFacade(new ViewFacade(), new ModelFacade());
+        final LorannController controller = new LorannController(new LorannView(), new LorannModel());
 
         try {
-            controller.start();
+            controller.play();
         } catch (final SQLException exception) {
             exception.printStackTrace();
         }

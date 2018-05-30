@@ -17,8 +17,6 @@ import org.junit.Test;
  *
  */
 public class LorannControllerTest {
-	private String stringtest = "|";
-
 	/**
 	 * @throws java.lang.Exception
 	 */
@@ -52,8 +50,10 @@ public class LorannControllerTest {
 	 */
 	@Test
 	public void testBuildMap() {
-		final char expected = "|";
-		if(!assertEquals(expected, buildMap(stringTest)).getSymbol()) {
+		final char expected = '|';
+		String map = "|  *";
+		LorannController lcontroller = new LorannCntroller();
+		if(!assertEquals(expected, buildMap(map).getSymbol())) {
 			fail("The built element doesn't match");
 		}
 	}

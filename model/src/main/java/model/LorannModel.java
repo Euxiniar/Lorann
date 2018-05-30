@@ -26,7 +26,7 @@ public class LorannModel extends Observable implements ILorannModel{
 	Spell spell;
 	ArrayList<IMonster> monsters = new ArrayList<IMonster>();
 	
-	LorannModel() {
+	public LorannModel() {
 		
 	}
 
