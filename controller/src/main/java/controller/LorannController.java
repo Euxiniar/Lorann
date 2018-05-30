@@ -94,36 +94,36 @@ public class LorannController implements IOrderPerformer{
 	 */
 	@Override
 	public void orderPerform(IUserOrder userOrder) {
-		if (userOrder != null) {
-			final IMobile plane = this.dogfightModel.getMobileByPlayer(userOrder.getPlayer());
-			if (plane != null) {
-				Direction direction;
-				switch (userOrder.getOrder()) {
-					case UP:
-						direction = Direction.UP;
-						break;
-					case RIGHT:
-						direction = Direction.RIGHT;
-						break;
-					case DOWN:
-						direction = Direction.DOWN;
-						break;
-					case LEFT:
-						direction = Direction.LEFT;
-						break;
-					case SHOOT:
-						try {
-							this.lauchMissile(userOrder.getPlayer());
-						} catch (final IOException e) {
-							e.printStackTrace();
-						}
-					case NOP:
-					default:
-						direction = this.dogfightModel.getMobileByPlayer(userOrder.getPlayer()).getDirection();
-						break;
-				}
-				plane.setDirection(direction);
-			}
-		}
+//		if (userOrder != null) {
+//			final IMobile plane = this.dogfightModel.getMobileByPlayer(userOrder.getPlayer());
+//			if (plane != null) {
+//				Direction direction;
+//				switch (userOrder.getOrder()) {
+//					case UP:
+//						direction = Direction.UP;
+//						break;
+//					case RIGHT:
+//						direction = Direction.RIGHT;
+//						break;
+//					case DOWN:
+//						direction = Direction.DOWN;
+//						break;
+//					case LEFT:
+//						direction = Direction.LEFT;
+//						break;
+//					case SHOOT:
+//						try {
+//							this.lauchMissile(userOrder.getPlayer());
+//						} catch (final IOException e) {
+//							e.printStackTrace();
+//						}
+//					case NOP:
+//					default:
+//						direction = this.dogfightModel.getMobileByPlayer(userOrder.getPlayer()).getDirection();
+//						break;
+//				}
+//				plane.setDirection(direction);
+//			}
+//		}
 	}
 }
