@@ -7,25 +7,23 @@ import java.util.Observer;
 
 import javax.swing.JPanel;
 
-import model.element.mobile.MobileElement;
-import model.element.motionless.MotionlessElement;
-
 public class GamePanel extends JPanel implements Observer{
 	/**
 	 * 
 	 */
 	private static final long serialVersionUID = 1L;
+	private final IGraphicsBuilder	graphicsBuilder;
 
-	public GamePanel(IGraphicsBuilder graphicBuilder) {
-
+	public GamePanel(IGraphicsBuilder graphicsBuilder) {
+		this.graphicsBuilder = graphicsBuilder;
 	}
 
 	public void update(Observable observable, Object arg) {
-
+		this.repaint();
 	}
 	
 	public void PaintComponent(Graphics g) {
-		
+		this.graphicsBuilder.applyModelToGraphic(g, this);
 	}
 
 

@@ -14,9 +14,32 @@ public class EventPerformer implements IEventPerformer{
 	
 	
 		
-	public void KeyToOrder() {
-	//-------------------------------Player move double key --------------------
-
+	public void keyToOrder(boolean boolZ ,boolean boolD ,boolean boolS,boolean boolQ,boolean boolUP ,boolean boolRIGHT ,boolean boolDOWN,boolean boolLEFT) {
+		if (boolZ && boolD) {
+			UserOrder order = new UserOrder(Order.UPRIGHT);
+		}
+		else if (boolZ && boolQ) {
+			UserOrder order = new UserOrder(Order.UPLEFT);
+		}
+		else if (boolS && boolD) {
+			UserOrder order = new UserOrder(Order.DOWNRIGHT);
+		}
+		else if (boolS && boolQ) {
+			UserOrder order = new UserOrder(Order.DOWNLEFT);
+		}
+		else if (boolZ) {
+			UserOrder order = new UserOrder(Order.UP);
+		}
+		else if (boolD) {
+			UserOrder order = new UserOrder(Order.RIGHT);
+		}
+		else if (boolS) {
+			UserOrder order = new UserOrder(Order.DOWN);
+		}
+		else if (boolD) {
+			UserOrder order = new UserOrder(Order.LEFT);
+		}
+		
 		}
 	
 	public EventPerformer (IOrderPerformer orderPerformer) {
@@ -24,8 +47,9 @@ public class EventPerformer implements IEventPerformer{
 	}
 
 	@Override
-	public void eventPerform(int key,boolean boolZ ,boolean boold ,boolean boolS,boolean boolQ) {
-		// TODO Auto-generated method stub
+	public void eventPerform(boolean boolZ ,boolean boolD ,boolean boolS,boolean boolQ,boolean boolUP ,boolean boolRIGHT ,boolean boolDOWN,boolean boolLEFT) {
+		keyToOrder( boolZ , boolD , boolS, boolQ, boolUP , boolRIGHT , boolDOWN, boolLEFT);
+		
 		
 	}
 		
