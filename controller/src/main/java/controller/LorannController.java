@@ -7,11 +7,13 @@ import java.io.IOException;
 
 import model.ILorannModel;
 import model.element.IElement;
+import model.element.Map;
 import model.element.Position;
 import model.element.mobile.*;
 import model.element.mobile.MonsterFactory;
 import model.element.mobile.Player;
 import model.element.mobile.Position;
+import model.element.motionless.MotionlessElementFactory;
 
 /**
  * @author vazvi
@@ -21,7 +23,7 @@ public class LorannController implements IOrderPerformer{
 	private static int TIME_SLEEP = 30;
 	private boolean isGameOver	= false;
 	private final ILorannModel lorannModel;
-	private IViewSystem viewSystem:
+	private IViewSystem viewSystem;
 	
 	public LorannController(ILorannModel lorannModel) {
 	
@@ -70,7 +72,8 @@ public class LorannController implements IOrderPerformer{
 				position.setX(i);
 				position.setY(j);
 				if(mapString.charAt(i) == '*') {
-					Player player = Player(position);
+					Player player = new Player(position);
+					lorannModel.setPlayer(player);
 				}
 				else if(mapString.charAt(i) == '1' || mapString.charAt(i) == '2' || mapString.charAt(i) == '3' || mapString.charAt(i) == '4') {
 					IMonster monster = MonsterFactory.getFromSymbol(mapString.charAt(i), position);
@@ -84,7 +87,15 @@ public class LorannController implements IOrderPerformer{
 			}
 			j++;
 		}
-		lorannModel.setPlayer(player);
-		map.LorannModel.getMap();
+		lorannModel.setMap(map);
+	}
+
+	/* (non-Javadoc)
+	 * @see controller.IOrderPerformer#orderPerform(controller.IUserOrder)
+	 */
+	@Override
+	public void orderPerform(IUserOrder userOrder) {
+		// TODO Auto-generated method stub
+		
 	}
 }
