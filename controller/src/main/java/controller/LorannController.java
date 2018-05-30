@@ -2,8 +2,13 @@
  * 
  */
 package controller;
+import java.util.ArrayList;
+import java.io.IOException;
+
+import model.ILorannModel;
 import model.element.IElement;
 import model.element.Position;
+import model.element.mobile.*;
 import model.element.mobile.MonsterFactory;
 import model.element.mobile.Player;
 import model.element.mobile.Position;
@@ -12,8 +17,11 @@ import model.element.mobile.Position;
  * @author vazvi
  *
  */
-public class LorannController {
-	private static int TIME SLEEP = 30;
+public class LorannController implements IOrderPerformer{
+	private static int TIME_SLEEP = 30;
+	private boolean isGameOver	= false;
+	private final ILorannModel lorannModel;
+	private IViewSystem viewSystem:
 	
 	public LorannController(ILorannModel lorannModel) {
 	
@@ -31,7 +39,25 @@ public class LorannController {
 		
 	}
 	private void gameLoop() {
-		
+		while (!this.isGameOver) {
+			try {
+				Thread.sleep(TIME_SLEEP);
+			} catch (final InterruptedException ex) {
+				Thread.currentThread().interrupt();
+			}
+
+			final ArrayList<MobielElement> initialMobileElement = new ArrayList<MobileElement>();
+			for (final MobileElement element : this.lorannModel.getElement()) {
+				initialMobilesElement.add(element);
+			}
+//			for (final IMobile mobile : initialMobiles) {
+//				mobile.move();
+//				if (mobile.isWeapon()) {
+//					this.manageCollision(mobile);
+//				}
+//			}
+//			this.lorannModel.setMobilesHavesMoved();
+		}
 	}
 	public Map buildMap(String mapString) {
 		int i = 0, j = 0;
