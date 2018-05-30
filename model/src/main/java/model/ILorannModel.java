@@ -26,6 +26,7 @@ public interface ILorannModel {
 	void setSpell(Spell spell);
 	ArrayList<IMonster> getMonsters();
 	void addMonster(IMonster monster);
+	public void setMobilesHavesMoved();
 }
 
 
