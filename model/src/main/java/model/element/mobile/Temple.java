@@ -9,7 +9,7 @@ package model.element.mobile;
 import model.element.Permeability;
 import model.element.Position;
 
-public class Temple extends Monster{
+class Temple extends Monster{
 
 	public Temple(Position position) {
     	super('3', 0, 3, 1, Permeability.KILLER, position);

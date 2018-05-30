@@ -9,7 +9,7 @@ package model.element.mobile;
 import model.element.Permeability;
 import model.element.Position;
 
-public class Crocrodil extends Monster {
+class Crocrodil extends Monster {
 
 	public Crocrodil(Position position) {
     	super('4', 0, 4, 1, Permeability.KILLER, position);

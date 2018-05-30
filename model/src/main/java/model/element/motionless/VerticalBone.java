@@ -9,7 +9,7 @@ import model.element.Position;
  * @author Charles Agostini
  * @version 1.0
  */
-public class VerticalBone extends MotionlessElement {
+class VerticalBone extends MotionlessElement {
     
     /**
      * Instantiates a new VerticalBone.

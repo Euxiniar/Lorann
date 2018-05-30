@@ -10,7 +10,7 @@ import model.element.Permeability;
 import model.element.Position;
 
 
-public class Skeleton extends Monster{
+class Skeleton extends Monster{
 
 	public Skeleton(Position position) {
     	super('1', 0, 1, 8, Permeability.KILLER, position);
