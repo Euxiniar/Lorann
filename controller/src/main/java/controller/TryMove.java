@@ -3,9 +3,10 @@
  */
 package controller;
 
+import GameFrame.GamePanel;
 import model.element.Direction;
-import model.element.mobile.MobileElement;
-import model.element.mobile.Position;
+import model.element.Position;
+import model.element.mobile.Player;
 
 /**
  * @author Snargol
@@ -13,26 +14,35 @@ import model.element.mobile.Position;
  */
 public class TryMove {
 	
+	public void tryMove(Player player, Direction direction) {
+		Position theoricalPosition = new Position();
+		theoricalPosition = getTheoricalPositionPlayer(player, direction);
+		if (!Collisions.testNextCaseWall(player, theoricalPosition)) {
+			//appliquer le mouvement
+			//peindre composants
+		}
+		
+	}
 	
-		public Position getTheoricalPosition(Direction direction, MobileElement element) {
+		public Position getTheoricalPositionPlayer(Player player, Direction direction) {
 	        Position position = new Position();
 	        switch(direction) {
 	        case UP:
-	            position.setPosition(element.getPosition().getX(), element.getPosition().getY() + 1);
+	            position.setPosition(player.getPosition().getX(), player.getPosition().getY() - 1);
 	        case DOWN:
-	            position.setPosition(element.getPosition().getX(), element.getPosition().getY() - 1);
+	            position.setPosition(player.getPosition().getX(), player.getPosition().getY() + 1);
 	        case LEFT:
-	            position.setPosition(element.getPosition().getX() - 1, element.getPosition().getY());
+	            position.setPosition(player.getPosition().getX() - 1, player.getPosition().getY());
 	        case RIGHT:
-	            position.setPosition(element.getPosition().getX() + 1, element.getPosition().getY());
+	            position.setPosition(player.getPosition().getX() + 1, player.getPosition().getY());
 	        case UPLEFT:
-	            position.setPosition(element.getPosition().getX() - 1, element.getPosition().getY() + 1);
+	            position.setPosition(player.getPosition().getX() - 1, player.getPosition().getY() - 1);
 	        case UPRIGHT:
-	            position.setPosition(element.getPosition().getX() + 1, element.getPosition().getY() + 1);
+	            position.setPosition(player.getPosition().getX() + 1, player.getPosition().getY() - 1);
 	        case DOWNLEFT:
-	            position.setPosition(element.getPosition().getX() - 1, element.getPosition().getY() - 1);
+	            position.setPosition(player.getPosition().getX() - 1, player.getPosition().getY() + 1);
 	        case DOWNRIGHT:
-	            position.setPosition(element.getPosition().getX() + 1, element.getPosition().getY() - 1);
+	            position.setPosition(player.getPosition().getX() + 1, player.getPosition().getY() + 1);
 	        default:
 	            break;
 	        }

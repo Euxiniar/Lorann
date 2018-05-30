@@ -6,9 +6,9 @@ package controller;
 import java.util.ArrayList;
 
 import model.element.Permeability;
+import model.element.Position;
 import model.element.mobile.MobileElement;
 import model.element.mobile.Player;
-import model.element.mobile.Position;
 import model.element.mobile.Spell;
 import model.element.motionless.MotionlessElement;
 
@@ -39,34 +39,34 @@ public class Collisions {
 		return false;
 	}
 	//-------------------Test player with element permeability.GRABABLE of the case
-	public static boolean testCaseObject(Player p, MotionlessElement[][] map) {
+	public static boolean testCaseObject(Player p) {
 		
-		if (map[p.getPosition().getY()][p.getPosition().getX()].getPermeability() == Permeability.GRABABLE){
+		if (ControllerFacade.map[p.getPosition().getY()][p.getPosition().getX()].getPermeability() == Permeability.GRABABLE){
 			return true;
 		}
 		
 		return false;
 	}
 	//-------------------Test player position with motionLessElement Door with permeability.KILLER
-	public static boolean testCaseDoorClose(MobileElement mobileElement, MotionlessElement[][] map) {
+	public static boolean testCaseDoorClose(MobileElement mobileElement) {
 		
-		if (map[mobileElement.getPosition().getY()][mobileElement.getPosition().getX()].getPermeability() == Permeability.KILLER) {
+		if (ControllerFacade.map[mobileElement.getPosition().getY()][mobileElement.getPosition().getX()].getPermeability() == Permeability.KILLER) {
 			return true;
 		}
 		return false;
 	}
 	//-------------------Test player position with motionLessElement Door with permeability.ENDER
-	public static boolean testCaseDoorOpen(MobileElement mobileElement, MotionlessElement[][] map) {
+	public static boolean testCaseDoorOpen(MobileElement mobileElement) {
 		
-		if (map[mobileElement.getPosition().getY()][mobileElement.getPosition().getX()].getPermeability() == Permeability.ENDER) {
+		if (ControllerFacade.map[mobileElement.getPosition().getY()][mobileElement.getPosition().getX()].getPermeability() == Permeability.ENDER) {
 			return true;
 		}
 		return false;
 	}
 	//-------------------Test player position with motionLessElement Door 
-	public static boolean testCaseDoor(MobileElement mobileElement, MotionlessElement[][] map) {
+	public static boolean testCaseDoor(MobileElement mobileElement) {
 		
-		if (map[mobileElement.getPosition().getY()][mobileElement.getPosition().getX()].getSymbol() == 'D') {
+		if (ControllerFacade.map[mobileElement.getPosition().getY()][mobileElement.getPosition().getX()].getSymbol() == 'D') {
 			return true;
 		}
 		return false;
@@ -74,9 +74,9 @@ public class Collisions {
 	
 	
 	//--------------------Test next case Object for MobileElement------------------------------------------- 
-	public static boolean testNextCaseObject(MobileElement mobileElement, Position nextPosition, MotionlessElement[][] map) {
+	public static boolean testNextCaseObject(MobileElement mobileElement, Position nextPosition) {
 		
-		if (map[mobileElement.getPosition().getY()+nextPosition.getY()][mobileElement.getPosition().getX() +nextPosition.getX()].getPermeability() == Permeability.GRABABLE) {
+		if (ControllerFacade.map[mobileElement.getPosition().getY()+nextPosition.getY()][mobileElement.getPosition().getX() +nextPosition.getX()].getPermeability() == Permeability.GRABABLE) {
 			return true;
 		}
 		return false;
@@ -91,17 +91,17 @@ public class Collisions {
 		return false;
 	}
 	//---------------------Test next case Wall for MobileElement-------------------------------------------
-	public static boolean testNextCaseWall(MobileElement mobileElement, Position nextPosition, MotionlessElement[][] map) {
+	public static boolean testNextCaseWall(MobileElement mobileElement, Position nextPosition) {
 		
-		if (map[mobileElement.getPosition().getY()+nextPosition.getY()][mobileElement.getPosition().getX() +nextPosition.getX()].getPermeability() == Permeability.BLOCKING) {
+		if (ControllerFacade.map[mobileElement.getPosition().getY()+nextPosition.getY()][mobileElement.getPosition().getX() +nextPosition.getX()].getPermeability() == Permeability.BLOCKING) {
 			return true;
 		}
 		return false;
 	}
 	//----------------------test next case Door for MobileElement------------------------------------------
-	public static boolean testNextCaseDoor(MobileElement mobileElement, Position nextPosition, MotionlessElement[][] map) {
+	public static boolean testNextCaseDoor(MobileElement mobileElement, Position nextPosition) {
 		
-		if (map[mobileElement.getPosition().getY()+nextPosition.getY()][mobileElement.getPosition().getX() +nextPosition.getX()].getSymbol() == 'D') {
+		if (ControllerFacade.map[mobileElement.getPosition().getY()+nextPosition.getY()][mobileElement.getPosition().getX() +nextPosition.getX()].getSymbol() == 'D') {
 			return true;
 		}
 		return false;
