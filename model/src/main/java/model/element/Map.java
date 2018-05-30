@@ -32,4 +32,8 @@ public class Map {
 	public IElement getOnTheMap(Position position) {
 		return map[position.getX()][position.getY()];
 	}
+	
+	public IElement[][] getMap() {
+		return this.map;
+	}
 }

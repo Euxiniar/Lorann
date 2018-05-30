@@ -36,8 +36,8 @@ class GraphicsBuilder implements IGraphicsBuilder {
 	private void buildMapGraph(Graphics g) {
 		int x = 0, y = 0;
 		Position position = new Position(x,y);
-		for (IElement[] ligne : lorannModel.getMap()) {
-			for (IElement element : lorannModel.getMap().getOnTheMap(position)) {
+		for (IElement[] ligne : lorannModel.getMap().getMap()) {
+			for (IElement element : lorannModel.getMap().getMap()[y]) {
 				g.drawImage(element.getSelectedImage(), element.getPosition().getX(), element.getPosition().getY(), 50, 50, null);
 				position.setX(x + 1);
 			}
