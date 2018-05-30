@@ -5,9 +5,15 @@ import java.awt.Graphics2D;
 import java.awt.Transparency;
 import java.awt.image.BufferedImage;
 import java.awt.image.ImageObserver;
+import java.util.ArrayList;
 
 import GameFrame.IGraphicsBuilder;
+import model.ILorannModel;
 import model.element.IElement;
+import model.element.Map;
+import model.element.mobile.IMonster;
+import model.element.mobile.Player;
+import model.element.mobile.Spell;
 
 class GraphicsBuilder implements IGraphicsBuilder {
 	private final ILorannModel lorannModel;
@@ -15,39 +21,44 @@ class GraphicsBuilder implements IGraphicsBuilder {
 
 	public GraphicsBuilder(final ILorannModel lorannModel) {
 		this.lorannModel = lorannModel;
-		this.buildMap();
 	}
 
 	@Override
 	public void applyModelToGraphic(final Graphics graphics, final ImageObserver observer) {
 		buildMap(graphics);
+		drawMonsters(graphics);
+		drawPlayer(graphics, observer);
+		drawSpell(graphics);
 
 	}
 	
 	public void buildMap(Graphics g) {
-		
+		for (IElement[] ligne : lorannModel.getMap().getOnTheMap()[y]) {
+			for (IElement element : lorannModel.getMap().getOnTheMap()[y][y]) {
+				g.drawImage(element.getSelectedImage(), element.getPosition().getX(), element.getPosition().getY(), 50, 50, null);
+			}
+		}
 	}
 	
-	public void drawPlayer(Player player, Graphics g, ImageObserver observer) {
-		
-	}
-	
-	public void drawSpell(Spell spell, Graphics g) {
-		
-	}
-	
-	public void drawMonsters(ArrayList<IMonsters> monsters, Graphics g) {
-		
-	}
+	public void drawPlayer(Graphics g, ImageObserver observer) {
 
-	@Override
-	public int getGlobalWidth() {
-		return this.lorannModel.getArea().getWidth();
-	}
+			g.drawImage(lorannModel.getPlayer().getSelectedImage(), lorannModel.getPlayer().getPosition().getX(), lorannModel.getPlayer().getPosition().getY(), 50, 50, null);
 
-	@Override
-	public int getGlobalHeight() {
-		return this.lorannModel.getArea().getHeight();
+	}
+	
+	public void drawSpell(Graphics g) {
+
+		if (lorannModel.getSpell().getIsAlive() == true) {
+			g.drawImage(lorannModel.getPlayer().getSelectedImage(), lorannModel.getPlayer().getPosition().getX(), lorannModel.getPlayer().getPosition().getY(), 50, 50, null);
+		}
+	}
+	
+	public void drawMonsters(Graphics g) {
+		for (IMonster monster : lorannModel.getMonsters()) {
+			if (monster.getIsAlive() == true) {
+				g.drawImage(monster.getSelectedImage(), monster.getPosition().getX(), monster.getPosition().getY(), 50, 50, null);
+			}
+		}
 	}
 
 }

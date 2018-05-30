@@ -6,6 +6,7 @@ import javax.swing.JOptionPane;
 
 import GameFrame.GameFrame;
 import controller.IOrderPerformer;
+import model.ILorannModel;
 
 public class LorannView implements IViewSystem{
 	private final GraphicsBuilder graphicsBuilder;
@@ -14,7 +15,9 @@ public class LorannView implements IViewSystem{
 	private GameFrame gameFrame;
 	
 	public LorannView(final IOrderPerformer orderPerformer, ILorannModel lorannModel , Observable observable ) {
-		
+		this.observable = observable;
+		this.graphicsBuilder = new GraphicsBuilder(lorannModel);
+		this.eventPerformer = new EventPerformer(orderPerformer);
 	}
 	
 	private void run() {
