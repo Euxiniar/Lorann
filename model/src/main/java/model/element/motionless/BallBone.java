@@ -1,8 +1,7 @@
 package model.element.motionless;
 
-import java.awt.image.BufferedImage;
-
 import model.element.Permeability;
+import model.element.Position;
 
 /**
  * <h1>The BallBone Class.</h1>
@@ -15,7 +14,7 @@ class BallBone extends MotionlessElement {
     /**
      * Instantiates a new VerticalBone.
      */
-	BallBone(BufferedImage spriteSheet) {
-    	super('O', spriteSheet, 2, 6, Permeability.BLOCKING);
+	BallBone(Position position) {
+    	super('O', 2, 6, Permeability.BLOCKING, position);
     }
 }

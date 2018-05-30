@@ -6,14 +6,13 @@
  */
 package model.element.mobile;
 
-import java.awt.image.BufferedImage;
-
 import model.element.Permeability;
+import model.element.Position;
 
 
-public class Skeleton extends Monster{
+class Skeleton extends Monster{
 
-	public Skeleton(BufferedImage spriteSheet, int xPos, int yPos) {
-    	super('1', spriteSheet, 0, 1, 8, Permeability.KILLER, xPos, yPos);
+	public Skeleton(Position position) {
+    	super('1', 0, 1, 8, Permeability.KILLER, position);
 	}
 }

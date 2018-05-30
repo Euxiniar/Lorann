@@ -2,6 +2,8 @@ package model.element;
 
 import java.awt.image.BufferedImage;
 
+import model.SpriteSheet;
+
 /**
  * <h1>The Sprite Class.</h1>
  *
@@ -12,13 +14,13 @@ public class Sprite {
 	private BufferedImage image;
 	private char symbol;
 	
-	public Sprite(char character, BufferedImage spriteSheet, int xPos, int yPos) {
-		this(character, spriteSheet, xPos, yPos, 32, 32);
+	public Sprite(char symbol, int xPos, int yPos) {
+		this(symbol, xPos, yPos, 32, 32);
 	}
 
-	public Sprite(char character, BufferedImage spriteSheet, int xPos, int yPos, int width, int height) {
-		this.setConsoleImage(character);
-		this.selectImage(spriteSheet, xPos, yPos, width, height);
+	public Sprite(char symbol, int xPos, int yPos, int width, int height) {
+		this.setSymbol(symbol);	
+		this.selectImage(SpriteSheet.get(), xPos, yPos, width, height);
 	}
 	
 	private void selectImage(BufferedImage spriteSheet, int xPos, int yPos, int width, int height) {
@@ -38,7 +40,7 @@ public class Sprite {
 		this.image = image;
 	}
 	
-	private void setConsoleImage(char consoleImage) {
-		this.symbol = consoleImage;
+	private void setSymbol(char symbol) {
+		this.symbol = symbol;
 	}
 }

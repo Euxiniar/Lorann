@@ -3,9 +3,14 @@
  */
 package controller;
 
+<<<<<<< HEAD
+import GameFrame.GamePanel;
+=======
 import model.element.Direction;
 import model.element.IElement;
+>>>>>>> 516ba46bde0b2bb7d313adeda84f82965b5416d0
 import model.element.Position;
+import model.element.mobile.Direction;
 import model.element.mobile.Player;
 import model.element.mobile.Spell;
 

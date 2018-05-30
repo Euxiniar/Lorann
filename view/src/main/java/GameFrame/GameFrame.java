@@ -3,6 +3,7 @@ package GameFrame;
 import java.awt.event.KeyEvent;
 import java.awt.event.KeyListener;
 import java.util.ArrayList;
+import java.util.Observable;
 
 import javax.swing.JFrame;
 
@@ -22,11 +23,23 @@ import view.EventPerformer;
 		
 		
 		//D---------------------------detect the key in use and start eventPerform--------------
+		
+		public GameFrame(String title, IEventPerformer eventPerformer, IGraphicsBuilder graphicsBuilder, Observable observable) {
+			
+		}
+		
+		
 		@Override
 		public void keyPressed(final KeyEvent keyEvent) {
-			//stock boolean in model
 			int key = keyEvent.getKeyCode();
-			
+			if (key == KeyEvent.VK_Z)
+				boolZ = true;
+			if (key == KeyEvent.VK_D)
+				boolD = true;
+			if (key == KeyEvent.VK_S)
+				boolS = true;
+			if (key == KeyEvent.VK_Q)
+				boolQ = true;
 			eventPerformer.eventPerform(key);
 		}
 	

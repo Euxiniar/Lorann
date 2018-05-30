@@ -6,13 +6,12 @@
  */
 package model.element.mobile;
 
-import java.awt.image.BufferedImage;
-
 import model.element.Permeability;
+import model.element.Position;
 
 public class Spell extends MobileElement{
 
-	public Spell(BufferedImage spriteSheet, int xPos, int yPos) {
-    	super('S', spriteSheet, 0, 5, 5, Permeability.KILLER, xPos, yPos);
+	public Spell(Position position) {
+    	super('S', 0, 5, 5, Permeability.KILLER, position);
 	}
 }
