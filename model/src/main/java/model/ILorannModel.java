@@ -7,8 +7,8 @@
 package model;
 
 import java.util.ArrayList;
-import java.util.Map;
 
+import model.element.Map;
 import model.element.mobile.IMonster;
 import model.element.mobile.Player;
 import model.element.mobile.Spell;
@@ -27,3 +27,5 @@ public interface ILorannModel {
 	ArrayList<IMonster> getMonsters();
 	void addMonster(IMonster monster);
 }
+
+

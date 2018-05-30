@@ -13,7 +13,7 @@ package model.element;
 public class Map {
 	private static int WIDTH = 20;
 	private static int HEIGHT = 16;
-	IElement[][] map;
+	private IElement[][] map;
 	
 	public Map() {
 		this(WIDTH, HEIGHT);
