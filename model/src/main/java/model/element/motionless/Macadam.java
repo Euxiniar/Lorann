@@ -1,3 +1,9 @@
+/**
+ * <h1>The Macadam.java Class.</h1>
+ *
+ * @author Charles Agostini
+ * @version 1.0
+ */
 package model.element.motionless;
 
 import model.element.Permeability;
@@ -9,12 +15,13 @@ import model.element.Position;
  * @author Charles Agostini
  * @version 1.0
  */
-class BallBone extends MotionlessElement {
+class Macadam extends MotionlessElement {
     
     /**
      * Instantiates a new VerticalBone.
      */
-	BallBone(Position position) {
-    	super('O', 2, 6, Permeability.BLOCKING, position);
+	Macadam(Position position) {
+    	super(' ', 2, 6, Permeability.BLOCKING, position);
+    	this.setAlive(false);
     }
 }

@@ -1,17 +1,10 @@
 package controller;
 
 import java.awt.image.BufferedImage;
-import java.io.IOException;
 import java.sql.SQLException;
-import java.util.ArrayList;
-import java.util.List;
 
-import model.Example;
 import model.IModel;
-import model.element.BufferedImageLoader;
-import model.element.mobile.Skeleton;
 import model.element.motionless.MotionlessElement;
-import model.element.motionless.VerticalBone;
 import view.IView;
 
 /**
