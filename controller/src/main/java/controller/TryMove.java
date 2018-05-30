@@ -4,7 +4,9 @@
 package controller;
 
 
+
 import model.ILorannModel;
+
 import model.element.IElement;
 import model.element.Position;
 import model.element.mobile.Direction;
@@ -18,6 +20,7 @@ import model.element.mobile.Spell;
  */
 public class TryMove {
 		
+	ILorannModel lorannmodel;
 		public Position getTheoricalPositionElement(IElement element, Direction direction) {
 	        Position position = new Position();
 	        switch(direction) {
@@ -99,7 +102,7 @@ public class TryMove {
 			}
 		}
 		public void setLorannModel(ILorannModel lorannmodel) {
-			
+			this.lorannmodel = lorannmodel;
 		}
 		public void launchSpell(Spell spell) {
 			
