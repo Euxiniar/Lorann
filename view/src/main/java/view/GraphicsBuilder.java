@@ -11,6 +11,7 @@ import GameFrame.IGraphicsBuilder;
 import model.ILorannModel;
 import model.element.IElement;
 import model.element.Map;
+import model.element.Position;
 import model.element.mobile.IMonster;
 import model.element.mobile.Player;
 import model.element.mobile.Spell;
@@ -25,35 +26,38 @@ class GraphicsBuilder implements IGraphicsBuilder {
 
 	@Override
 	public void applyModelToGraphic(final Graphics graphics, final ImageObserver observer) {
-		buildMap(graphics);
+		buildMapGraph(graphics);
 		drawMonsters(graphics);
 		drawPlayer(graphics, observer);
 		drawSpell(graphics);
 
 	}
 	
-	public void buildMap(Graphics g) {
-		for (IElement[] ligne : lorannModel.getMap().getOnTheMap()[y]) {
-			for (IElement element : lorannModel.getMap().getOnTheMap()[y][y]) {
+	private void buildMapGraph(Graphics g) {
+		Position position = new Position(0,0);
+		for (IElement[] ligne : lorannModel.getMap()) {
+			for (IElement element : lorannModel.getMap().getOnTheMap(position)) {
 				g.drawImage(element.getSelectedImage(), element.getPosition().getX(), element.getPosition().getY(), 50, 50, null);
+				position.setX(x + 1);
 			}
+			position.setY(y + 1);
 		}
 	}
 	
-	public void drawPlayer(Graphics g, ImageObserver observer) {
+	private void drawPlayer(Graphics g, ImageObserver observer) {
 
 			g.drawImage(lorannModel.getPlayer().getSelectedImage(), lorannModel.getPlayer().getPosition().getX(), lorannModel.getPlayer().getPosition().getY(), 50, 50, null);
 
 	}
 	
-	public void drawSpell(Graphics g) {
+	private void drawSpell(Graphics g) {
 
 		if (lorannModel.getSpell().getIsAlive() == true) {
 			g.drawImage(lorannModel.getPlayer().getSelectedImage(), lorannModel.getPlayer().getPosition().getX(), lorannModel.getPlayer().getPosition().getY(), 50, 50, null);
 		}
 	}
 	
-	public void drawMonsters(Graphics g) {
+	private void drawMonsters(Graphics g) {
 		for (IMonster monster : lorannModel.getMonsters()) {
 			if (monster.getIsAlive() == true) {
 				g.drawImage(monster.getSelectedImage(), monster.getPosition().getX(), monster.getPosition().getY(), 50, 50, null);
