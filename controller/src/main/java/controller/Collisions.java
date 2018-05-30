@@ -3,14 +3,11 @@
  */
 package controller;
 
-import java.util.ArrayList;
-
+import model.element.IElement;
 import model.element.Permeability;
 import model.element.Position;
-import model.element.mobile.IElement;
 import model.element.mobile.Player;
 import model.element.mobile.Spell;
-import model.element.motionless.MotionlessElement;
 
 /**
  * @author Snargol
@@ -21,13 +18,13 @@ public class Collisions {
 	//------------------Test position of a player or a spell with all the others Movable Entity
 	public static boolean testCaseMob(IElement element) {
 		
-		for (IElement e2 : listeEntity) {
-			if (e1.getPosition().getX() == e2.getPosition().getX() && e1.getPosition().getY() == e2.getPosition().getY()) {
-				return true;
-			}
-		}
-		
-		return false;
+//		for (IElement e2 : listeEntity) {
+//			if (e1.getPosition().getX() == e2.getPosition().getX() && e1.getPosition().getY() == e2.getPosition().getY()) {
+//				return true;
+//			}
+//		}
+//		
+//		return false;
 	}
 	//-------------------Test player position with spell position
 	public static boolean testCaseSpell(Player player, Spell spell) {
