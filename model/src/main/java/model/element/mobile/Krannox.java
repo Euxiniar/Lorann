@@ -10,7 +10,7 @@ import java.awt.image.BufferedImage;
 
 import model.element.Permeability;
 
-public class Krannox extends MobileElement{
+public class Krannox extends Monster{
 
 	public Krannox(BufferedImage spriteSheet, int xPos, int yPos) {
     	super('2', spriteSheet, 0, 2, 7, Permeability.KILLER, xPos, yPos);
