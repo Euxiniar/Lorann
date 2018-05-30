@@ -4,8 +4,8 @@
 package controller;
 
 import GameFrame.GamePanel;
-import model.element.Direction;
 import model.element.Position;
+import model.element.mobile.Direction;
 import model.element.mobile.Player;
 
 /**

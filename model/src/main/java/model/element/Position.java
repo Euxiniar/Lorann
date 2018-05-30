@@ -46,4 +46,13 @@ public class Position {
 		this.setX(x);
 		this.setY(y);
 	}
+	
+	public Position() {
+		
+	}
+	
+	public Position(int x, int y) {
+		this.x = x;
+		this.y = y;
+	}
 }

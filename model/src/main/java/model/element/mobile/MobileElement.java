@@ -6,15 +6,13 @@
  */
 package model.element.mobile;
 
-import java.awt.image.BufferedImage;
-
-import model.element.Direction;
 import model.element.Element;
 import model.element.Permeability;
+import model.element.Position;
 
 public abstract class MobileElement extends Element {
 
-	Direction defaultDirection;
+	Direction direction;
 	
 	/**
 	 * @param character
@@ -24,45 +22,21 @@ public abstract class MobileElement extends Element {
 	 * @param nbSprites
 	 * @param permeability
 	 */
-	public MobileElement(char character, BufferedImage spriteSheet, int xSpritePos, int ySpritePos, int nbSprites,
-			Permeability permeability, int xPos, int yPos) {
-		super(character, spriteSheet, xSpritePos, ySpritePos, nbSprites, permeability);
-		this.setPosition(xPos, yPos);
+	public MobileElement(char symbol, int xSpritePos, int ySpritePos, int nbSprites,
+			Permeability permeability, Position position) {
+		super(symbol, xSpritePos, ySpritePos, nbSprites, permeability, position);
 	}
 	
-	public MobileElement(char character, BufferedImage spriteSheet, int xSpritePos, int ySpritePos,
-			Permeability permeability, int xPos, int yPos) {
-		this(character, spriteSheet, xSpritePos, ySpritePos, 1, permeability, xPos, yPos);
+	public MobileElement(char symbol, int xSpritePos, int ySpritePos,
+			Permeability permeability, int xPos, int yPos, Position position) {
+		this(symbol, xSpritePos, ySpritePos, 1, permeability, position);
 	}
 	
-	public void move(Direction direction) {
-		switch(direction) {
-		case UP:
-			position.setPosition(position.getX(), position.getY() + 1);
-		case DOWN:
-			position.setPosition(position.getX(), position.getY() - 1);
-		case LEFT:
-			position.setPosition(position.getX() - 1, position.getY());
-		case RIGHT:
-			position.setPosition(position.getX() + 1, position.getY());
-		case UPLEFT:
-			position.setPosition(position.getX() - 1, position.getY() + 1);
-		case UPRIGHT:
-			position.setPosition(position.getX() + 1, position.getY() + 1);
-		case DOWNLEFT:
-			position.setPosition(position.getX() - 1, position.getY() - 1);
-		case DOWNRIGHT:
-			position.setPosition(position.getX() + 1, position.getY() - 1);
-		default:
-			break;
-		}
+	public void setDirection(Direction direction) {
+		this.direction = direction;
 	}
 	
-	public void move() {
-		this.move(this.defaultDirection);
-	}
-	
-	public void setDefaultDirection(Direction direction) {
-		this.defaultDirection = direction;
+	public Direction getDirection() {
+		return this.direction;
 	}
 }

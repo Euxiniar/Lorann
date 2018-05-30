@@ -1,9 +1,8 @@
 package model.element.motionless;
 
-import java.awt.image.BufferedImage;
-
 import model.element.Element;
 import model.element.Permeability;
+import model.element.Position;
 
 /**
  * <h1>The MotionlessElement Class.</h1>
@@ -13,20 +12,11 @@ import model.element.Permeability;
  */
 public abstract class MotionlessElement extends Element {
 
-    /**
-     * Instantiates a new motionless element.
-     *
-     * @param sprite
-     *            the sprite
-     * @param permeability
-     *            the permeability
-     */
-    MotionlessElement(char character, BufferedImage spriteSheet, int xImagePos, int yImagePos, int nbSprites, Permeability permeability) {
-        super(character, spriteSheet, xImagePos, yImagePos, nbSprites, permeability);
+    MotionlessElement(char symbol, int xImagePos, int yImagePos, int nbSprites, Permeability permeability, Position position) {
+        super(symbol, xImagePos, yImagePos, nbSprites, permeability, position);
     }
     
-    MotionlessElement(char character, BufferedImage spriteSheet, int xImagePos, int yImagePos, Permeability permeability) {
-        this(character, spriteSheet, xImagePos, yImagePos, 1, permeability);
+    MotionlessElement(char symbol, int xImagePos, int yImagePos, Permeability permeability, Position position) {
+        this(symbol, xImagePos, yImagePos, 1, permeability, position);
     }
-
 }

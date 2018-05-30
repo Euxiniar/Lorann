@@ -1,8 +1,8 @@
 package model.element.motionless;
 
-import java.awt.image.BufferedImage;
 
 import model.element.Permeability;
+import model.element.Position;
 
 /**
  * <h1>The HorizontalBone Class.</h1>
@@ -15,7 +15,7 @@ class HorizontalBone extends MotionlessElement {
     /**
      * Instantiates a new VerticalBone.
      */
-	HorizontalBone(BufferedImage spriteSheet) {
-    	super('-', spriteSheet, 0, 6, Permeability.BLOCKING);
+	HorizontalBone(Position position) {
+    	super('-', 0, 6, Permeability.BLOCKING, position);
     }
 }

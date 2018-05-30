@@ -6,23 +6,21 @@
  */
 package model.element.mobile;
 
-import java.awt.image.BufferedImage;
-
 import model.element.Permeability;
+import model.element.Position;
 
 /**
  * @author Euxiniar
  *
  */
-public abstract class Monster extends MobileElement {
-	public Monster(char character, BufferedImage spriteSheet, int xSpritePos, int ySpritePos, int nbSprites,
-			Permeability permeability, int xPos, int yPos) {
-		super(character, spriteSheet, xSpritePos, ySpritePos, nbSprites, permeability, xPos, yPos);
-		this.setPosition(xPos, yPos);
+public abstract class Monster extends MobileElement implements IMonster {
+	public Monster(char symbol, int xSpritePos, int ySpritePos, int nbSprites,
+			Permeability permeability, Position position) {
+		super(symbol, xSpritePos, ySpritePos, nbSprites, permeability, position);
 	}
 	
-	public Monster(char character, BufferedImage spriteSheet, int xSpritePos, int ySpritePos,
-			Permeability permeability, int xPos, int yPos) {
-		this(character, spriteSheet, xSpritePos, ySpritePos, 1, permeability, xPos, yPos);
+	public Monster(char symbol, int xSpritePos, int ySpritePos,
+			Permeability permeability, Position position) {
+		this(symbol, xSpritePos, ySpritePos, 1, permeability, position);
 	}
 }

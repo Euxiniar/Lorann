@@ -1,8 +1,7 @@
 package model.element.motionless;
 
-import java.awt.image.BufferedImage;
-
 import model.element.Permeability;
+import model.element.Position;
 
 /**
  * <h1>The Door Class.</h1>
@@ -15,7 +14,7 @@ class Door extends MotionlessElement {
     /**
      * Instantiates a new VerticalBone.
      */
-	Door(BufferedImage spriteSheet) {
-    	super('D', spriteSheet, 0, 9, 2, Permeability.KILLER);
+	Door(Position position) {
+    	super('D', 0, 9, 2, Permeability.KILLER, position);
     }
 }
