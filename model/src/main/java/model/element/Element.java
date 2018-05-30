@@ -50,7 +50,8 @@ public abstract class Element implements IElement{
 		return this.permeability;
 	}
 	
-	private void setPermeability(Permeability permeability) {
+	@Override
+	public void setPermeability(Permeability permeability) {
 		this.permeability = permeability;
 	}
 

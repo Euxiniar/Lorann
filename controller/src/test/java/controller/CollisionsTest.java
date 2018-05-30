@@ -9,10 +9,11 @@ import java.util.ArrayList;
 
 import org.junit.Test;
 
-import model.element.mobile.Crocodil;
+import model.element.Permeability;
+import model.element.Position;
 import model.element.mobile.MobileElement;
 import model.element.mobile.Player;
-import model.element.mobile.Position;
+
 import model.element.mobile.Spell;
 import model.element.motionless.MotionlessElement;
 
@@ -93,7 +94,7 @@ public class CollisionsTest {
 		//MobileElement mobileElement2 = new Crocodil(position);
 		//Spell spell = new Spell(null, x, y);
 		MotionlessElement door = new Door();
-		door.setPermeability(Door.ENDER);
+		door.setPermeability(Permeability.ENDER);
 		MotionlessElement[][] map = {{door},{}};
 		assertEquals(Collisions.testCaseDoorClose(mobileElement, map), true);
 	}

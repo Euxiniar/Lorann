@@ -13,6 +13,7 @@ public interface IElement {
 	ArrayList<Sprite> getSpriteArray();
 	int getSpriteArraySize();
 	Permeability getPermeability();
+	void setPermeability(Permeability permeability);
 	BufferedImage getSelectedImage();
 	char getSymbol();
 	int getSelectedSpriteValue();

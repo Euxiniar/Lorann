@@ -8,7 +8,6 @@ package model;
 
 import java.util.ArrayList;
 import java.util.Map;
-import java.util.Observer;
 
 import model.element.mobile.IMonster;
 import model.element.mobile.Player;
@@ -18,7 +17,7 @@ import model.element.mobile.Spell;
  * @author Euxiniar
  *
  */
-public interface ILorannModel extends Observer {
+public interface ILorannModel {
 	Map getMap();
 	void setMap(Map map);
 	Player getPlayer();
