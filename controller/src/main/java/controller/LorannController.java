@@ -3,6 +3,7 @@
  */
 package controller;
 import model.element.IElement;
+import model.element.Position;
 import model.element.mobile.MonsterFactory;
 import model.element.mobile.Player;
 import model.element.mobile.Position;
@@ -29,11 +30,6 @@ public class LorannController {
 	public void setViewSystem(IViewSystem viewSystem) {
 		
 	}
-	
-	private void launchSpell(int player) {
-		
-	}
-	
 	private void gameLoop() {
 		
 	}
