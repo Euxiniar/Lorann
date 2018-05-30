@@ -3,6 +3,7 @@
  */
 package controller;
 
+import model.ILorannModel;
 import model.element.IElement;
 import model.element.Permeability;
 import model.element.Position;

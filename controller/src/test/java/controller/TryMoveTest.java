@@ -7,8 +7,10 @@ import static org.junit.Assert.*;
 
 import org.junit.Test;
 
-import model.element.Direction;
-import model.element.mobile.Position;
+import model.element.Position;
+import model.element.mobile.Direction;
+
+
 /**
  * @author Louis
  *

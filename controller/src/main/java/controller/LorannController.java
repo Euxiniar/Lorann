@@ -10,21 +10,22 @@ import model.element.mobile.*;
 import model.element.mobile.MonsterFactory;
 import model.element.mobile.Player;
 import model.element.motionless.MotionlessElementFactory;
-import view.IViewSystem;
+import view.ILorannView;
 
 /**
- * @author vazvi
+ * @author Vicente Vaz/Charles Agostini
  *
  */
 public class LorannController implements IOrderPerformer{
 	private static int TIME_SLEEP = 30;
 	private boolean isGameOver	= false;
 	private final ILorannModel lorannModel;
-	private IViewSystem viewSystem;
+	private ILorannView lorannView;
 	private String mapString = "|";
 	
-	public LorannController(ILorannModel lorannModel) {
+	public LorannController(ILorannView lorannView, ILorannModel lorannModel) {
 		this.lorannModel = lorannModel;
+		this.lorannView = lorannView;
 	}
 	
 	public void orderPerform(UserOrder userOrder) {
@@ -36,7 +37,7 @@ public class LorannController implements IOrderPerformer{
 		gameLoop();
 	}
 	
-	public void setViewSystem(IViewSystem viewSystem) {
+	public void setViewSystem(ILorannView lorannView) {
 		
 	}
 	

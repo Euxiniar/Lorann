@@ -7,6 +7,7 @@ import java.util.Observer;
 
 import javax.swing.JPanel;
 
+@SuppressWarnings("deprecation")
 public class GamePanel extends JPanel implements Observer{
 	/**
 	 * 

@@ -3,18 +3,19 @@ package GameFrame;
 import java.awt.HeadlessException;
 import java.awt.event.KeyEvent;
 import java.awt.event.KeyListener;
-import java.util.ArrayList;
 import java.util.Observable;
 
 import javax.swing.JFrame;
-
-
-import view.EventPerformer;
 	
+	@SuppressWarnings("deprecation")
 	public class GameFrame extends JFrame implements KeyListener {
 		
 		//----------------------------Key Boolean------------------------------------------
 		
+		/**
+		 * 
+		 */
+		private static final long serialVersionUID = 1L;
 		private boolean boolZ = false;
 		private boolean boolD = false;
 		private boolean boolS = false;

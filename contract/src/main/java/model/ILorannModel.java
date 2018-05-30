@@ -28,5 +28,3 @@ public interface ILorannModel {
 	void addMonster(IMonster monster);
 	public void setMobilesHavesMoved();
 }
-
-

@@ -1,6 +1,6 @@
 package view;
 
-public interface IViewSystem {
+public interface ILorannView {
 	public void displayMessage(final String message);
 
 	public void closeAll();
