@@ -24,7 +24,7 @@ public class TryMoveTest {
 		 Position position = new Position();
 		 position.setPosition(0, 0);
 		 Position expected = new Position();
-		 Direction direction = Direction.DOWN;
+		 Direction direction = Direction.DOWNRIGHT;
 		
 		 switch(direction) {
 	        case UP:
