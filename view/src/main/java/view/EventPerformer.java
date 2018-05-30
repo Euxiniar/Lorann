@@ -4,6 +4,7 @@ import java.awt.event.KeyEvent;
 import java.util.ArrayList;
 
 import GameFrame.IEventPerformer;
+import controller.IOrderPerformer;
 import controller.Order;
 import controller.UserOrder;
 
@@ -11,66 +12,23 @@ public class EventPerformer implements IEventPerformer{
 	
 	//-----------------------------Boolean to know witch key is in use---------------------
 	
-	boolean boolUP    = false;
-	boolean boolRIGHT = false;
-	boolean boolDOWN  = false;
-	boolean boolLEFT  = false;
 	
-	UserOrder userOrder = new UserOrder(null);
-	
-	boolean[] boolsKeys = {boolZ,boolD,boolS,boolQ,boolUP,boolRIGHT,boolDOWN,boolLEFT};
-	int[] allKeys = {KeyEvent.VK_Z,KeyEvent.VK_D,KeyEvent.VK_S,KeyEvent.VK_Q,KeyEvent.VK_UP,KeyEvent.VK_RIGHT,KeyEvent.VK_DOWN,KeyEvent.VK_LEFT};
-	Enum[] enumOrder = {Order.UP,Order.RIGHT,Order.DOWN,Order.LEFT};
-	
-	public void eventPerform(int key) {
-			trueKeyInUse(key);
-		}
-	
-	public void trueKeyInUse(int key) {
-		for(int i = 0;i < this.boolsKeys.length;i++) {
-			if (key == allKeys[i])
-				boolsKeys[i] = true;
-		}
 		
 	public void KeyToOrder() {
 	//-------------------------------Player move double key --------------------
-		if (boolQ && boolZ) {
-			userOrder = new UserOrder(Order.UPLEFT);
+
 		}
-		if (boolQ && boolS) {
-			userOrder = new UserOrder(Order.DOWNLEFT);
-		}
-		if (boolD && boolZ) {
-			userOrder = new UserOrder(Order.UPRIGHT);
-		}
-		if (boolD && boolS) {
-			userOrder = new UserOrder(Order.DOWNLEFT);
-		}
+	
+	public EventPerformer (IOrderPerformer orderPerformer,boolean boolZ ,boolean boold ,boolean boolS,boolean boolQ) {
 		
-		for(int i = 0;i < this.boolsKeys.length / 2 ;i++) {
-			if (boolsKeys[i])
-				userOrder = new UserOrder(enumOrder[i])
-		}
+	}
+
+	@Override
+	public void eventPerform(int key) {
+		// TODO Auto-generated method stub
+		
+	}
 		
 		//-----------------------------Spell start double key ----------------------
-		//add if testLance !
-		if (boolUP && boolLEFT) {
-			//spawn spell direction[Direction.UPLEFT);
-		}
-		if (boolUP && boolRIGHT) {
-			//spawn spell direction[Direction.DOWNLEFT);
-		}
-		if (boolDOWN && boolLEFT) {
-			//spawn spell direction[Direction.UPRIGHT);
-		}
-		if (boolDOWN && boolRIGHT) {
-			//spawn spell direction[Direction.DOWNRIGHT);
-		}
-		
-		for(int i = this.boolsKeys.length / 2;i < this.boolsKeys.length;i++) {
-			if (boolsKeys[i]) {
-				//spawn spell direction[enumOrder[i]]
-			}
-		}
-	}
+
 }
