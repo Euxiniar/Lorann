@@ -11,8 +11,8 @@ package model.element;
  *
  */
 public class Map {
-	private static int WIDTH = 9;
-	private static int HEIGHT = 5;
+	private static int WIDTH = 5;
+	private static int HEIGHT = 3;
 	private IElement[][] map;
 	
 	public Map() {
@@ -35,12 +35,6 @@ public class Map {
 	
 	public IElement[][] getMap() {
 		return this.map;
-	}
-	
-	public void setSize(int width, int height) {
-		this.WIDTH = width;
-		this.HEIGHT = height;
-		map = new IElement[WIDTH][HEIGHT];
 	}
 
 	public int getHeight() {

@@ -21,13 +21,16 @@ public class LorannController implements IOrderPerformer{
 	private boolean isGameOver	= false;
 	private final ILorannModel lorannModel;
 	private ILorannView lorannView;
-	private String mapString = 	"O-------OE"
-			+ 					"|       |E"
-			+ 					"| 2 * 1 |E"
-			+ 					"|       |E"
-			+ 					"O-------OEF";
+//	private String mapString = 	"O-------OE"
+//			+ 					"|       |E"
+//			+ 					"| 2 * 1 |E"
+//			+ 					"|       |E"
+//			+ 					"O-------OEF";
+	private String mapString = "|-ODDE*1234EPK   EF";
 	
 	private Animator playerAnimator;
+	private Animator monstersAnimator;
+	private Animator spellAnimator;
 	
 	public LorannController(ILorannView lorannView, ILorannModel lorannModel) {
 		this.lorannModel = lorannModel;
@@ -41,13 +44,19 @@ public class LorannController implements IOrderPerformer{
 	public void play() {
 		buildMap(mapString);
 		playerAnimator = new Animator(lorannModel.getPlayer());
-		playerAnimator.setSpeed(200);
+		playerAnimator.setSpeed(100);
 		playerAnimator.start();
+		monstersAnimator = new Animator(lorannModel.getMonsters());
+		monstersAnimator.setSpeed(100);
+		monstersAnimator.start();
+		spellAnimator = new Animator(lorannModel.getSpell());
+		spellAnimator.setSpeed(100);
+		spellAnimator.start();
 		gameLoop();
 	}
 	
-	public void setViewSystem(ILorannView lorannView) {
-		
+	public void setLorannView(ILorannView lorannView) {
+		this.lorannView = lorannView;
 	}
 	
 	private void gameLoop() {
@@ -58,6 +67,7 @@ public class LorannController implements IOrderPerformer{
 				Thread.currentThread().interrupt();
 			}
 			playerAnimator.update(System.currentTimeMillis());
+			monstersAnimator.update(System.currentTimeMillis());
 			
 //			final ArrayList<MobileElement> initialMobileElement = new ArrayList<MobileElement>();
 //			for (final MobileElement element : this.lorannModel.getElement()) {

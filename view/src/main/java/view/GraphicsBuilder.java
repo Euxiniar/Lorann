@@ -2,7 +2,6 @@ package view;
 
 import java.awt.Color;
 import java.awt.Graphics;
-import java.awt.image.BufferedImage;
 import java.awt.image.ImageObserver;
 
 import GameFrame.IGraphicsBuilder;
@@ -13,7 +12,6 @@ import model.element.mobile.IMonster;
 
 class GraphicsBuilder implements IGraphicsBuilder {
 	private final ILorannModel lorannModel;
-	private BufferedImage mapImage;
 
 	public GraphicsBuilder(final ILorannModel lorannModel) {
 		this.lorannModel = lorannModel;
@@ -52,7 +50,6 @@ class GraphicsBuilder implements IGraphicsBuilder {
 	}
 	
 	private void drawPlayer(Graphics g, ImageObserver observer) {
-		System.out.println(lorannModel.getPlayer().getSelectedSpriteValue());
 			g.drawImage(lorannModel.getPlayer().getSelectedImage(), lorannModel.getPlayer().getPosition().getX()*50, lorannModel.getPlayer().getPosition().getY()*50, 50, 50, null);
 	}
 	

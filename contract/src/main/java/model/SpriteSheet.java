@@ -24,7 +24,6 @@ public abstract class SpriteSheet {
 		try {
 			SpriteSheet.setSpriteSheet(ImageIO.read(new File(PATH)));
 		} catch (IOException e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
 	}
