@@ -9,7 +9,7 @@ public class EventPerformer implements IEventPerformer{
 	
 	//-----------------------------Boolean to know witch key is in use---------------------
 	
-	
+	private IOrderPerformer orderPerformer;
 		
 	public UserOrder keyToOrder(boolean boolZ ,boolean boolD ,boolean boolS,boolean boolQ,boolean boolUP ,boolean boolRIGHT ,boolean boolDOWN,boolean boolLEFT) {
 		UserOrder order = null;
@@ -41,13 +41,15 @@ public class EventPerformer implements IEventPerformer{
 	}
 	
 	public EventPerformer (IOrderPerformer orderPerformer) {
-		
+		this.orderPerformer = orderPerformer;
 	}
 
 	@Override
 	public void eventPerform(boolean boolZ ,boolean boolD ,boolean boolS,boolean boolQ,boolean boolUP ,boolean boolRIGHT ,boolean boolDOWN,boolean boolLEFT) {
-		keyToOrder( boolZ , boolD , boolS, boolQ, boolUP , boolRIGHT , boolDOWN, boolLEFT);
-		
+		final UserOrder userOrder = this.keyToOrder( boolZ , boolD , boolS, boolQ, boolUP , boolRIGHT , boolDOWN, boolLEFT);
+		if (userOrder != null) {
+			this.orderPerformer.orderPerform(userOrder);
+		}
 		
 	}
 		
