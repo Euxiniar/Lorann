@@ -2,8 +2,8 @@ package view;
 
 import GameFrame.IEventPerformer;
 import controller.IOrderPerformer;
-import controller.Order;
 import controller.UserOrder;
+import model.order.Order;
 
 public class EventPerformer implements IEventPerformer{
 	
@@ -11,33 +11,34 @@ public class EventPerformer implements IEventPerformer{
 	
 	
 		
-	public void keyToOrder(boolean boolZ ,boolean boolD ,boolean boolS,boolean boolQ,boolean boolUP ,boolean boolRIGHT ,boolean boolDOWN,boolean boolLEFT) {
+	public UserOrder keyToOrder(boolean boolZ ,boolean boolD ,boolean boolS,boolean boolQ,boolean boolUP ,boolean boolRIGHT ,boolean boolDOWN,boolean boolLEFT) {
+		UserOrder order = null;
 		if (boolZ && boolD) {
-			UserOrder order = new UserOrder(Order.UPRIGHT);
+			order = new UserOrder(Order.UPRIGHT);
 		}
 		else if (boolZ && boolQ) {
-			UserOrder order = new UserOrder(Order.UPLEFT);
+			order = new UserOrder(Order.UPLEFT);
 		}
 		else if (boolS && boolD) {
-			UserOrder order = new UserOrder(Order.DOWNRIGHT);
+			order = new UserOrder(Order.DOWNRIGHT);
 		}
 		else if (boolS && boolQ) {
-			UserOrder order = new UserOrder(Order.DOWNLEFT);
+			order = new UserOrder(Order.DOWNLEFT);
 		}
 		else if (boolZ) {
-			UserOrder order = new UserOrder(Order.UP);
+			order = new UserOrder(Order.UP);
 		}
 		else if (boolD) {
-			UserOrder order = new UserOrder(Order.RIGHT);
+			order = new UserOrder(Order.RIGHT);
 		}
 		else if (boolS) {
-			UserOrder order = new UserOrder(Order.DOWN);
+			order = new UserOrder(Order.DOWN);
 		}
 		else if (boolD) {
-			UserOrder order = new UserOrder(Order.LEFT);
+			order = new UserOrder(Order.LEFT);
 		}
-		
-		}
+		return order;
+	}
 	
 	public EventPerformer (IOrderPerformer orderPerformer) {
 		
