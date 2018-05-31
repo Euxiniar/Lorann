@@ -11,8 +11,8 @@ package model.element;
  *
  */
 public class Map {
-	private static int WIDTH = 20;
-	private static int HEIGHT = 16;
+	private static int WIDTH = 9;
+	private static int HEIGHT = 13;
 	private IElement[][] map;
 	
 	public Map() {
@@ -33,7 +33,19 @@ public class Map {
 		return map[position.getX()][position.getY()];
 	}
 	
+	public IElement getOnTheMap(int x, int y) {
+		return map[x][y];
+	}
+	
 	public IElement[][] getMap() {
 		return this.map;
+	}
+
+	public int getHeight() {
+		return HEIGHT;
+	}
+
+	public int getWidth() {
+		return WIDTH;
 	}
 }

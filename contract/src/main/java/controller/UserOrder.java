@@ -1,8 +1,6 @@
 package controller;
 
-import model.order.Order;
-
-public class UserOrder {
+public class UserOrder implements IUserOrder{
 	private final Order	order;
 
 	public UserOrder(final Order order) {

@@ -18,13 +18,12 @@ import javax.imageio.ImageIO;
  */
 public abstract class SpriteSheet {
 	private static BufferedImage spriteSheet = null;
-	private static String PATH = "image/textureAtlas";
+	private static String PATH = "../textures/texture_atlas.png";
 	
 	private static void loadImage() {
 		try {
 			SpriteSheet.setSpriteSheet(ImageIO.read(new File(PATH)));
 		} catch (IOException e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
 	}

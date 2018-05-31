@@ -1,15 +1,12 @@
-package view;
+package controller;
 
-import GameFrame.IEventPerformer;
-import controller.IOrderPerformer;
-import controller.UserOrder;
-import model.order.Order;
+import view.IEventPerformer;
 
-public class EventPerformer implements IEventPerformer{
+public class EventPerformer{
 	
 	//-----------------------------Boolean to know witch key is in use---------------------
 	
-	private IOrderPerformer orderPerformer;
+	private IOrderPerformer lorannController;
 		
 	public UserOrder keyToOrder(boolean boolZ ,boolean boolD ,boolean boolS,boolean boolQ,boolean boolUP ,boolean boolRIGHT ,boolean boolDOWN,boolean boolLEFT) {
 		UserOrder order = null;
@@ -39,20 +36,15 @@ public class EventPerformer implements IEventPerformer{
 		}
 		return order;
 	}
-	
-	public EventPerformer (IOrderPerformer orderPerformer) {
-		this.orderPerformer = orderPerformer;
-	}
 
-	@Override
-	public void eventPerform(boolean boolZ ,boolean boolD ,boolean boolS,boolean boolQ,boolean boolUP ,boolean boolRIGHT ,boolean boolDOWN,boolean boolLEFT) {
-		final UserOrder userOrder = this.keyToOrder( boolZ , boolD , boolS, boolQ, boolUP , boolRIGHT , boolDOWN, boolLEFT);
-		if (userOrder != null) {
-			this.orderPerformer.orderPerform(userOrder);
-		}
+
+//	@Override
+//	public void eventPerform(boolean boolZ ,boolean boolD ,boolean boolS,boolean boolQ,boolean boolUP ,boolean boolRIGHT ,boolean boolDOWN,boolean boolLEFT) {
+//		final UserOrder userOrder = this.keyToOrder( boolZ , boolD , boolS, boolQ, boolUP , boolRIGHT , boolDOWN, boolLEFT);
+//		if (userOrder != null) {
+//			this.lorannController.orderPerform(userOrder);
+//		}
+		
 		
 	}
 		
-		//-----------------------------Spell start double key ----------------------
-
-}
