@@ -13,52 +13,41 @@ import model.element.Position;
  *
  */
 public abstract class MonsterFactory {
-
-    /** The Constant Skeleton. */
-    private static final Skeleton skeleton = new Skeleton(new Position());
-    
-    /** The Constant Temple. */
-    private static final Temple temple = new Temple(new Position());
-    
-    /** The Constant Krannox. */
-    private static final Krannox krannox = new Krannox(new Position());
-    
-    /** The Constant Crocrodil. */
-    private static final Crocrodil crocrodil = new Crocrodil(new Position());
-    
-    private static Monster[] monsters  = {
-    		skeleton,
-    		temple,
-    		krannox,
-    		crocrodil};
-    
+  
     public static Monster createSkeleton(Position position) {
-    	skeleton.setPosition(position);
+    	Skeleton skeleton = new Skeleton(new Position(position.getX(), position.getY()));
     	return skeleton;
     }
     
     public static Monster createTemple(Position position) {
-    	temple.setPosition(position);
+    	Temple temple = new Temple(new Position(position.getX(), position.getY()));
     	return temple;
     }
     
     public static Monster createKrannox(Position position) {
-    	krannox.setPosition(position);
+    	Krannox krannox = new Krannox(new Position(position.getX(), position.getY()));
     	return krannox;
     }
     
     public static Monster createCrocrodil(Position position) {
-    	crocrodil.setPosition(position);
+    	Crocrodil crocrodil = new Crocrodil(new Position(position.getX(), position.getY()));
     	return crocrodil;
     }
     
     public static Monster getFromSymbol(char symbol, Position position) {
-    	for (final Monster monster : monsters) {
-            if (monster.getSymbol() == symbol) {
-            	monster.setPosition(position);
-                return monster;
-            }
-        }
-    	return null;
+    	
+		switch(symbol) {
+		case '1' :
+			return createSkeleton(position);
+		case '2' :
+			return createKrannox(position);
+		case '3' :
+			return createCrocrodil(position);
+		case '4' :
+			return createTemple(position);
+		default : 
+			return null;
+			
+    }
     }
 }

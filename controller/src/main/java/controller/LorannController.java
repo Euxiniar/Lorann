@@ -21,7 +21,13 @@ public class LorannController implements IOrderPerformer{
 	private boolean isGameOver	= false;
 	private final ILorannModel lorannModel;
 	private ILorannView lorannView;
-	private String mapString = "|";
+	private String mapString = 	"O-------OE"
+			+ 					"|       |E"
+			+ 					"| 2 * 1 |E"
+			+ 					"|       |E"
+			+ 					"O-------OEF";
+	
+	private Animator playerAnimator;
 	
 	public LorannController(ILorannView lorannView, ILorannModel lorannModel) {
 		this.lorannModel = lorannModel;
@@ -34,6 +40,9 @@ public class LorannController implements IOrderPerformer{
 	
 	public void play() {
 		buildMap(mapString);
+		playerAnimator = new Animator(lorannModel.getPlayer());
+		playerAnimator.setSpeed(200);
+		playerAnimator.start();
 		gameLoop();
 	}
 	
@@ -48,7 +57,8 @@ public class LorannController implements IOrderPerformer{
 			} catch (final InterruptedException ex) {
 				Thread.currentThread().interrupt();
 			}
-
+			playerAnimator.update(System.currentTimeMillis());
+			
 //			final ArrayList<MobileElement> initialMobileElement = new ArrayList<MobileElement>();
 //			for (final MobileElement element : this.lorannModel.getElement()) {
 //				initialMobilesElement.add(element);
@@ -63,30 +73,29 @@ public class LorannController implements IOrderPerformer{
 		}
 	}
 	public void buildMap(String mapString) {
-		int i = 0, j = 0;
+		int i = 0, y = 0, x = 0;
 		Map map = new Map();
-		Position position = new Position();
 			
-		while(mapString.charAt(j) != 'F') {
+		while(mapString.charAt(i) != 'F') {
 			while (mapString.charAt(i) != 'E') {
-				position.setX(i);
-				position.setY(j);
 				if(mapString.charAt(i) == '*') {
-					Player player = new Player(position);
+					Player player = new Player(new Position(x, y));
 					lorannModel.setPlayer(player);
 				}
 				else if(mapString.charAt(i) == '1' || mapString.charAt(i) == '2' || mapString.charAt(i) == '3' || mapString.charAt(i) == '4') {
-					IMonster monster = MonsterFactory.getFromSymbol(mapString.charAt(i), position);
-					lorannModel.addMonster(monster);
+					lorannModel.addMonster(MonsterFactory.getFromSymbol(mapString.charAt(i), new Position(x, y)));
 				}
-					
 				else {
-					map.setOnTheMap(MotionlessElementFactory.getFromSymbol(mapString.charAt(i), position), position);
+					map.setOnTheMap(MotionlessElementFactory.getFromSymbol(mapString.charAt(i), new Position(x, y)), new Position(x, y));
 				}
 				i++;
+				x++;
 			}
-			j++;
+			i++;
+			y++;
+			x = 0;
 		}
+		lorannModel.setSpell(new Spell(new Position(0, 0)));
 		lorannModel.setMap(map);
 	}
 

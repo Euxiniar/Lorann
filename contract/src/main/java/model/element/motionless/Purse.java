@@ -9,7 +9,7 @@ import model.element.Position;
  * @author Charles Agostini
  * @version 1.0
  */
-class Purse extends MotionlessElement {
+public class Purse extends MotionlessElement {
     
     /**
      * Instantiates a new VerticalBone.

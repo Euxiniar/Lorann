@@ -13,7 +13,6 @@ import model.element.mobile.Direction;
 import model.element.mobile.IMonster;
 import model.element.mobile.Player;
 import model.element.mobile.Spell;
-import model.order.Order;
 
 /**
  * @author Snargol/Vicente

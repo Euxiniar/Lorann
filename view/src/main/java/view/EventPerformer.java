@@ -1,9 +1,8 @@
 package view;
 
-import GameFrame.IEventPerformer;
 import controller.IOrderPerformer;
+import controller.Order;
 import controller.UserOrder;
-import model.order.Order;
 
 public class EventPerformer implements IEventPerformer{
 	

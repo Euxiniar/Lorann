@@ -18,7 +18,7 @@ import javax.imageio.ImageIO;
  */
 public abstract class SpriteSheet {
 	private static BufferedImage spriteSheet = null;
-	private static String PATH = "image/textureAtlas";
+	private static String PATH = "E:\\OneDrive\\Documents\\Cours Exia\\UE 5\\Projet Lorann\\Lorann\\textures\\texture_atlas.png";
 	
 	private static void loadImage() {
 		try {

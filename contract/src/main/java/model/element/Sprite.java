@@ -24,7 +24,7 @@ public class Sprite {
 	}
 	
 	private void selectImage(BufferedImage spriteSheet, int xPos, int yPos, int width, int height) {
-		BufferedImage image = spriteSheet.getSubimage((xPos * 34), (yPos * 33), width, height);
+		BufferedImage image = spriteSheet.getSubimage((xPos * 35), (yPos * 35), width, height);
 		setImage(image);
 	}
 	

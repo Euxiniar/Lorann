@@ -10,16 +10,16 @@ import java.util.ArrayList;
  * @version 1.0
  */
 public abstract class Element implements IElement{
-	int selectedSpriteValue = 0;
-	boolean isAlive = true;
-	Position position = new Position();
-	ArrayList<Sprite> spriteArray = new ArrayList<Sprite>();
-	Permeability permeability;
+	private int selectedSpriteValue = 0;
+	private boolean isAlive = true;
+	private Position position = new Position();
+	private ArrayList<Sprite> spriteArray = new ArrayList<Sprite>();
+	private Permeability permeability;
 	
 	public Element(char symbol, int xImagePos, int yImagePos, int nbSprites, Permeability permeability, Position position) {
 		setPosition(position);
 		setPermeability(permeability);
-		createSpriteArray(symbol, xImagePos, xImagePos, nbSprites);
+		createSpriteArray(symbol, xImagePos, yImagePos, nbSprites);
 	}
 
 	/* (non-Javadoc)
@@ -62,7 +62,7 @@ public abstract class Element implements IElement{
 	private void createSpriteArray(char symbol, int xPos, int yPos, int nbSprites) {
 		ArrayList<Sprite> spriteArray = new ArrayList<Sprite>();
 		for(int i = 0; i < nbSprites; i++) {
-			spriteArray.add(new Sprite(symbol, xPos, yPos));
+			spriteArray.add(new Sprite(symbol, xPos+i, yPos));
 		}
 		this.setSpriteArray(spriteArray);
 	}
