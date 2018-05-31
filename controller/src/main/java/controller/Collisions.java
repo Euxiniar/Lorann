@@ -18,6 +18,7 @@ import model.element.mobile.Spell;
  *
  */
 public class Collisions {
+	
 
 	//------------------Test position of a player or a spell with all the others Movable Entity
 	public static boolean testMonsterOnTheCaseThenKill(IElement element1, ArrayList<IMonster> monsters) {
@@ -56,58 +57,57 @@ public class Collisions {
 		return false;
 	}
 	//-------------------Test player position with motionLessElement Door 
-	public static boolean testCaseDoor(IElement IElement) {
+	public static boolean testCaseDoor(IElement element) {
 		
-		if (ControllerFacade.map[IElement.getPosition().getY()][IElement.getPosition().getX()].getSymbol() == 'D') {
+		if (ControllerFacade.map[element.getPosition().getY()][element.getPosition().getX()].getSymbol() == 'D') {
 			return true;
 		}
 		return false;
 	}
 	//-------------------Test player position with motionLessElement Door with permeability.ENDER
-	public static boolean testCaseDoorOpen(IElement IElement) {
+	public static boolean testCaseDoorOpen(IElement element) {
 		
-		if (ControllerFacade.map[IElement.getPosition().getY()][IElement.getPosition().getX()].getPermeability() == Permeability.ENDER) {
+		if (ControllerFacade.map[element.getPosition().getY()][element.getPosition().getX()].getPermeability() == Permeability.ENDER) {
 			return true;
 		}
 		return false;
 	}
 	//-------------------Test player position with motionLessElement Door with permeability.KILLER
-	public static boolean testCaseDoorClose(IElement IElement) {
+	public static boolean testCaseDoorClose(IElement element) {
 		
-		if (ControllerFacade.map[IElement.getPosition().getY()][IElement.getPosition().getX()].getPermeability() == Permeability.KILLER) {
+		if (ControllerFacade.map[element.getPosition().getY()][element.getPosition().getX()].getPermeability() == Permeability.KILLER) {
 			return true;
 		}
 		return false;
 	}	
 	//--------------------Test next case Object for IElement------------------------------------------- 
-	public static boolean testNextCaseObjectGrabable(IElement IElement, Position nextPosition) {
+	public static boolean testNextCaseObjectGrabable(IElement element, Position nextPosition) {
 		
-		if (ControllerFacade.map[IElement.getPosition().getY()+nextPosition.getY()][IElement.getPosition().getX() +nextPosition.getX()].getPermeability() == Permeability.GRABABLE) {
+		if (ControllerFacade.map[element.getPosition().getY()+nextPosition.getY()][element.getPosition().getX() +nextPosition.getX()].getPermeability() == Permeability.GRABABLE) {
 			return true;
 		}
 		return false;
 	}
 	//---------------------Test next case Spell for IElement------------------------------------------
-	public static boolean testNextCaseSpell(IElement IElement, Position position,Spell spell) {
+	public static boolean testNextCaseSpell(IElement element, Position position,Spell spell) {
 		
-		if (IElement.getPosition().getX()+position.getX() == spell.getPosition().getX() && IElement.getPosition().getY() + position.getY() == spell.getPosition().getY()) {
+		if (element.getPosition().getX()+position.getX() == spell.getPosition().getX() && element.getPosition().getY() + position.getY() == spell.getPosition().getY()) {
 			return true;
 		}
 		
 		return false;
 	}
 	//---------------------Test next case Wall for IElement-------------------------------------------
-	public static boolean testNextCaseWall(IElement IElement, Position nextPosition) {
-		
-		if (ControllerFacade.map[IElement.getPosition().getY()+nextPosition.getY()][IElement.getPosition().getX() +nextPosition.getX()].getPermeability() == Permeability.BLOCKING) {
+	public static boolean testNextCaseWall(IElement element, Position nextPosition, ILorannModel lorannModel) {
+		if (lorannModel.getMap().getOnTheMap(nextPosition.getY(),nextPosition.getY()).getPermeability() == Permeability.BLOCKING) {
 			return true;
 		}
 		return false;
 	}
 	//----------------------test next case Door for IElement------------------------------------------
-	public static boolean testNextCaseDoor(IElement IElement, Position nextPosition) {
+	public static boolean testNextCaseDoor(IElement element, Position nextPosition) {
 		
-		if (ControllerFacade.map[IElement.getPosition().getY()+nextPosition.getY()][IElement.getPosition().getX() +nextPosition.getX()].getSymbol() == 'D') {
+		if (ControllerFacade.map[element.getPosition().getY()+nextPosition.getY()][element.getPosition().getX() +nextPosition.getX()].getSymbol() == 'D') {
 			return true;
 		}
 		return false;

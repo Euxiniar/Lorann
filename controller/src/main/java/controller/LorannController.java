@@ -25,6 +25,14 @@ public class LorannController implements IOrderPerformer{
 			+ 					"|       |E"
 			+ 					"| 2 * 1 |E"
 			+ 					"|       |E"
+			+ 					"|       |E"
+			+ 					"|       |E"
+			+ 					"|       |E"
+			+ 					"|       |E"
+			+ 					"|       |E"
+			+ 					"|       |E"
+			+ 					"|       |E"
+			+ 					"|       |E"
 			+ 					"O-------OEF";
 	//private String mapString = "|-ODDE*1234EPK   EF";
 	
@@ -52,6 +60,12 @@ public class LorannController implements IOrderPerformer{
 		spellAnimator = new Animator(lorannModel.getSpell());
 		spellAnimator.setSpeed(100);
 		spellAnimator.start();
+//		try {
+//			Thread.sleep(1000);
+//		} catch (InterruptedException e) {
+//			// TODO Auto-generated catch block
+//			e.printStackTrace();
+//		}
 		gameLoop();
 	}
 	
@@ -69,7 +83,7 @@ public class LorannController implements IOrderPerformer{
 			playerAnimator.update(System.currentTimeMillis());
 			monstersAnimator.update(System.currentTimeMillis());
 			
-			orderPerform();
+			
 //			final ArrayList<MobileElement> initialMobileElement = new ArrayList<MobileElement>();
 //			for (final MobileElement element : this.lorannModel.getElement()) {
 //				initialMobilesElement.add(element);
@@ -81,6 +95,7 @@ public class LorannController implements IOrderPerformer{
 //				}
 //			}
 			this.lorannModel.setMobilesHavesMoved();
+			orderPerform();
 		}
 	}
 	public void buildMap(String mapString) {
@@ -96,9 +111,9 @@ public class LorannController implements IOrderPerformer{
 				else if(mapString.charAt(i) == '1' || mapString.charAt(i) == '2' || mapString.charAt(i) == '3' || mapString.charAt(i) == '4') {
 					lorannModel.addMonster(MonsterFactory.getFromSymbol(mapString.charAt(i), new Position(x, y)));
 				}
-				else {
-					map.setOnTheMap(MotionlessElementFactory.getFromSymbol(mapString.charAt(i), new Position(x, y)), new Position(x, y));
-				}
+				
+				map.setOnTheMap(MotionlessElementFactory.getFromSymbol(mapString.charAt(i), new Position(x, y)), new Position(x, y));
+				
 				i++;
 				x++;
 			}
@@ -115,12 +130,14 @@ public class LorannController implements IOrderPerformer{
 	 */
 	@Override
 	public void orderPerform() {
+		TryMove tryMove = new TryMove(lorannModel);
 		UserOrder order = KeyToOrder();
+		System.out.println("order : " +order.getOrder());
 		if (order.getOrder() != Order.STOP) {
-			TryMove.tryMovePlayer(lorannModel.getPlayer(), order.getOrder());
+			tryMove.tryMovePlayer(lorannModel.getPlayer(), order.getOrder());
 		}
 		else {
-			System.out.println("else");
+			//System.out.println("else");
 		}
 			
 			
@@ -158,7 +175,7 @@ public class LorannController implements IOrderPerformer{
 				order = new UserOrder(Order.LEFT);
 			}
 			else {
-				order = new UserOrder(Order.STOP);
+			order = new UserOrder(Order.STOP);
 			}
 			return order;
 		}

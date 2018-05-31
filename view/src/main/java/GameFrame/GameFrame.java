@@ -7,6 +7,7 @@ import java.awt.event.KeyListener;
 import java.util.Observable;
 
 import javax.swing.JFrame;
+import javax.swing.SwingUtilities;
 
 import controller.EventPerformer;
 import view.IEventPerformer;
@@ -111,7 +112,7 @@ import view.IEventPerformer;
 //	}
 //}
 
-public class GameFrame extends JFrame implements KeyListener {
+public class GameFrame extends JFrame implements KeyListener, Runnable {
 	
 	/**
 	 * 
@@ -139,29 +140,24 @@ public class GameFrame extends JFrame implements KeyListener {
 	//-----------------------------eventPerformer---------------------------------------
 	//modify later
 	
-	
+	Observable observable;
+	IGraphicsBuilder graphicsBuilder;
+	String title;
 	
 	//D---------------------------detect the key in use and start eventPerform--------------
 	
 	public GameFrame(final String title, final IGraphicsBuilder graphicsBuilder, final Observable observable)
 			throws HeadlessException {
-	
-		this.setTitle(title);
-		this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		this.setResizable(false);
+		this.observable = observable;
+		this.graphicsBuilder = graphicsBuilder;
+		this.title = title;
+		
 		this.addKeyListener(this);
-		this.setVisible(true);
-		this.setBackground(Color.BLACK);
+		SwingUtilities.invokeLater(this);
 		
-		final GamePanel gamePanel = new GamePanel(graphicsBuilder);
-		this.setContentPane(gamePanel);
-		this.setSize(1000,800);
-		this.setLocationRelativeTo(null);
-		observable.addObserver(gamePanel);
-	
-		this.setVisible(true);
 		
-		this.eventPerformer = new EventPerformer();
+		
+		//this.eventPerformer = new EventPerformer();
 	}
 	
 	
@@ -217,8 +213,25 @@ public class GameFrame extends JFrame implements KeyListener {
 	
 	}
 
-	public boolean[] getBools() {
-		System.out.println(tabBool);
+	public synchronized boolean[] getBools() {
 		return tabBool;
+	}
+
+
+	@Override
+	public void run() {
+		this.setTitle(title);
+		this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+		this.setResizable(false);
+		this.setVisible(true);
+		this.setBackground(Color.BLACK);
+		
+		final GamePanel gamePanel = new GamePanel(graphicsBuilder);
+		this.setContentPane(gamePanel);
+		this.setSize(1000,800);
+		this.setLocationRelativeTo(null);
+		observable.addObserver(gamePanel);
+		this.setVisible(true);
+		
 	}
 }

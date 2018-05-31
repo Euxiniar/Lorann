@@ -12,7 +12,7 @@ package model.element;
  */
 public class Map {
 	private static int WIDTH = 9;
-	private static int HEIGHT = 5;
+	private static int HEIGHT = 13;
 	private IElement[][] map;
 	
 	public Map() {
@@ -31,6 +31,10 @@ public class Map {
 	
 	public IElement getOnTheMap(Position position) {
 		return map[position.getX()][position.getY()];
+	}
+	
+	public IElement getOnTheMap(int x, int y) {
+		return map[x][y];
 	}
 	
 	public IElement[][] getMap() {

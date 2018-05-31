@@ -39,7 +39,7 @@ import model.ILorannModel;
 //	}
 //}
 	
-public class LorannView implements ILorannView, Runnable{
+public class LorannView implements ILorannView{
 	private final GraphicsBuilder graphicsBuilder;
 	private final Observable observable;
 	private GameFrame gameFrame;
@@ -47,11 +47,6 @@ public class LorannView implements ILorannView, Runnable{
 	public LorannView(ILorannModel lorannModel , Observable observable ) {
 		this.observable = observable;
 		this.graphicsBuilder = new GraphicsBuilder(lorannModel);
-		SwingUtilities.invokeLater(this);
-	}
-	
-	@Override
-	public void run() {
 		this.gameFrame = new GameFrame("Lorann", this.graphicsBuilder, this.observable);
 	}
 
@@ -66,11 +61,11 @@ public class LorannView implements ILorannView, Runnable{
 	}
 
 	@Override
-	public boolean[] getBools() {
+	public synchronized boolean[] getBools() {
 		//temp
 		//boolean[] bools = {false,false,false,false,false,false,false,false}; 
 		//return bools;
-		System.out.println(gameFrame.getBools());
+		//qSystem.out.println(gameFrame.getBools());
 		return this.gameFrame.getBools();
 	}
 }
