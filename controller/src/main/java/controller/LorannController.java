@@ -21,19 +21,19 @@ public class LorannController implements IOrderPerformer{
 	private boolean isGameOver	= false;
 	private final ILorannModel lorannModel;
 	private ILorannView lorannView;
-	private String mapString = 	"O-------OE"
-			+ 					"|       |E"
-			+ 					"| 2 * 1 |E"
-			+ 					"|       |E"
-			+ 					"|       |E"
-			+ 					"|       |E"
-			+ 					"|       |E"
-			+ 					"|       |E"
-			+ 					"|       |E"
-			+ 					"|       |E"
-			+ 					"|       |E"
-			+ 					"|       |E"
-			+ 					"O-------OEF";
+	private String mapString = 	"O------------------OE"
+			+ 					"|                  |E"
+			+ 					"|       | * |      |E"
+			+ 					"|       | D |      |E"
+			+ 					"|       O---O      |E"
+			+ 					"|        324       |E"
+			+ 					"|                  |E"
+			+ 					"|                  |E"
+			+ 					"| -----------------|E"
+			+ 					"|P  P    P  P    P |E"
+			+ 					"|----------------- |E"
+			+ 					"| K1  P   P    P   |E"
+			+ 					"O------------------OEF";
 	//private String mapString = "|-ODDE*1234EPK   EF";
 	
 	private Animator playerAnimator;
@@ -132,7 +132,6 @@ public class LorannController implements IOrderPerformer{
 	public void orderPerform() {
 		TryMove tryMove = new TryMove(lorannModel);
 		UserOrder order = KeyToOrder();
-		System.out.println("order : " +order.getOrder());
 		if (order.getOrder() != Order.STOP) {
 			tryMove.tryMovePlayer(lorannModel.getPlayer(), order.getOrder());
 		}

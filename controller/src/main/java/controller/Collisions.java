@@ -22,7 +22,7 @@ public class Collisions {
 
 	//------------------Test position of a player or a spell with all the others Movable Entity
 	public static boolean testMonsterOnTheCaseThenKill(IElement element1, ArrayList<IMonster> monsters) {
-		for(int i=0; i <= monsters.size(); i++) {
+		for(int i=0; i <= monsters.size()-1; i++) {
 			//if it is a player
 			if (element1.getPermeability() == Permeability.BLOCKING && element1.getPosition().getX() == ((IMonster)monsters.get(i)).getPosition().getX() && element1.getPosition().getY() == ((IMonster)monsters.get(i)).getPosition().getY()) {
 				((Player) element1).getLife();
@@ -48,9 +48,9 @@ public class Collisions {
 		return false;
 	}
 	//-------------------Test player with element permeability.GRABABLE of the case
-	public static boolean testCaseObject(Player player) {
+	public static boolean testCaseObject(Player player, ILorannModel lorannmodel) {
 		
-		if (ControllerFacade.map[player.getPosition().getY()][player.getPosition().getX()].getPermeability() == Permeability.GRABABLE){
+		if (lorannmodel.getMap().getOnTheMap(lorannmodel.getPlayer().getPosition().getX(), lorannmodel.getPlayer().getPosition().getY()).getPermeability() == Permeability.GRABABLE){
 			return true;
 		}
 		
@@ -99,7 +99,7 @@ public class Collisions {
 	}
 	//---------------------Test next case Wall for IElement-------------------------------------------
 	public static boolean testNextCaseWall(IElement element, Position nextPosition, ILorannModel lorannModel) {
-		if (lorannModel.getMap().getOnTheMap(nextPosition.getY(),nextPosition.getY()).getPermeability() == Permeability.BLOCKING) {
+		if (lorannModel.getMap().getOnTheMap(nextPosition.getX(),nextPosition.getY()).getPermeability() == Permeability.BLOCKING) {
 			return true;
 		}
 		return false;

@@ -228,7 +228,7 @@ public class GameFrame extends JFrame implements KeyListener, Runnable {
 		
 		final GamePanel gamePanel = new GamePanel(graphicsBuilder);
 		this.setContentPane(gamePanel);
-		this.setSize(1000,800);
+		this.setSize(1015,800);
 		this.setLocationRelativeTo(null);
 		observable.addObserver(gamePanel);
 		this.setVisible(true);
