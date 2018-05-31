@@ -3,13 +3,14 @@ package view;
 import java.util.Observable;
 
 import javax.swing.JOptionPane;
+import javax.swing.SwingUtilities;
 
 import GameFrame.GameFrame;
 import controller.IOrderPerformer;
 import model.ILorannModel;
 
 @SuppressWarnings("deprecation")
-public class LorannView implements ILorannView{
+public class LorannView implements ILorannView, Runnable{
 	private final GraphicsBuilder graphicsBuilder;
 	private final EventPerformer eventPerformer;
 	private final Observable observable;
@@ -19,9 +20,11 @@ public class LorannView implements ILorannView{
 		this.observable = observable;
 		this.graphicsBuilder = new GraphicsBuilder(lorannModel);
 		this.eventPerformer = new EventPerformer(orderPerformer);
+		SwingUtilities.invokeLater(this);
 	}
 	
-	private void run() {
+	@Override
+	public void run() {
 		this.gameFrame = new GameFrame("Lorann", this.eventPerformer, this.graphicsBuilder, this.observable);
 	}
 

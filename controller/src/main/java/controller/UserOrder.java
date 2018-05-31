@@ -1,5 +1,7 @@
 package controller;
 
+import model.order.Order;
+
 public class UserOrder {
 	private final Order	order;
 
