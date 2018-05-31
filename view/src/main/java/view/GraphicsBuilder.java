@@ -50,7 +50,6 @@ class GraphicsBuilder implements IGraphicsBuilder {
 	}
 	
 	private void drawPlayer(Graphics g, ImageObserver observer) {
-		System.out.println(lorannModel.getPlayer().getSelectedSpriteValue());
 			g.drawImage(lorannModel.getPlayer().getSelectedImage(), lorannModel.getPlayer().getPosition().getX()*50, lorannModel.getPlayer().getPosition().getY()*50, 50, 50, null);
 	}
 	

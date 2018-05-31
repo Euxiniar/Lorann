@@ -1,18 +1,31 @@
 package controller;
 
+import java.util.ArrayList;
+
 import model.element.IElement;
+import model.element.mobile.IMonster;
 
 public class Animator {
 	
-	private IElement element;
-	
+	private ArrayList<IElement> elementArray = null;
+	private ArrayList<IMonster> monstersArray = null;
 	private volatile boolean running = false;
 	
 	private long previousTime, speed;
 	private int frameAtPause, currentFrame;
 	
 	public Animator(IElement element) {
-		this.element = element;
+		elementArray = new ArrayList<IElement>();
+		this.elementArray.add(element);
+	}
+
+	/**
+	 * @param monsters
+	 */
+
+	
+	public Animator(ArrayList<IMonster> monsters) {
+		this.monstersArray = monsters;
 	}
 
 	public void setSpeed(long speed) {
@@ -23,16 +36,27 @@ public class Animator {
 		if (running) {
 			if(time - previousTime >= speed) {
 				currentFrame++;
-				try { // if the number is greater than bounder then we put the currentFrame to 0
-					if(element.getSelectedSpriteValue() >= element.getSpriteArraySize()-1) {
-						element.setSelectedSpriteValue(0);
+				if(elementArray != null) {
+					for(IElement element : elementArray) {
+						if(element.getSelectedSpriteValue() >= element.getSpriteArraySize()-1) {
+							element.setSelectedSpriteValue(0);
+						}
+						else {
+						element.setSelectedSpriteValue(element.getSelectedSpriteValue()+1);
+						}
 					}
-					else {
-					element.setSelectedSpriteValue(element.getSelectedSpriteValue()+1);
-					}
-				}catch(IndexOutOfBoundsException e) {
-					element.setSelectedSpriteValue(0);
 				}
+				else if(monstersArray != null) {
+					for(IMonster monster : monstersArray) {
+						if(monster.getSelectedSpriteValue() >= monster.getSpriteArraySize()-1) {
+							monster.setSelectedSpriteValue(0);
+						}
+						else {
+							monster.setSelectedSpriteValue(monster.getSelectedSpriteValue()+1);
+						}
+					}
+				}
+					
 				previousTime = time;
 			}
 		}
