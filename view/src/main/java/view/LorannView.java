@@ -67,7 +67,10 @@ public class LorannView implements ILorannView, Runnable{
 
 	@Override
 	public boolean[] getBools() {
-		// TODO Auto-generated method stub
+		//temp
+		//boolean[] bools = {false,false,false,false,false,false,false,false}; 
+		//return bools;
+		System.out.println(gameFrame.getBools());
 		return this.gameFrame.getBools();
 	}
 }

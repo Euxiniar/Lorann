@@ -2,7 +2,7 @@ package controller;
 
 import view.IEventPerformer;
 
-public class EventPerformer implements IEventPerformer{
+public class EventPerformer{
 	
 	//-----------------------------Boolean to know witch key is in use---------------------
 	
@@ -38,16 +38,13 @@ public class EventPerformer implements IEventPerformer{
 	}
 
 
-	@Override
-	public void eventPerform(boolean boolZ ,boolean boolD ,boolean boolS,boolean boolQ,boolean boolUP ,boolean boolRIGHT ,boolean boolDOWN,boolean boolLEFT) {
-		final UserOrder userOrder = this.keyToOrder( boolZ , boolD , boolS, boolQ, boolUP , boolRIGHT , boolDOWN, boolLEFT);
-		if (userOrder != null) {
-			this.lorannController.orderPerform(userOrder);
-		}
+//	@Override
+//	public void eventPerform(boolean boolZ ,boolean boolD ,boolean boolS,boolean boolQ,boolean boolUP ,boolean boolRIGHT ,boolean boolDOWN,boolean boolLEFT) {
+//		final UserOrder userOrder = this.keyToOrder( boolZ , boolD , boolS, boolQ, boolUP , boolRIGHT , boolDOWN, boolLEFT);
+//		if (userOrder != null) {
+//			this.lorannController.orderPerform(userOrder);
+//		}
 		
 		
 	}
 		
-		//-----------------------------Spell start double key ----------------------
-
-}

@@ -21,12 +21,12 @@ public class LorannController implements IOrderPerformer{
 	private boolean isGameOver	= false;
 	private final ILorannModel lorannModel;
 	private ILorannView lorannView;
-//	private String mapString = 	"O-------OE"
-//			+ 					"|       |E"
-//			+ 					"| 2 * 1 |E"
-//			+ 					"|       |E"
-//			+ 					"O-------OEF";
-	private String mapString = "|-ODDE*1234EPK   EF";
+	private String mapString = 	"O-------OE"
+			+ 					"|       |E"
+			+ 					"| 2 * 1 |E"
+			+ 					"|       |E"
+			+ 					"O-------OEF";
+	//private String mapString = "|-ODDE*1234EPK   EF";
 	
 	private Animator playerAnimator;
 	private Animator monstersAnimator;
@@ -69,6 +69,7 @@ public class LorannController implements IOrderPerformer{
 			playerAnimator.update(System.currentTimeMillis());
 			monstersAnimator.update(System.currentTimeMillis());
 			
+			orderPerform();
 //			final ArrayList<MobileElement> initialMobileElement = new ArrayList<MobileElement>();
 //			for (final MobileElement element : this.lorannModel.getElement()) {
 //				initialMobilesElement.add(element);
@@ -113,83 +114,53 @@ public class LorannController implements IOrderPerformer{
 	 * @see controller.IOrderPerformer#orderPerform(controller.IUserOrder)
 	 */
 	@Override
-	public void orderPerform(IUserOrder userOrder) {
-		
-		KeyToOrder();
-		
-//		if (userOrder != null) {
-//			final IMobile plane = this.dogfightModel.getMobileByPlayer(userOrder.getPlayer());
-//			if (plane != null) {
-//				Direction direction;
-//				switch (userOrder.getOrder()) {
-//					case UP:
-//						direction = Direction.UP;
-//						break;
-//					case RIGHT:
-//						direction = Direction.RIGHT;
-//						break;
-//					case DOWN:
-//						direction = Direction.DOWN;
-//						break;
-//					case LEFT:
-//						direction = Direction.LEFT;
-//						break;
-//					case SHOOT:
-//						try {
-//							this.lauchMissile(userOrder.getPlayer());
-//						} catch (final IOException e) {
-//							e.printStackTrace();
-//						}
-//					case NOP:
-//					default:
-//						direction = this.dogfightModel.getMobileByPlayer(userOrder.getPlayer()).getDirection();
-//						break;
-//				}
-//				plane.setDirection(direction);
-			}
-		//}
-	//}
+	public void orderPerform() {
+		UserOrder order = KeyToOrder();
+		if (order.getOrder() != Order.STOP) {
+			TryMove.tryMovePlayer(lorannModel.getPlayer(), order.getOrder());
+		}
+		else {
+			System.out.println("else");
+		}
+			
+			
+		}
+
 	
-//	private boolean boolZ = false;
-//	private boolean boolD = false;
-//	private boolean boolS = false;
-//	private boolean boolQ = false;
-//	
-//	private boolean boolUP = false;
-//	private boolean boolRIGHT = false;
-//	private boolean boolDOWN = false;
-//	private boolean boolLEFT = false;
 	
-	private void KeyToOrder() {
-		
+	private UserOrder KeyToOrder() {
+		//Z, D, S, Q UP,RIGHT, DOWN, LEFT
 		boolean[] bools= lorannView.getBools();
 		
-		UserOrder order;
-			if (bools[1] && bools[2]) {
+		UserOrder order = null;
+			if (bools[0] && bools[2]) {
 				order = new UserOrder(Order.UPRIGHT);
 			}
-			else if (bools[1] && bools[4]) {
+			else if (bools[0] && bools[3]) {
 				order = new UserOrder(Order.UPLEFT);
 			}
-			else if (bools[3] && bools[2]) {
+			else if (bools[2] && bools[1]) {
 				order = new UserOrder(Order.DOWNRIGHT);
 			}
-			else if (bools[3] && bools[4]) {
+			else if (bools[2] && bools[3]) {
 				order = new UserOrder(Order.DOWNLEFT);
 			}
-			else if (bools[1]) {
+			else if (bools[0]) {
 				order = new UserOrder(Order.UP);
 			}
-			else if (bools[2]) {
+			else if (bools[1]) {
 				order = new UserOrder(Order.RIGHT);
 			}
-			else if (bools[3]) {
+			else if (bools[2]) {
 				order = new UserOrder(Order.DOWN);
 			}
-			else if (bools[4]) {
+			else if (bools[3]) {
 				order = new UserOrder(Order.LEFT);
 			}
-			//return order;
+			else {
+				order = new UserOrder(Order.STOP);
+			}
+			return order;
 		}
 	}
 //}

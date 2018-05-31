@@ -123,17 +123,17 @@ public class GameFrame extends JFrame implements KeyListener {
  * 
  */
 
-	private boolean boolZ = false;
-	private boolean boolD = false;
-	private boolean boolS = false;
-	private boolean boolQ = false;
+	private static boolean boolZ = false;
+	private static boolean boolD = false;
+	private static boolean boolS = false;
+	private static boolean boolQ = false;
 	
-	private boolean boolUP = false;
-	private boolean boolRIGHT = false;
-	private boolean boolDOWN = false;
-	private boolean boolLEFT = false;
+	private static boolean boolUP = false;
+	private static boolean boolRIGHT = false;
+	private static boolean boolDOWN = false;
+	private static boolean boolLEFT = false;
 	
-	private boolean[] tabBool = {boolZ,boolD,boolS,boolQ,boolUP,boolRIGHT,boolDOWN,boolLEFT};
+	private static boolean[] tabBool = {boolZ,boolD,boolS,boolQ,boolUP,boolRIGHT,boolDOWN,boolLEFT};
 	
 	EventPerformer eventPerformer;
 	//-----------------------------eventPerformer---------------------------------------
@@ -169,22 +169,22 @@ public class GameFrame extends JFrame implements KeyListener {
 	public void keyPressed(final KeyEvent keyEvent) {
 		int key = keyEvent.getKeyCode();
 		if (key == KeyEvent.VK_Z)
-			boolZ = true;
+			tabBool[0] = true;
 		if (key == KeyEvent.VK_D)
-			boolD = true;
+			tabBool[1] = true;
 		if (key == KeyEvent.VK_S)
-			boolS = true;
+			tabBool[2] = true;
 		if (key == KeyEvent.VK_Q)
-			boolQ = true;
+			tabBool[3] = true;
 		
 		if (key == KeyEvent.VK_UP)
-			boolUP = true;
+			tabBool[4] = true;
 		if (key == KeyEvent.VK_RIGHT)
-			boolRIGHT = true;
+			tabBool[5] = true;
 		if (key == KeyEvent.VK_DOWN)
-			boolDOWN = true;
+			tabBool[6] = true;
 		if (key == KeyEvent.VK_LEFT)
-			boolLEFT = true;
+			tabBool[7] = true;
 		
 	}
 	
@@ -193,22 +193,22 @@ public class GameFrame extends JFrame implements KeyListener {
 		// TODO Auto-generated method stub
 		int key = keyEvent.getKeyCode();
 		if (key == KeyEvent.VK_Z)
-			boolZ = false;
+			tabBool[0] = false;
 		if (key == KeyEvent.VK_D)
-			boolD = false;
+			tabBool[1] = false;
 		if (key == KeyEvent.VK_S)
-			boolS = false;
+			tabBool[2] = false;
 		if (key == KeyEvent.VK_Q)
-			boolQ = false;
+			tabBool[3] = false;
 		
 		if (key == KeyEvent.VK_UP)
-			boolUP = false;
+			tabBool[4] = false;
 		if (key == KeyEvent.VK_RIGHT)
-			boolRIGHT = false;
+			tabBool[5] = false;
 		if (key == KeyEvent.VK_DOWN)
-			boolDOWN = false;
+			tabBool[6] = false;
 		if (key == KeyEvent.VK_LEFT)
-			boolLEFT = false;
+			tabBool[7] = false;
 	}
 	
 	@Override
@@ -217,10 +217,8 @@ public class GameFrame extends JFrame implements KeyListener {
 	
 	}
 
-
-
 	public boolean[] getBools() {
-		
+		System.out.println(tabBool);
 		return tabBool;
 	}
 }

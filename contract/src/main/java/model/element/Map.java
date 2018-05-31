@@ -11,8 +11,8 @@ package model.element;
  *
  */
 public class Map {
-	private static int WIDTH = 5;
-	private static int HEIGHT = 3;
+	private static int WIDTH = 9;
+	private static int HEIGHT = 5;
 	private IElement[][] map;
 	
 	public Map() {

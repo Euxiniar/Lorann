@@ -3,33 +3,42 @@
  */
 package controller;
 
+import java.util.ArrayList;
+
 import model.ILorannModel;
 import model.element.IElement;
 import model.element.Permeability;
 import model.element.Position;
+import model.element.mobile.IMonster;
 import model.element.mobile.Player;
 import model.element.mobile.Spell;
 
 /**
- * @author Snargol
+ * @author Snargol / Vicente
  *
  */
 public class Collisions {
 
 	//------------------Test position of a player or a spell with all the others Movable Entity
-	public static boolean testCaseMob(IElement element) {
+	public static boolean testMonsterOnTheCaseThenKill(IElement element1, ArrayList<IMonster> monsters) {
+		for(int i=0; i <= monsters.size(); i++) {
+			//if it is a player
+			if (element1.getPermeability() == Permeability.BLOCKING && element1.getPosition().getX() == ((IMonster)monsters.get(i)).getPosition().getX() && element1.getPosition().getY() == ((IMonster)monsters.get(i)).getPosition().getY()) {
+				((Player) element1).getLife();
+				((Player) element1).removeLife(1);
+				element1.setAlive(false);
+				return true;
+			}
+			//if it is a spell
+			else if(element1.getPermeability() == Permeability.KILLER && element1.getPosition().getX() == ((IMonster)monsters.get(i)).getPosition().getX() && element1.getPosition().getY() == ((IMonster)monsters.get(i)).getPosition().getY()) {
+				((IMonster)monsters.get(i)).setAlive(false);
+				return true;
+			}
+		}
 		return false;
-		
-//		for (IElement e2 : listeEntity) {
-//			if (e1.getPosition().getX() == e2.getPosition().getX() && e1.getPosition().getY() == e2.getPosition().getY()) {
-//				return true;
-//			}
-//		}
-//		
-//		return false;
 	}
 	//-------------------Test player position with spell position
-	public static boolean testCaseSpell(Player player, Spell spell) {
+	public static boolean testCasePlayer(Player player, Spell spell) {
 		
 		if (player.getPosition().getX() == spell.getPosition().getX() && player.getPosition().getY() == spell.getPosition().getY()) {
 			return true;
