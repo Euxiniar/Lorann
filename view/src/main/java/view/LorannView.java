@@ -64,4 +64,10 @@ public class LorannView implements ILorannView, Runnable{
 	public void closeAll() {
 		this.gameFrame.dispose();
 	}
+
+	@Override
+	public boolean[] getBools() {
+		// TODO Auto-generated method stub
+		return this.gameFrame.getBools();
+	}
 }

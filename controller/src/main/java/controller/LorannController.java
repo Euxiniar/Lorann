@@ -46,8 +46,8 @@ public class LorannController implements IOrderPerformer{
 		gameLoop();
 	}
 	
-	public void setViewSystem(ILorannView lorannView) {
-		
+	public void setLorannView(ILorannView lorannView) {
+		this.lorannView = lorannView;
 	}
 	
 	private void gameLoop() {
@@ -104,6 +104,9 @@ public class LorannController implements IOrderPerformer{
 	 */
 	@Override
 	public void orderPerform(IUserOrder userOrder) {
+		
+		KeyToOrder();
+		
 //		if (userOrder != null) {
 //			final IMobile plane = this.dogfightModel.getMobileByPlayer(userOrder.getPlayer());
 //			if (plane != null) {
@@ -133,7 +136,50 @@ public class LorannController implements IOrderPerformer{
 //						break;
 //				}
 //				plane.setDirection(direction);
-//			}
-//		}
+			}
+		//}
+	//}
+	
+//	private boolean boolZ = false;
+//	private boolean boolD = false;
+//	private boolean boolS = false;
+//	private boolean boolQ = false;
+//	
+//	private boolean boolUP = false;
+//	private boolean boolRIGHT = false;
+//	private boolean boolDOWN = false;
+//	private boolean boolLEFT = false;
+	
+	private void KeyToOrder() {
+		
+		boolean[] bools= lorannView.getBools();
+		
+		UserOrder order;
+			if (bools[1] && bools[2]) {
+				order = new UserOrder(Order.UPRIGHT);
+			}
+			else if (bools[1] && bools[4]) {
+				order = new UserOrder(Order.UPLEFT);
+			}
+			else if (bools[3] && bools[2]) {
+				order = new UserOrder(Order.DOWNRIGHT);
+			}
+			else if (bools[3] && bools[4]) {
+				order = new UserOrder(Order.DOWNLEFT);
+			}
+			else if (bools[1]) {
+				order = new UserOrder(Order.UP);
+			}
+			else if (bools[2]) {
+				order = new UserOrder(Order.RIGHT);
+			}
+			else if (bools[3]) {
+				order = new UserOrder(Order.DOWN);
+			}
+			else if (bools[4]) {
+				order = new UserOrder(Order.LEFT);
+			}
+			//return order;
+		}
 	}
-}
+//}

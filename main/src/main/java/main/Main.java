@@ -22,9 +22,10 @@ public abstract class Main {
     public static void main(final String[] args) {
     	
     	LorannModel model = new LorannModel();
-    	LorannView view = new LorannView(model, model);
+    	LorannView view = new LorannView( model, model);
+    	final LorannController controller = new LorannController(view, model);
     	
-        final LorannController controller = new LorannController(view, model);
+        //final LorannController controller = new LorannController(model);
 
         controller.play();
     }

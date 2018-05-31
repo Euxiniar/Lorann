@@ -8,6 +8,7 @@ import java.util.Observable;
 
 import javax.swing.JFrame;
 
+import controller.EventPerformer;
 import view.IEventPerformer;
 	
 @SuppressWarnings("deprecation")
@@ -132,6 +133,9 @@ public class GameFrame extends JFrame implements KeyListener {
 	private boolean boolDOWN = false;
 	private boolean boolLEFT = false;
 	
+	private boolean[] tabBool = {boolZ,boolD,boolS,boolQ,boolUP,boolRIGHT,boolDOWN,boolLEFT};
+	
+	EventPerformer eventPerformer;
 	//-----------------------------eventPerformer---------------------------------------
 	//modify later
 	
@@ -141,7 +145,6 @@ public class GameFrame extends JFrame implements KeyListener {
 	
 	public GameFrame(final String title, final IGraphicsBuilder graphicsBuilder, final Observable observable)
 			throws HeadlessException {
-//		this.eventPerformer = eventPerformer;
 	
 		this.setTitle(title);
 		this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
@@ -157,6 +160,8 @@ public class GameFrame extends JFrame implements KeyListener {
 		observable.addObserver(gamePanel);
 	
 		this.setVisible(true);
+		
+		this.eventPerformer = new EventPerformer();
 	}
 	
 	
@@ -181,7 +186,6 @@ public class GameFrame extends JFrame implements KeyListener {
 		if (key == KeyEvent.VK_LEFT)
 			boolLEFT = true;
 		
-//		eventPerformer.eventPerform(boolZ, boolD, boolS, boolQ, boolUP, boolRIGHT, boolDOWN, boolLEFT);
 	}
 	
 	@Override
@@ -211,5 +215,12 @@ public class GameFrame extends JFrame implements KeyListener {
 	public void keyTyped(final KeyEvent keyEvent) {
 		// TODO Auto-generated method stub
 	
+	}
+
+
+
+	public boolean[] getBools() {
+		
+		return tabBool;
 	}
 }

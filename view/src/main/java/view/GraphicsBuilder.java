@@ -2,7 +2,6 @@ package view;
 
 import java.awt.Color;
 import java.awt.Graphics;
-import java.awt.image.BufferedImage;
 import java.awt.image.ImageObserver;
 
 import GameFrame.IGraphicsBuilder;
@@ -13,7 +12,6 @@ import model.element.mobile.IMonster;
 
 class GraphicsBuilder implements IGraphicsBuilder {
 	private final ILorannModel lorannModel;
-	private BufferedImage mapImage;
 
 	public GraphicsBuilder(final ILorannModel lorannModel) {
 		this.lorannModel = lorannModel;
@@ -37,12 +35,6 @@ class GraphicsBuilder implements IGraphicsBuilder {
 	private void buildMapGraph(Graphics g) {
 		int x = 0, y = 0;
 		Position position = new Position(x,y);
-<<<<<<< HEAD
-
-		for (IElement ligne : lorannModel.getMap().getMap()[y]) {
-			for (IElement element : lorannModel.getMap().getMap()[y][x]) {
-				g.drawImage(element.getSelectedImage(), element.getPosition().getX(), element.getPosition().getY(), 50, 50, null);
-=======
 		IElement element;
 		
 		for(y = 0; y < lorannModel.getMap().getHeight(); y++) {
@@ -51,7 +43,6 @@ class GraphicsBuilder implements IGraphicsBuilder {
 				if(element != null) {
 				g.drawImage(element.getSelectedImage(), element.getPosition().getX()*50, element.getPosition().getY()*50, 50, 50, null);
 				}
->>>>>>> branch 'Euxiniar' of https://github.com/Euxiniar/Lorann.git
 				position.setX(x + 1);
 			}
 				position.setY(y + 1);
