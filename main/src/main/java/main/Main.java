@@ -1,11 +1,8 @@
 package main;
 
-import java.sql.SQLException;
-
-import controller.ControllerFacade;
 import controller.LorannController;
 import model.LorannModel;
-import model.ModelFacade;
+
 import view.LorannView;
 
 /**
@@ -23,13 +20,13 @@ public abstract class Main {
      *            the arguments
      */
     public static void main(final String[] args) {
-        final LorannController controller = new LorannController(new LorannView(), new LorannModel());
+    	
+    	LorannModel model = new LorannModel();
+    	LorannView view = new LorannView(model, model);
+    	
+        final LorannController controller = new LorannController(view, model);
 
-        try {
-            controller.play();
-        } catch (final SQLException exception) {
-            exception.printStackTrace();
-        }
+        controller.play();
     }
 
 }

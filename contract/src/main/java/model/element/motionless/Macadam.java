@@ -21,7 +21,7 @@ class Macadam extends MotionlessElement {
      * Instantiates a new VerticalBone.
      */
 	Macadam(Position position) {
-    	super(' ', 2, 6, Permeability.BLOCKING, position);
+    	super(' ', 1, 3, Permeability.BLOCKING, position);
     	this.setAlive(false);
     }
 }
