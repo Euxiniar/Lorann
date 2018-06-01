@@ -230,30 +230,32 @@ public class TryMove {
 			IElement element = lorannmodel.getMap().getOnTheMap(lorannmodel.getPlayer().getPosition().getX(), lorannmodel.getPlayer().getPosition().getY());
 			direction = getOrderToDirection(order);
 			theoricalPosition = getTheoricalPositionElement(player, direction);
+			
 			if (!Collisions.testNextCaseWall(lorannmodel.getPlayer(), theoricalPosition, lorannmodel)) { 
-				 player.setPosition(theoricalPosition);
-
+				player.setPosition(theoricalPosition);
+				element = lorannmodel.getMap().getOnTheMap(lorannmodel.getPlayer().getPosition().getX(), lorannmodel.getPlayer().getPosition().getY());
             }
             if (Collisions.testCaseObject(lorannmodel.getPlayer(), lorannmodel)) { 
-                if (element.getSymbol() == 'P') {
+            	if (element.getSymbol() == 'P' && element.getIsAlive()) {
 //                    score.setScore(score.getScore() + 750);
                 	element.setAlive(false);
-                	//remettre un macadam
                 	
                 	System.out.println("+750 pts !");
                 }
-                else if (element.getSymbol() == 'K') {
-                	//setOpenDoor
-                }
-                }
+            	else if (element.getSymbol() == 'K' && element.getIsAlive()) {
+              	element.setAlive(false);
+              	
+              	System.out.println("setOpenDoor");
+            	}
+            }
             else {
-                if (Collisions.testMonsterOnTheCaseThenKill(lorannmodel.getPlayer(), lorannmodel
-                		
-                		)) { 
+                if (Collisions.testMonsterOnTheCaseThenKill(lorannmodel.getPlayer(), lorannmodel)) { 
                 		lorannmodel.getPlayer().setAlive(false);
-                 System.out.println("you died");
-                 //Collisions.testCaseDoorClose(lorannmodel.getPlayer()))
+                		System.out.println("you died");
                 }
+                 if (Collisions.testCaseDoor(lorannmodel.getPlayer(), lorannmodel)) {
+                	 System.out.println("porte");
+                 }
                 else {
                     if (false) { //Collisions.testCaseDoorOpen(lorannmodel.getPlayer())
                     //     Win() (ou retour au menu);
@@ -348,8 +350,10 @@ public class TryMove {
            
             if(spell.getIsAlive()==true){
                 if(Collisions.testNextCaseObjectGrabable(spell, theoricalPosition, lorannmodel) || Collisions.testNextCaseDoor(spell, theoricalPosition, lorannmodel) || Collisions.testNextCaseWall(spell, theoricalPosition, lorannmodel)){
-                    spell.setDirection(reverseDirection(spell.getDirection()));
-                    theoricalPosition = getTheoricalPositionElement(spell, spell.getDirection());
+                    if (lorannmodel.getMap().getOnTheMap(theoricalPosition).getIsAlive()) {
+                    	spell.setDirection(reverseDirection(spell.getDirection()));
+                        theoricalPosition = getTheoricalPositionElement(spell, spell.getDirection());
+                    }
                 }
                 spell.setPosition(theoricalPosition);
                 if(Collisions.testMonsterOnTheCaseThenKill(spell, lorannmodel)){

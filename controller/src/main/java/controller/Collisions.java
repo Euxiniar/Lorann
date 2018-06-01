@@ -25,18 +25,23 @@ public class Collisions {
 		for(int i=0; i <= lorannModel.getMonsters().size()-1; i++) {
 			//if it is a player
 			if (element.getPermeability() == Permeability.BLOCKING && element.getPosition().getX() == lorannModel.getMonsters().get(i).getPosition().getX() && element.getPosition().getY() == lorannModel.getMonsters().get(i).getPosition().getY()) {
-				if (((Player) element).getLife() > 0)
-					((Player) element).removeLife(1);
-				else {
-					System.out.println("Game Over");	
+				if (lorannModel.getMonsters().get(i).getIsAlive()) {
+					if (((Player) element).getLife() > 0)
+						((Player) element).removeLife(1);
+					else {
+						System.out.println("Game Over");	
+					}
+					element.setAlive(false);
+					return true;
 				}
-				element.setAlive(false);
-				return true;
+				
 			}
 			//if it is a spell
 			else if(element.getPermeability() == Permeability.KILLER && element.getPosition().getX() == lorannModel.getMonsters().get(i).getPosition().getX() && element.getPosition().getY() == lorannModel.getMonsters().get(i).getPosition().getY()) {
-				lorannModel.getMonsters().get(i).setAlive(false);
-				return true;
+				if (lorannModel.getMonsters().get(i).getIsAlive()) {
+					lorannModel.getMonsters().get(i).setAlive(false);
+					return true;
+				}
 			}
 		}
 		return false;
@@ -53,32 +58,32 @@ public class Collisions {
 	//-------------------Test player with element permeability.GRABABLE of the case
 	public static boolean testCaseObject(Player player, ILorannModel lorannmodel) {
 		
-		if (lorannmodel.getMap().getOnTheMap(lorannmodel.getPlayer().getPosition().getX(), lorannmodel.getPlayer().getPosition().getY()).getPermeability() == Permeability.GRABABLE){
+		if (lorannmodel.getMap().getOnTheMap(lorannmodel.getPlayer().getPosition()).getPermeability() == Permeability.GRABABLE){
 			return true;
 		}
 		
 		return false;
 	}
 	//-------------------Test player position with motionLessElement Door 
-	public static boolean testCaseDoor(IElement element) {
+	public static boolean testCaseDoor(IElement element, ILorannModel lorannmodel) {
 		
-		if (ControllerFacade.map[element.getPosition().getY()][element.getPosition().getX()].getSymbol() == 'D') {
+		if (lorannmodel.getMap().getOnTheMap(lorannmodel.getPlayer().getPosition()).getSymbol() == 'D') {
 			return true;
 		}
 		return false;
 	}
 	//-------------------Test player position with motionLessElement Door with permeability.ENDER
-	public static boolean testCaseDoorOpen(IElement element) {
+	public static boolean testCaseDoorOpen(IElement element, ILorannModel lorannmodel) {
 		
-		if (ControllerFacade.map[element.getPosition().getY()][element.getPosition().getX()].getPermeability() == Permeability.ENDER) {
+		if (lorannmodel.getMap().getOnTheMap(lorannmodel.getPlayer().getPosition()).getPermeability() == Permeability.ENDER) {
 			return true;
 		}
 		return false;
 	}
 	//-------------------Test player position with motionLessElement Door with permeability.KILLER
-	public static boolean testCaseDoorClose(IElement element) {
+	public static boolean testCaseDoorClose(IElement element, ILorannModel lorannmodel) {
 		
-		if (ControllerFacade.map[element.getPosition().getY()][element.getPosition().getX()].getPermeability() == Permeability.KILLER) {
+		if (lorannmodel.getMap().getOnTheMap(lorannmodel.getPlayer().getPosition()).getPermeability() == Permeability.KILLER) {
 			return true;
 		}
 		return false;

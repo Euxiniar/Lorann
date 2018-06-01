@@ -35,7 +35,7 @@ public class LorannController implements IOrderPerformer{
 			+ 					"|                  |E"
 			+ 					"|                  |E"
 			+ 					"|P-----------------|E"
-			+ 					"|P  P    P  P    P |E"
+			+ 					"|P  PPPPPPPPP    P |E"
 			+ 					"|----------------- |E"
 			+ 					"| K1  P   P    P   |E"
 			+ 					"O------------------OEF";
