@@ -36,4 +36,9 @@ public class LorannView implements ILorannView{
 	public boolean[] getBools() {
 		return this.gameFrame.getBools();
 	}
+	
+	@Override
+	public void resetBools() {
+		this.gameFrame.resetBools();
+	}
 }
