@@ -193,7 +193,6 @@ public class LorannController implements IOrderPerformer{
 			}
 			else if (bools[0]) {
 				order = new UserOrder(Order.UP);
-				System.out.println(order.getOrder());
 			}
 			else if (bools[1]) {
 				order = new UserOrder(Order.RIGHT);
@@ -204,11 +203,8 @@ public class LorannController implements IOrderPerformer{
 			else if (bools[3]) {
 				order = new UserOrder(Order.LEFT);
 			}
-			else {
-			order = new UserOrder(Order.STOP);
-			}
 			
-			if (bools[4] && bools[5]) {
+			else if (bools[4] && bools[5]) {
 				order = new UserOrder(Order.UPRIGHT);
 			}
 			else if (bools[4] && bools[7]) {
@@ -222,7 +218,6 @@ public class LorannController implements IOrderPerformer{
 			}
 			else if (bools[4]) {
 				order = new UserOrder(Order.UP);
-				System.out.println(order.getOrder());
 			}
 			else if (bools[5]) {
 				order = new UserOrder(Order.RIGHT);
@@ -236,6 +231,8 @@ public class LorannController implements IOrderPerformer{
 			else {
 			order = new UserOrder(Order.STOP);
 			}
+			
+			System.out.println(order.getOrder());
 			return order;
 		}
 	}
