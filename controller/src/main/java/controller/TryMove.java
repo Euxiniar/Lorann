@@ -86,6 +86,7 @@ public class TryMove {
 				direction = Direction.DOWNRIGHT;
 				break;
 			default:
+				direction = Direction.STATIC;
 				break;
 			}
 		return direction;
@@ -341,7 +342,7 @@ public class TryMove {
             theoricalPosition = getTheoricalPositionElement(spell, direction);
                 
             if(spell.getIsAlive()==true){
-                if(Collisions.testNextCaseObjectGrabable(spell, theoricalPosition, lorannmodel) || Collisions.testNextCaseDoor(spell, theoricalPosition) || Collisions.testNextCaseWall(spell, theoricalPosition, lorannmodel)){
+                if(Collisions.testNextCaseObjectGrabable(spell, theoricalPosition, lorannmodel) || Collisions.testNextCaseDoor(spell, theoricalPosition, lorannmodel) || Collisions.testNextCaseWall(spell, theoricalPosition, lorannmodel)){
                     Direction newDirection = reverseDirection(direction);
                     theoricalPosition = getTheoricalPositionElement(spell, newDirection);
                 }

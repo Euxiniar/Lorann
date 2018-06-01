@@ -86,7 +86,7 @@ public class Collisions {
 	//--------------------Test next case Object for IElement------------------------------------------- 
 	public static boolean testNextCaseObjectGrabable(IElement element, Position nextPosition, ILorannModel lorannModel) {
 		
-		if (lorannModel.getMap().getOnTheMap(element.getPosition().getX()+nextPosition.getX(),element.getPosition().getY() +nextPosition.getY()).getPermeability() == Permeability.GRABABLE) {
+		if (lorannModel.getMap().getOnTheMap(nextPosition.getX(),nextPosition.getY()).getPermeability() == Permeability.GRABABLE) {
 			return true;
 		}
 		return false;
@@ -108,9 +108,9 @@ public class Collisions {
 		return false;
 	}
 	//----------------------test next case Door for IElement------------------------------------------
-	public static boolean testNextCaseDoor(IElement element, Position nextPosition) {
+	public static boolean testNextCaseDoor(IElement element, Position nextPosition, ILorannModel lorannModel) {
 		
-		if (ControllerFacade.map[element.getPosition().getY()+nextPosition.getY()][element.getPosition().getX() +nextPosition.getX()].getSymbol() == 'D') {
+		if (lorannModel.getMap().getOnTheMap(nextPosition.getY(),nextPosition.getX()).getSymbol() == 'D') {
 			return true;
 		}
 		return false;
