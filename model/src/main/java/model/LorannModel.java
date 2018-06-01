@@ -14,6 +14,7 @@ import model.element.mobile.IMonster;
 import model.element.mobile.Player;
 import model.element.mobile.Spell;
 
+
 /**
  * @author Euxiniar
  *
@@ -24,6 +25,7 @@ public class LorannModel extends Observable implements ILorannModel{
 	Map map;
 	Player player;
 	Spell spell;
+
 	ArrayList<IMonster> monsters = new ArrayList<IMonster>();
 	
 	public LorannModel() {

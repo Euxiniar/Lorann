@@ -158,10 +158,10 @@ public class LorannController implements IOrderPerformer{
 			order = KeySpellToOrder();
 		tryMove.tryMoveSpell(lorannModel.getSpell(), order.getOrder());
 			
-		for (IMonster monster : lorannModel.getMonsters()) {
-			if (monster.getIsAlive())
-					tryMove.tryMoveMonster(monster, lorannModel.getPlayer());
-		}
+		//for (IMonster monster : lorannModel.getMonsters()) {
+			//if (monster.getIsAlive())
+					//tryMove.tryMoveMonster(monster, lorannModel.getPlayer());
+		//}
 			
 		}
 	

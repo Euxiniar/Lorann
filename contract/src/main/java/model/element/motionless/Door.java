@@ -17,4 +17,5 @@ class Door extends MotionlessElement {
 	Door(Position position) {
     	super('D', 0, 9, 2, Permeability.KILLER, position);
     }
+	
 }

@@ -22,30 +22,32 @@ public class Collisions {
 
 	//------------------Test position of a player or a spell with all the others Movable Entity
 	public static boolean testMonsterOnTheCaseThenKill(IElement element, ILorannModel lorannModel) {
-		for(int i=0; i <= lorannModel.getMonsters().size()-1; i++) {
-			//if it is a player
-			if (element.getPermeability() == Permeability.BLOCKING && element.getPosition().getX() == lorannModel.getMonsters().get(i).getPosition().getX() && element.getPosition().getY() == lorannModel.getMonsters().get(i).getPosition().getY()) {
-				if (lorannModel.getMonsters().get(i).getIsAlive()) {
-					if (((Player) element).getLife() > 0)
-						((Player) element).removeLife(1);
-					else {
-						System.out.println("Game Over");	
-					}
-					element.setAlive(false);
-					return true;
-				}
-				
-			}
-			//if it is a spell
-			else if(element.getPermeability() == Permeability.KILLER && element.getPosition().getX() == lorannModel.getMonsters().get(i).getPosition().getX() && element.getPosition().getY() == lorannModel.getMonsters().get(i).getPosition().getY()) {
-				if (lorannModel.getMonsters().get(i).getIsAlive()) {
-					lorannModel.getMonsters().get(i).setAlive(false);
-					return true;
-				}
-			}
-		}
-		return false;
-	}
+        for(int i=0; i <= lorannModel.getMonsters().size()-1; i++) {
+            //if it is a player
+            if (element.getPermeability() == Permeability.BLOCKING && element.getPosition().getX() == lorannModel.getMonsters().get(i).getPosition().getX() && element.getPosition().getY() == lorannModel.getMonsters().get(i).getPosition().getY()) {
+                if (lorannModel.getMonsters().get(i).getIsAlive()) {
+                    if (((Player) element).getLife() > 0) {
+                        ((Player) element).removeLife(1);
+                        System.out.println("you died");
+                    }
+                    else {
+                        System.out.println("Game Over");    
+                    }
+                    element.setAlive(false);
+                    return true;
+                }
+                
+            }
+            //if it is a spell
+            else if(element.getPermeability() == Permeability.KILLER && element.getPosition().getX() == lorannModel.getMonsters().get(i).getPosition().getX() && element.getPosition().getY() == lorannModel.getMonsters().get(i).getPosition().getY()) {
+                if (lorannModel.getMonsters().get(i).getIsAlive()) {
+                    lorannModel.getMonsters().get(i).setAlive(false);
+                    return true;
+                }
+            }
+        }
+        return false;
+    }
 	//-------------------Test player position with spell position
 	public static boolean testCasePlayer(Player player, Spell spell) {
 		
@@ -82,12 +84,18 @@ public class Collisions {
 	}
 	//-------------------Test player position with motionLessElement Door with permeability.KILLER
 	public static boolean testCaseDoorClose(IElement element, ILorannModel lorannmodel) {
-		
-		if (lorannmodel.getMap().getOnTheMap(lorannmodel.getPlayer().getPosition()).getPermeability() == Permeability.KILLER) {
-			return true;
-		}
-		return false;
-	}	
+	        
+	        if (lorannmodel.getMap().getOnTheMap(lorannmodel.getPlayer().getPosition()).getPermeability() == Permeability.KILLER) {
+	            if (((Player) element).getLife() > 0)
+	                ((Player) element).removeLife(1);
+	            else {
+	                System.out.println("Game Over");    
+	            }
+	            element.setAlive(false);
+	            return true;
+	        }
+	        return false;
+	    }
 	//--------------------Test next case Object for IElement------------------------------------------- 
 	public static boolean testNextCaseObjectGrabable(IElement element, Position nextPosition, ILorannModel lorannModel) {
 		
@@ -107,20 +115,20 @@ public class Collisions {
 	}
 	//---------------------Test next case Wall for IElement-------------------------------------------
 	public static boolean testNextCaseWall(IElement element, Position nextPosition, ILorannModel lorannModel) {
-		if (lorannModel.getMap().getOnTheMap(nextPosition.getX(),nextPosition.getY()).getPermeability() == Permeability.BLOCKING) {
-			return true;
-		}
-		return false;
-	}
+        if (lorannModel.getMap().getOnTheMap(nextPosition).getPermeability() == Permeability.BLOCKING) {
+            return true;
+        }
+        return false;
+    }
 	//----------------------test next case Door for IElement------------------------------------------
 	public static boolean testNextCaseDoor(IElement element, Position nextPosition, ILorannModel lorannModel) {
+	        
+	        if (lorannModel.getMap().getOnTheMap(nextPosition).getSymbol() == 'D') {
+	            return true;
+	        }
+	        return false;
+	    }
 		
-		if (lorannModel.getMap().getOnTheMap(nextPosition.getX(),nextPosition.getY()).getSymbol() == 'D') {
-			return true;
-		}
-		return false;
-	}
-	
 	public Collisions(ILorannModel lorannmodel) {
 		
 	}
