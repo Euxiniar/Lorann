@@ -11,6 +11,7 @@ import model.element.Position;
 
 public class Player extends MobileElement{
 	private int life = 11;
+	private int score = 0;
 	private boolean isPlayerhasMoved = false;
 
 	public boolean isPlayerhasMoved() {
@@ -34,6 +35,22 @@ public class Player extends MobileElement{
 
 	public void removeLife(int nbrLife) {
 		this.life = life - nbrLife;
+	}
+	
+	public int getScore() {
+		return score;
+	}
+	
+	public void setScore(int nbrScore) {
+		this.score = nbrScore;
+	}
+
+	public void incrementScore() {
+    	this.setScore(this.getScore() + 750);
+	}
+	
+	public void resetScore() {
+    	this.setScore(0);
 	}
 
 	public Player(Position position) {

@@ -1,6 +1,7 @@
 package view;
 
 import java.awt.Color;
+import java.awt.Font;
 import java.awt.Graphics;
 import java.awt.image.ImageObserver;
 
@@ -25,6 +26,8 @@ class GraphicsBuilder implements IGraphicsBuilder {
 	        drawMonsters(graphics);
 	        drawPlayer(graphics, observer);
 	        drawSpell(graphics);
+	        drawScore(graphics);
+	        drawLife(graphics);
 	        }
 
 	}
@@ -69,5 +72,26 @@ class GraphicsBuilder implements IGraphicsBuilder {
 			}
 		}
 	}
-
+	
+	private void drawScore(Graphics g) {
+		Font font = new Font("Courier", Font.BOLD, 30);
+        g.setFont(font);
+        g.setColor(Color.RED);
+        g.drawString("Ton score est de : ", 20, 680);
+        font = new Font("Courier", Font.ITALIC, 30);
+        g.setFont(font);
+        g.setColor(Color.RED);
+        g.drawString(String.valueOf(lorannModel.getPlayer().getScore()), 350, 680);
+	}
+	
+	private void drawLife(Graphics g) {
+		Font font = new Font("Courier", Font.BOLD, 30);
+        g.setFont(font);
+        g.setColor(Color.GREEN);
+        g.drawString("Il te reste : ", 600, 680);
+        font = new Font("Courier", Font.ITALIC, 30);
+        g.setFont(font);
+        g.setColor(Color.GREEN);
+        g.drawString(String.valueOf(lorannModel.getPlayer().getLife()), 840, 680);
+	}
 }
