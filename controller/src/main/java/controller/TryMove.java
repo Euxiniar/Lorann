@@ -348,15 +348,17 @@ public class TryMove {
            
             if(spell.getIsAlive()==true){
                 if(Collisions.testNextCaseObjectGrabable(spell, theoricalPosition, lorannmodel) || Collisions.testNextCaseDoor(spell, theoricalPosition, lorannmodel) || Collisions.testNextCaseWall(spell, theoricalPosition, lorannmodel)){
-                    Direction newDirection = reverseDirection(spell.getDirection());
-                    theoricalPosition = getTheoricalPositionElement(spell, newDirection);
+                    spell.setDirection(reverseDirection(spell.getDirection()));
+                    theoricalPosition = getTheoricalPositionElement(spell, spell.getDirection());
                 }
                 spell.setPosition(theoricalPosition);
                 if(Collisions.testMonsterOnTheCaseThenKill(spell, lorannmodel)){
                     spell.setAlive(false);
+                    spell.setDirection(Direction.STATIC);
                 }
                 else if(Collisions.testCasePlayer(lorannmodel.getPlayer(), spell)){
                         spell.setAlive(false);
+                        spell.setDirection(Direction.STATIC);
                     }
         }
             //peindre composants
