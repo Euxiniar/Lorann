@@ -13,5 +13,6 @@ public class Spell extends MobileElement{
 
 	public Spell(Position position) {
     	super('S', 0, 5, 5, Permeability.KILLER, position);
+    	this.setAlive(false);
 	}
 }

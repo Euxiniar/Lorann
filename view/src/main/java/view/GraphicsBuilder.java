@@ -57,9 +57,8 @@ class GraphicsBuilder implements IGraphicsBuilder {
 	}
 	
 	private void drawSpell(Graphics g) {
-
 		if (lorannModel.getSpell().getIsAlive() == true) {
-			g.drawImage(lorannModel.getPlayer().getSelectedImage(), lorannModel.getPlayer().getPosition().getX()*50, lorannModel.getPlayer().getPosition().getY()*50, 50, 50, null);
+			g.drawImage(lorannModel.getSpell().getSelectedImage(), lorannModel.getSpell().getPosition().getX()*50, lorannModel.getSpell().getPosition().getY()*50, 50, 50, null);
 		}
 	}
 	

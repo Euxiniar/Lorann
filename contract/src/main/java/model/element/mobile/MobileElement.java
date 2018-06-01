@@ -12,7 +12,7 @@ import model.element.Position;
 
 public abstract class MobileElement extends Element {
 
-	Direction direction;
+	Direction direction = Direction.STATIC;
 	
 	/**
 	 * @param character

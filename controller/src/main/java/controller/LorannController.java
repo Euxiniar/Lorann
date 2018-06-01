@@ -96,7 +96,7 @@ public class LorannController implements IOrderPerformer{
 			}
 			playerAnimator.update(System.currentTimeMillis());
 			monstersAnimator.update(System.currentTimeMillis());
-			
+			spellAnimator.update(System.currentTimeMillis());
 			
 //			final ArrayList<MobileElement> initialMobileElement = new ArrayList<MobileElement>();
 //			for (final MobileElement element : this.lorannModel.getElement()) {
@@ -154,7 +154,8 @@ public class LorannController implements IOrderPerformer{
 		if (order.getOrder() != Order.STOP) {
 			tryMove.tryMovePlayer(lorannModel.getPlayer(), order.getOrder());
 		}
-		order = KeySpellToOrder();
+		if (!lorannModel.getSpell().getIsAlive())
+			order = KeySpellToOrder();
 		tryMove.tryMoveSpell(lorannModel.getSpell(), order.getOrder());
 			
 			

@@ -26,7 +26,7 @@ public class TryMove {
 			TryMove.lorannmodel=lorannModel;
 		}
 		public static Position getTheoricalPositionElement(IElement element, Direction direction) {
-	        Position position = new Position(element.getPosition().getX(), element.getPosition().getX() );
+	        Position position = new Position(element.getPosition().getX(), element.getPosition().getY() );
 	        switch(direction) {
 	        case UP:
 	            position.setPosition(element.getPosition().getX(), element.getPosition().getY() - 1);
@@ -337,13 +337,18 @@ public class TryMove {
 
 		public void tryMoveSpell(Spell spell, Order order) {
             Position theoricalPosition = new Position();
-            Direction direction;
-            direction = getOrderToDirection(order);
-            theoricalPosition = getTheoricalPositionElement(spell, direction);
-                
+            if (spell.getDirection() == Direction.STATIC) 
+            	spell.setDirection(getOrderToDirection(order));
+            if (spell.getDirection() != Direction.STATIC && !spell.getIsAlive()) {
+            	
+            	launchSpell(spell, lorannmodel.getPlayer());
+            	
+            }
+            theoricalPosition = getTheoricalPositionElement(spell, spell.getDirection());
+           
             if(spell.getIsAlive()==true){
                 if(Collisions.testNextCaseObjectGrabable(spell, theoricalPosition, lorannmodel) || Collisions.testNextCaseDoor(spell, theoricalPosition, lorannmodel) || Collisions.testNextCaseWall(spell, theoricalPosition, lorannmodel)){
-                    Direction newDirection = reverseDirection(direction);
+                    Direction newDirection = reverseDirection(spell.getDirection());
                     theoricalPosition = getTheoricalPositionElement(spell, newDirection);
                 }
                 spell.setPosition(theoricalPosition);
@@ -362,7 +367,7 @@ public class TryMove {
 		}
 		public void launchSpell(Spell spell, Player player) {
             spell.setPosition(player.getPosition());
-            //setDirection à l'opposé de la direction précédente du joueur?
+            System.out.println(spell.getPosition().getX() + " " + spell.getPosition().getY());
             spell.setAlive(true);
         }
 
