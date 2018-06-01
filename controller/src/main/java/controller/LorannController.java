@@ -21,6 +21,7 @@ import view.ILorannView;
  *
  */
 public class LorannController implements IOrderPerformer{
+	private static boolean USE_BDD = true;
 	private static int TIME_SLEEP = 30;
 	private boolean isGameOver	= false;
 	private final ILorannModel lorannModel;
@@ -38,6 +39,8 @@ public class LorannController implements IOrderPerformer{
 			+ 					"|----------------- |E"
 			+ 					"| K1  P   P    P   |E"
 			+ 					"O------------------OEF";
+	private int mapWidth = 13;
+	private int mapHeight = 20;
 	//private String mapString = "|-ODDE*1234EPK   EF";
 	
 	private Animator playerAnimator;
@@ -114,21 +117,11 @@ public class LorannController implements IOrderPerformer{
 		}
 	}
 	public void buildMap() {
-		//Level level = catchMapFromBDD(1);
-		String mapString = 			"O------------------OE"
-				+ 					"|                  |E"
-				+ 					"|       | * |      |E"
-				+ 					"|       | D |      |E"
-				+ 					"|       O---O      |E"
-				+ 					"|        324       |E"
-				+ 					"|                  |E"
-				+ 					"|                  |E"
-				+ 					"| -----------------|E"
-				+ 					"|P  P    P  P    P |E"
-				+ 					"|----------------- |E"
-				+ 					"| K1  P   P    P   |E"
-				+ 					"O------------------OEF";
-		Level level = new Level(1, mapString, 13, 20);
+		Level level = new Level(1, mapString, this.mapWidth, this.mapHeight);
+		if(USE_BDD) {
+			level = catchMapFromBDD(1);
+		}
+			
 		int i = 0, y = 0, x = 0;
 		Map map = new Map(level.getWidth(), level.getHeight());
 			
