@@ -34,7 +34,6 @@ public class LorannView implements ILorannView{
 
 	@Override
 	public synchronized boolean[] getBools() {
-
 		return this.gameFrame.getBools();
 	}
 }
