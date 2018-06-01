@@ -165,7 +165,7 @@ public class LorannController implements IOrderPerformer{
 		boolean[] bools= lorannView.getBools();
 		
 		UserOrder order = null;
-			if (bools[0] && bools[2]) {
+			if (bools[0] && bools[1]) {
 				order = new UserOrder(Order.UPRIGHT);
 			}
 			else if (bools[0] && bools[3]) {
