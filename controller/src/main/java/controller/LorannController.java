@@ -39,8 +39,8 @@ public class LorannController implements IOrderPerformer{
 			+ 					"|----------------- |E"
 			+ 					"| K1  P   P    P   |E"
 			+ 					"O------------------OEF";
-	private int mapWidth = 20;
-	private int mapHeight = 13;
+	private int mapWidth = 13;
+	private int mapHeight = 20;
 	//private String mapString = "|-ODDE*1234EPK   EF";
 	
 	private Animator playerAnimator;
@@ -58,6 +58,7 @@ public class LorannController implements IOrderPerformer{
 	
 	public void play() {
 		buildMap();
+		
 		playerAnimator = new Animator(lorannModel.getPlayer());
 		playerAnimator.setSpeed(100);
 		playerAnimator.start();
@@ -73,6 +74,7 @@ public class LorannController implements IOrderPerformer{
 //			// TODO Auto-generated catch block
 //			e.printStackTrace();
 //		}
+		
 		gameLoop();
 	}
 	
