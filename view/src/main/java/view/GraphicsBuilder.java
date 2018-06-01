@@ -19,11 +19,13 @@ class GraphicsBuilder implements IGraphicsBuilder {
 
 	@Override
 	public void applyModelToGraphic(final Graphics graphics, final ImageObserver observer) {
-		clearScreen(graphics);
-		buildMapGraph(graphics);
-		drawMonsters(graphics);
-		drawPlayer(graphics, observer);
-		drawSpell(graphics);
+		if(lorannModel.getMap() != null && lorannModel.getPlayer() != null && lorannModel.getMonsters() != null) {
+	        clearScreen(graphics);
+	        buildMapGraph(graphics);
+	        drawMonsters(graphics);
+	        drawPlayer(graphics, observer);
+	        drawSpell(graphics);
+	        }
 
 	}
 	
