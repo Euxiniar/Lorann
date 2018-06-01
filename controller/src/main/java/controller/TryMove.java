@@ -268,20 +268,30 @@ public class TryMove {
 		
 		public void tryMoveMonster(IMonster monster, Player player) {
 			Position theoricalPosition = new Position();
-			Direction direction = null;
-			Direction redirection = null;
-			
+			//Direction redirection = null;
+			theoricalPosition = getTheoricalPositionElement(monster, monster.getDirection());
 	//---------Determination of	the direction and the theorical position of the monster relative to his position and that of the player
-			direction = getMobDirection(monster, player);
-			theoricalPosition = getTheoricalPositionElement(monster, direction);
+			if (!Collisions.testNextCaseWall(monster, theoricalPosition, lorannmodel))
+				theoricalPosition = getTheoricalPositionElement(monster, getMobDirection(monster, player));
+				if (!Collisions.testNextCaseWall(monster, theoricalPosition, lorannmodel))
+					monster.setDirection(reverseDirection(getMobDirection(monster, player)));
+					//theoricalPosition = getTheoricalPositionElement(monster, monster.getDirection());
+					//monster.setPosition(theoricalPosition);
 	//---------------------------------------------------------------------------------------------------------------------------------
 	//-------Execution of the matching behaviour---------------------------------------------------------------------------------------
-//			switch(monster.getBehaviour()) {
-//			case 1:
-//				movementMonster1(monster, theoricalPosition, direction, redirection);
+			switch(monster.getBehaviour()) {
+			case 1:
+				movementMonster1(monster, theoricalPosition, player);
+				break;
+//			case 2:
+//				movementMonster2(monster, theoricalPosition, monster.getDirection());
+//				break;
+//			case 3:
+//				movementMonster3(monster, theoricalPosition, monster.getDirection());
+//				break;
 //			default:
 //				break;
-//			}
+			}
 			
 	//---------------------------------------------------------------------------------------------------------------------------------
 			//peindre composants
@@ -289,14 +299,14 @@ public class TryMove {
 //______________________END OF tryMoveMonster_______________________________________________________________________________________
 
 //______________________Movement of the monster with the behaviour 1________________________________________________________________
-		public void movementMonster1(IMonster monster, Position theoricalPosition, Direction direction, Direction redirection) {
+		public void movementMonster1(IMonster monster, Position theoricalPosition, Player player) {
 			if (!Collisions.testNextCaseWall(monster, theoricalPosition, lorannmodel)) {
 				monster.setPosition(theoricalPosition);
 			}
 			else {
-				 redirection = reverseDirection(direction);
-				 theoricalPosition = getTheoricalPositionElement(monster, redirection);
-				 monster.setPosition(theoricalPosition);
+					monster.setDirection(reverseDirection(getMobDirection(monster, player)));
+					theoricalPosition = getTheoricalPositionElement(monster, monster.getDirection());
+					monster.setPosition(theoricalPosition);
 			}
 		}
 //___________________________________________________________________________________________________________________________________
@@ -314,25 +324,25 @@ public class TryMove {
 //___________________________________________________________________________________________________________________________________
 //______________________Movement of the monster with the behaviour 3_________________________________________________________________
 		public void movementMonster3(IMonster monster, Position theoricalPosition, Direction direction) {
-//			if(monster.getCounter() == 3) {
-//				monster.setCounter(0);
-//				monster.setRotationDirection(!monster.getRotationDirection());
-//			}
-//			else {
-//				monster.setCounter(monster.getCounter() + 1);
-//			}
-//			theoricalPosition = getTheoricalPositionElement(monster, direction);
-//			if (!Collisions.testNextCaseWall(monster, theoricalPosition)) {
-//				monster.setPosition(theoricalPosition);
-//			}
-//			else {
-//				if(monster.getRotationDirection()) { 
-//					direction = changeClockwiseMonsterDirection(direction);
-//				}
-//				else
-//					direction = changeCounterclockwiseMonsterDirection(direction);
-//				}
-//				movementMonster2(monster, theoricalPosition, direction);
+			if(monster.getCounter() == 3) {
+				monster.setCounter(0);
+				monster.setRotationDirection(!monster.isRotationDirection());
+			}
+			else {
+				monster.setCounter(monster.getCounter() + 1);
+			}
+			theoricalPosition = getTheoricalPositionElement(monster, direction);
+			if (!Collisions.testNextCaseWall(monster, theoricalPosition, lorannmodel)) {
+				monster.setPosition(theoricalPosition);
+			}
+			else {
+				if(monster.isRotationDirection()) { 
+					direction = changeClockwiseMonsterDirection(direction);
+				}
+				else
+					direction = changeCounterclockwiseMonsterDirection(direction);
+				}
+				movementMonster2(monster, theoricalPosition, direction);
 			}
 //___________________________________________________________________________________________________________________________________
 

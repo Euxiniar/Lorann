@@ -14,4 +14,10 @@ class Crocrodil extends Monster {
 	public Crocrodil(Position position) {
     	super('4', 0, 4, 1, Permeability.KILLER, position);
 	}
+
+	@Override
+	public Direction getMobDirection(IMonster monster, Player player) {
+		// TODO Auto-generated method stub
+		return null;
+	}
 }

@@ -15,4 +15,10 @@ class Temple extends Monster{
     	super('3', 0, 3, 1, Permeability.KILLER, position);
 	}
 
+	@Override
+	public Direction getMobDirection(IMonster monster, Player player) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
 }

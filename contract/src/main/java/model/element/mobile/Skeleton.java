@@ -15,4 +15,10 @@ class Skeleton extends Monster{
 	public Skeleton(Position position) {
     	super('1', 0, 1, 8, Permeability.KILLER, position);
 	}
+
+	@Override
+	public Direction getMobDirection(IMonster monster, Player player) {
+		// TODO Auto-generated method stub
+		return null;
+	}
 }

@@ -14,5 +14,12 @@ import model.element.IElement;
  */
 public interface IMonster extends IElement {
 	void setDirection(Direction direction);
+	int getBehaviour();
+	void setBehaviour(int behaviour);
+	int getCounter();
+	void setCounter(int counter);
+	boolean isRotationDirection();
+	void setRotationDirection(boolean rotationDirection);
 	Direction getDirection();
+	Direction getMobDirection(IMonster monster, Player player);
 }
