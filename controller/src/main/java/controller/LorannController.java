@@ -33,13 +33,13 @@ public class LorannController implements IOrderPerformer{
 			+ 					"|       | * |      |E"
 			+ 					"|       | D |      |E"
 			+ 					"|       O---O      |E"
-			+ 					"|         2        |E"
-			+ 					"|                  |E"
+			+ 					"|       1   2      |E"
+			+ 					"| O--------------O |E"
 			+ 					"|                  |E"
 			+ 					"|P-----------------|E"
-			+ 					"|P  PPPPPPPPP    P |E"
+			+ 					"|P  P            P |E"
 			+ 					"|----------------- |E"
-			+ 					"| K1  P   P    P   |E"
+			+ 					"| K1  P  4P  3 P   |E"
 			+ 					"O------------------OEF";
 	private int mapWidth = 13;
 	private int mapHeight = 20;
