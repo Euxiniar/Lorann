@@ -21,20 +21,20 @@ import view.ILorannView;
  *
  */
 public class LorannController implements IOrderPerformer{
-	private static boolean USE_BDD = true;
+	private static boolean USE_BDD = false;
 	private static int TIME_SLEEP = 30;
 	private boolean isGameOver	= false;
 	private final ILorannModel lorannModel;
 	private ILorannView lorannView;
 	private String mapString = 	"O------------------OE"
-			+ 					"|                  |E"
+			+ 					"|1                1|E"
 			+ 					"|       | * |      |E"
 			+ 					"|       | D |      |E"
 			+ 					"|       O---O      |E"
 			+ 					"|        324       |E"
 			+ 					"|                  |E"
 			+ 					"|                  |E"
-			+ 					"| -----------------|E"
+			+ 					"|P-----------------|E"
 			+ 					"|P  P    P  P    P |E"
 			+ 					"|----------------- |E"
 			+ 					"| K1  P   P    P   |E"
@@ -52,13 +52,8 @@ public class LorannController implements IOrderPerformer{
 		this.lorannView = lorannView;
 	}
 	
-	public void orderPerform(UserOrder userOrder) {
-		
-	}
-	
 	public void play() {
 		buildMap();
-		
 		playerAnimator = new Animator(lorannModel.getPlayer());
 		playerAnimator.setSpeed(100);
 		playerAnimator.start();
@@ -74,7 +69,6 @@ public class LorannController implements IOrderPerformer{
 //			// TODO Auto-generated catch block
 //			e.printStackTrace();
 //		}
-		
 		gameLoop();
 	}
 	
@@ -160,14 +154,11 @@ public class LorannController implements IOrderPerformer{
 		if (order.getOrder() != Order.STOP) {
 			tryMove.tryMovePlayer(lorannModel.getPlayer(), order.getOrder());
 		}
-		else {
-			//System.out.println("else");
-		}
+		order = KeySpellToOrder();
+		tryMove.tryMoveSpell(lorannModel.getSpell(), order.getOrder());
 			
 			
 		}
-
-	
 	
 	private UserOrder KeyToOrder() {
 		//Z, D, S, Q UP,RIGHT, DOWN, LEFT
@@ -201,7 +192,44 @@ public class LorannController implements IOrderPerformer{
 			else {
 			order = new UserOrder(Order.STOP);
 			}
+			
 			return order;
 		}
+	
+	private UserOrder KeySpellToOrder() {
+		
+		boolean[] bools= lorannView.getBools();
+		
+		UserOrder order = null;
+		
+		if (bools[4] && bools[5]) {
+			order = new UserOrder(Order.UPRIGHT);
+		}
+		else if (bools[4] && bools[7]) {
+			order = new UserOrder(Order.UPLEFT);
+		}
+		else if (bools[6] && bools[5]) {
+			order = new UserOrder(Order.DOWNRIGHT);
+		}
+		else if (bools[6] && bools[7]) {
+			order = new UserOrder(Order.DOWNLEFT);
+		}
+		else if (bools[4]) {
+			order = new UserOrder(Order.UP);
+		}
+		else if (bools[5]) {
+			order = new UserOrder(Order.RIGHT);
+		}
+		else if (bools[6]) {
+			order = new UserOrder(Order.DOWN);
+		}
+		else if (bools[7]) {
+			order = new UserOrder(Order.LEFT);
+		}
+		else {
+		order = new UserOrder(Order.STOP);
+		}
+		return order;
+}
 	}
 //}
