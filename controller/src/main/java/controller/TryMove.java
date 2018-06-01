@@ -243,10 +243,9 @@ public class TryMove {
             }
             if (Collisions.testCaseObject(lorannmodel.getPlayer(), lorannmodel)) { 
                 if (element.getSymbol() == 'P' && element.getIsAlive()) {
-//                    score.setScore(score.getScore() + 750);
+                    player.incrementScore();
                     element.setAlive(false);
-                    
-                    System.out.println("+750 pts !");
+                    System.out.println(player.getScore());
                 }
                 else if (element.getSymbol() == 'K' && element.getIsAlive()) {
                     element.setAlive(false);
