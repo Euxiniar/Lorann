@@ -27,11 +27,11 @@ public class LorannController implements IOrderPerformer{
 	private final ILorannModel lorannModel;
 	private ILorannView lorannView;
 	private String mapString = 	"O------------------OE"
-			+ 					"|1                1|E"
+			+ 					"|                  |E"
 			+ 					"|       | * |      |E"
 			+ 					"|       | D |      |E"
 			+ 					"|       O---O      |E"
-			+ 					"|        324       |E"
+			+ 					"|         2        |E"
 			+ 					"|                  |E"
 			+ 					"|                  |E"
 			+ 					"|P-----------------|E"
@@ -149,19 +149,23 @@ public class LorannController implements IOrderPerformer{
 	 */
 	@Override
 	public void orderPerform() {
+		try {
+			Thread.sleep(50);
+		} catch (InterruptedException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
 		TryMove tryMove = new TryMove(lorannModel);
 		UserOrder order = KeyToOrder();
-		if (order.getOrder() != Order.STOP) {
-			tryMove.tryMovePlayer(lorannModel.getPlayer(), order.getOrder());
-		}
+		tryMove.tryMovePlayer(lorannModel.getPlayer(), order.getOrder());
 		if (!lorannModel.getSpell().getIsAlive())
 			order = KeySpellToOrder();
 		tryMove.tryMoveSpell(lorannModel.getSpell(), order.getOrder());
 			
-		//for (IMonster monster : lorannModel.getMonsters()) {
-			//if (monster.getIsAlive())
-					//tryMove.tryMoveMonster(monster, lorannModel.getPlayer());
-		//}
+		for (IMonster monster : lorannModel.getMonsters()) {
+			if (monster.getIsAlive())
+					tryMove.tryMoveMonster(monster, lorannModel.getPlayer());
+		}
 			
 		}
 	

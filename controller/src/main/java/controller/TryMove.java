@@ -229,6 +229,9 @@ public class TryMove {
             Position theoricalPosition = new Position();
             Direction direction;
             IElement element = lorannmodel.getMap().getOnTheMap(lorannmodel.getPlayer().getPosition().getX(), lorannmodel.getPlayer().getPosition().getY());
+            
+            Collisions.testMonsterOnTheCaseThenKill(lorannmodel.getPlayer(), lorannmodel);
+            
             direction = getOrderToDirection(order);
             theoricalPosition = getTheoricalPositionElement(player, direction);
             
@@ -279,11 +282,9 @@ public class TryMove {
 			//Direction redirection = null;
 			theoricalPosition = getTheoricalPositionElement(monster, monster.getDirection());
 	//---------Determination of	the direction and the theorical position of the monster relative to his position and that of the player
-			if (!Collisions.testNextCaseWall(monster, theoricalPosition, lorannmodel))
-				theoricalPosition = getTheoricalPositionElement(monster, getMobDirection(monster, player));
-				if (!Collisions.testNextCaseWall(monster, theoricalPosition, lorannmodel))
-					monster.setDirection(reverseDirection(getMobDirection(monster, player)));
-					//theoricalPosition = getTheoricalPositionElement(monster, monster.getDirection());
+			
+					
+			//theoricalPosition = getTheoricalPositionElement(monster, monster.getDirection());
 					//monster.setPosition(theoricalPosition);
 	//---------------------------------------------------------------------------------------------------------------------------------
 	//-------Execution of the matching behaviour---------------------------------------------------------------------------------------
@@ -308,14 +309,16 @@ public class TryMove {
 
 //______________________Movement of the monster with the behaviour 1________________________________________________________________
 		public void movementMonster1(IMonster monster, Position theoricalPosition, Player player) {
-			if (!Collisions.testNextCaseWall(monster, theoricalPosition, lorannmodel)) {
-				monster.setPosition(theoricalPosition);
-			}
-			else {
-					monster.setDirection(reverseDirection(getMobDirection(monster, player)));
-					theoricalPosition = getTheoricalPositionElement(monster, monster.getDirection());
-					monster.setPosition(theoricalPosition);
-			}
+			if (Collisions.testNextCaseWall(monster, theoricalPosition, lorannmodel) || Collisions.testNextCaseObjectGrabable(monster, theoricalPosition, lorannmodel) || Collisions.testNextCaseDoor(monster, theoricalPosition, lorannmodel))
+				if (Collisions.testNextCaseWall(monster, getTheoricalPositionElement(monster, getMobDirection(monster, player)), lorannmodel) || Collisions.testNextCaseObjectGrabable(monster, theoricalPosition, lorannmodel) || Collisions.testNextCaseDoor(monster, theoricalPosition, lorannmodel))
+					monster.setDirection(reverseDirection(monster.getDirection()));
+				else {
+					monster.setDirection(getMobDirection(monster, player));
+					monster.setPosition(getTheoricalPositionElement(monster, monster.getDirection()));
+				}
+		else {
+			monster.setPosition(theoricalPosition);
+		}
 		}
 //___________________________________________________________________________________________________________________________________
 //______________________Movement of the monster with the behaviour 2_________________________________________________________________
@@ -368,6 +371,12 @@ public class TryMove {
                     }
                 }
             }
+            
+            if(Collisions.testMonsterOnTheCaseThenKill(spell, lorannmodel)){
+                spell.setAlive(false);
+                spell.setDirection(Direction.STATIC);
+            }
+            
             theoricalPosition = getTheoricalPositionElement(spell, spell.getDirection());
            
             if(spell.getIsAlive()==true){

@@ -98,9 +98,10 @@ public class Collisions {
 	    }
 	//--------------------Test next case Object for IElement------------------------------------------- 
 	public static boolean testNextCaseObjectGrabable(IElement element, Position nextPosition, ILorannModel lorannModel) {
-		
-		if (lorannModel.getMap().getOnTheMap(nextPosition).getPermeability() == Permeability.GRABABLE) {
-			return true;
+		if (lorannModel.getMap().getOnTheMap(nextPosition).getIsAlive()) {
+			if (lorannModel.getMap().getOnTheMap(nextPosition).getPermeability() == Permeability.GRABABLE) {
+				return true;
+			}
 		}
 		return false;
 	}
