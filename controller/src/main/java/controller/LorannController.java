@@ -70,6 +70,7 @@ public class LorannController implements IOrderPerformer{
 //			e.printStackTrace();
 //		}
 		gameLoop();
+		lorannView.displayMessage("You died !");
 	}
 	
 	public Level catchMapFromBDD(int id) {
@@ -157,17 +158,20 @@ public class LorannController implements IOrderPerformer{
 		}
 		TryMove tryMove = new TryMove(lorannModel);
 		UserOrder order = KeyToOrder();
-		tryMove.tryMovePlayer(lorannModel.getPlayer(), order.getOrder());
+		TryMove.tryMovePlayer(lorannModel.getPlayer(), order.getOrder());
 		if (!lorannModel.getSpell().getIsAlive())
 			order = KeySpellToOrder();
 		tryMove.tryMoveSpell(lorannModel.getSpell(), order.getOrder());
-			
-		for (IMonster monster : lorannModel.getMonsters()) {
-			if (monster.getIsAlive())
-					tryMove.tryMoveMonster(monster, lorannModel.getPlayer());
+		
+		if (lorannModel.getPlayer().isPlayerhasMoved()) {
+			for (IMonster monster : lorannModel.getMonsters()) {
+				if (monster.getIsAlive())
+						tryMove.tryMoveMonster(monster, lorannModel.getPlayer());
+			}
 		}
+	}
 			
-		}
+
 	
 	private UserOrder KeyToOrder() {
 		//Z, D, S, Q UP,RIGHT, DOWN, LEFT

@@ -11,6 +11,15 @@ import model.element.Position;
 
 public class Player extends MobileElement{
 	private int life = 11;
+	private boolean isPlayerhasMoved = false;
+
+	public boolean isPlayerhasMoved() {
+		return isPlayerhasMoved;
+	}
+
+	public void setPlayerhasMoved(boolean isPlayerhasMoved) {
+		this.isPlayerhasMoved = isPlayerhasMoved;
+	}
 
 	public int getLife() {
 		return life;

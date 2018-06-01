@@ -29,6 +29,8 @@ public class Collisions {
                     if (((Player) element).getLife() > 0) {
                         ((Player) element).removeLife(1);
                         System.out.println("you died");
+                        ((Player) element).setPlayerhasMoved(false);
+                        
                     }
                     else {
                         System.out.println("Game Over");    

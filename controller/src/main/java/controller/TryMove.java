@@ -72,7 +72,6 @@ public class TryMove {
 				break;
 			case RIGHT:
 				direction = Direction.RIGHT;
-				System.out.println();
 				break;
 			case UPLEFT:
         		direction = Direction.UPLEFT;
@@ -226,6 +225,9 @@ public class TryMove {
 		}
 		public static void tryMovePlayer(Player player, Order order) {
 
+            if (!player.isPlayerhasMoved() && order != Order.STOP)
+            	player.setPlayerhasMoved(true);
+            
             Position theoricalPosition = new Position();
             Direction direction;
             IElement element = lorannmodel.getMap().getOnTheMap(lorannmodel.getPlayer().getPosition().getX(), lorannmodel.getPlayer().getPosition().getY());
@@ -258,8 +260,6 @@ public class TryMove {
             				}
             			}
             		}
-
-
                 }
             }
             else {
