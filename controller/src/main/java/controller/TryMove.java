@@ -246,7 +246,9 @@ public class TryMove {
                 }
                 }
             else {
-                if (Collisions.testMonsterOnTheCaseThenKill(lorannmodel.getPlayer(), lorannmodel)) { 
+                if (Collisions.testMonsterOnTheCaseThenKill(lorannmodel.getPlayer(), lorannmodel
+                		
+                		)) { 
                 		lorannmodel.getPlayer().setAlive(false);
                  System.out.println("you died");
                  //Collisions.testCaseDoorClose(lorannmodel.getPlayer()))
