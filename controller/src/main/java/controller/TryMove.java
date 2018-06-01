@@ -218,25 +218,30 @@ public class TryMove {
 
 			Position theoricalPosition = new Position();
 			Direction direction;
+			IElement element = lorannmodel.getMap().getOnTheMap(lorannmodel.getPlayer().getPosition().getX(), lorannmodel.getPlayer().getPosition().getY());
 			direction = getOrderToDirection(order);
 			theoricalPosition = getTheoricalPositionElement(player, direction);
-			if (Collisions.testNextCaseWall(lorannmodel.getPlayer(), theoricalPosition, lorannmodel)) { 
-				// lorannmodel.getPlayer().setPosition(lorannmodel.getPlayer().getPosition().getY(),lorannmodel.getPlayer().getPosition().getX());
-                // The player doesn't move
-				System.out.println("là on ne fait rien");
+			if (!Collisions.testNextCaseWall(lorannmodel.getPlayer(), theoricalPosition, lorannmodel)) { 
+				 player.setPosition(theoricalPosition);
+
             }
-            else {
-                player.setPosition(theoricalPosition);
-            }
-            if (false) { //Collisions.testCaseObject(lorannmodel.getPlayer())
-                lorannmodel.getMap().getMap()[lorannmodel.getPlayer().getPosition().getY()][lorannmodel.getPlayer().getPosition().getX()].setAlive(false);
-                if (ControllerFacade.map[lorannmodel.getPlayer().getPosition().getY()][lorannmodel.getPlayer().getPosition().getX()].getSymbol() == 'P') {
+            if (Collisions.testCaseObject(lorannmodel.getPlayer(), lorannmodel)) { 
+                if (element.getSymbol() == 'P') {
 //                    score.setScore(score.getScore() + 750);
+                	element.setAlive(false);
+                	//remettre un macadam
+                	
+                	System.out.println("+750 pts !");
+                }
+                else if (element.getSymbol() == 'K') {
+                	//setOpenDoor
                 }
                 }
             else {
-                if (false) { //Collisions.testMonsterOnTheCaseThenKill(lorannmodel.getPlayer(), lorannmodel.getMonsters()) || Collisions.testCaseDoorClose(lorannmodel.getPlayer())
-                //GameOver();
+                if (Collisions.testMonsterOnTheCaseThenKill(lorannmodel.getPlayer(), lorannmodel.getMonsters())) { 
+                		lorannmodel.getPlayer().setAlive(false);
+                 System.out.println("you died");
+                 //Collisions.testCaseDoorClose(lorannmodel.getPlayer()))
                 }
                 else {
                     if (false) { //Collisions.testCaseDoorOpen(lorannmodel.getPlayer())

@@ -19,11 +19,13 @@ class GraphicsBuilder implements IGraphicsBuilder {
 
 	@Override
 	public void applyModelToGraphic(final Graphics graphics, final ImageObserver observer) {
-		clearScreen(graphics);
-		buildMapGraph(graphics);
-		drawMonsters(graphics);
-		drawPlayer(graphics, observer);
-		drawSpell(graphics);
+		if(lorannModel.getMap() != null && lorannModel.getPlayer() != null && lorannModel.getMonsters() != null) {
+	        clearScreen(graphics);
+	        buildMapGraph(graphics);
+	        drawMonsters(graphics);
+	        drawPlayer(graphics, observer);
+	        drawSpell(graphics);
+	        }
 
 	}
 	
@@ -40,7 +42,7 @@ class GraphicsBuilder implements IGraphicsBuilder {
 		for(y = 0; y < lorannModel.getMap().getHeight(); y++) {
 			for(x = 0; x < lorannModel.getMap().getWidth(); x++) {
 				element = lorannModel.getMap().getOnTheMap(new Position(x, y));
-				if(element != null) {
+				if(element.getIsAlive() == true) {
 				g.drawImage(element.getSelectedImage(), element.getPosition().getX()*50, element.getPosition().getY()*50, 50, 50, null);
 				}
 				position.setX(x + 1);
@@ -50,6 +52,7 @@ class GraphicsBuilder implements IGraphicsBuilder {
 	}
 	
 	private void drawPlayer(Graphics g, ImageObserver observer) {
+		if (lorannModel.getPlayer().getIsAlive() == true)
 			g.drawImage(lorannModel.getPlayer().getSelectedImage(), lorannModel.getPlayer().getPosition().getX()*50, lorannModel.getPlayer().getPosition().getY()*50, 50, 50, null);
 	}
 	
