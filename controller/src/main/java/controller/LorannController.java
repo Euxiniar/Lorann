@@ -3,7 +3,11 @@
  */
 package controller;
 
+import java.sql.SQLException;
+
 import model.ILorannModel;
+import model.Level;
+import model.dao.LevelDAO;
 import model.element.Map;
 import model.element.Position;
 import model.element.mobile.*;
@@ -50,7 +54,7 @@ public class LorannController implements IOrderPerformer{
 	}
 	
 	public void play() {
-		buildMap(mapString);
+		buildMap();
 		playerAnimator = new Animator(lorannModel.getPlayer());
 		playerAnimator.setSpeed(100);
 		playerAnimator.start();
@@ -67,6 +71,17 @@ public class LorannController implements IOrderPerformer{
 //			e.printStackTrace();
 //		}
 		gameLoop();
+	}
+	
+	public Level catchMapFromBDD(int id) {
+		Level level = null;
+		try {
+			level = LevelDAO.getCodeLevel(id);
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		return level;
 	}
 	
 	public void setLorannView(ILorannView lorannView) {
@@ -98,21 +113,22 @@ public class LorannController implements IOrderPerformer{
 			orderPerform();
 		}
 	}
-	public void buildMap(String mapString) {
+	public void buildMap() {
+		Level level = catchMapFromBDD(1);
 		int i = 0, y = 0, x = 0;
-		Map map = new Map();
+		Map map = new Map(level.getWidth(), level.getHeight());
 			
-		while(mapString.charAt(i) != 'F') {
-			while (mapString.charAt(i) != 'E') {
-				if(mapString.charAt(i) == '*') {
+		while(level.getCode().charAt(i) != 'F') {
+			while (level.getCode().charAt(i) != 'E') {
+				if(level.getCode().charAt(i) == '*') {
 					Player player = new Player(new Position(x, y));
 					lorannModel.setPlayer(player);
 				}
-				else if(mapString.charAt(i) == '1' || mapString.charAt(i) == '2' || mapString.charAt(i) == '3' || mapString.charAt(i) == '4') {
-					lorannModel.addMonster(MonsterFactory.getFromSymbol(mapString.charAt(i), new Position(x, y)));
+				else if(level.getCode().charAt(i) == '1' || level.getCode().charAt(i) == '2' || level.getCode().charAt(i) == '3' || level.getCode().charAt(i) == '4') {
+					lorannModel.addMonster(MonsterFactory.getFromSymbol(level.getCode().charAt(i), new Position(x, y)));
 				}
 				
-				map.setOnTheMap(MotionlessElementFactory.getFromSymbol(mapString.charAt(i), new Position(x, y)), new Position(x, y));
+				map.setOnTheMap(MotionlessElementFactory.getFromSymbol(level.getCode().charAt(i), new Position(x, y)), new Position(x, y));
 				
 				i++;
 				x++;
