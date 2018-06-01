@@ -197,7 +197,7 @@ public class GameFrame extends JFrame implements KeyListener, Runnable {
 		if (key == KeyEvent.VK_Q)
 			tabBool[3] = false;
 		
-		if (key == KeyEvent.VK_UP)
+		if (key == KeyEvent.VK_UP) 
 			tabBool[4] = false;
 		if (key == KeyEvent.VK_RIGHT)
 			tabBool[5] = false;
