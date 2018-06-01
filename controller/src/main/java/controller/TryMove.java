@@ -292,14 +292,14 @@ public class TryMove {
 			case 1:
 				movementMonster1(monster, theoricalPosition, player);
 				break;
-//			case 2:
-//				movementMonster2(monster, theoricalPosition, monster.getDirection());
-//				break;
+			case 2:
+				movementMonster2(monster, theoricalPosition, player);
+				break;
 //			case 3:
-//				movementMonster3(monster, theoricalPosition, monster.getDirection());
+//				movementMonster3(monster, theoricalPosition, player);
 //				break;
-//			default:
-//				break;
+			default:
+				break;
 			}
 			
 	//---------------------------------------------------------------------------------------------------------------------------------
@@ -322,39 +322,42 @@ public class TryMove {
 		}
 //___________________________________________________________________________________________________________________________________
 //______________________Movement of the monster with the behaviour 2_________________________________________________________________
-		public void movementMonster2(IMonster monster, Position theoricalPosition, Direction direction) {
-			theoricalPosition = getTheoricalPositionElement(monster, direction);
-			if (!Collisions.testNextCaseWall(monster, theoricalPosition, lorannmodel)) {
-				monster.setPosition(theoricalPosition);
+		public void movementMonster2(IMonster monster, Position theoricalPosition, Player player) {
+			//theoricalPosition = getTheoricalPositionElement(monster, monster.getDirection());
+			if (Collisions.testNextCaseWall(monster, theoricalPosition, lorannmodel) || Collisions.testNextCaseObjectGrabable(monster, theoricalPosition, lorannmodel) || Collisions.testNextCaseDoor(monster, theoricalPosition, lorannmodel)) {
+				if (Collisions.testNextCaseWall(monster, getTheoricalPositionElement(monster, getMobDirection(monster, player)), lorannmodel) || Collisions.testNextCaseObjectGrabable(monster, theoricalPosition, lorannmodel) || Collisions.testNextCaseDoor(monster, theoricalPosition, lorannmodel))
+					monster.setDirection(changeClockwiseMonsterDirection(monster.getDirection()));
+				else {
+					monster.setDirection(getMobDirection(monster, player));
+					monster.setPosition(getTheoricalPositionElement(monster, monster.getDirection()));
+				}
 			}
 			else {
-				 direction = changeClockwiseMonsterDirection(direction);
-				 movementMonster2(monster, theoricalPosition, direction);
+				monster.setPosition(theoricalPosition); 
 			}
 		}
 //___________________________________________________________________________________________________________________________________
 //______________________Movement of the monster with the behaviour 3_________________________________________________________________
-		public void movementMonster3(IMonster monster, Position theoricalPosition, Direction direction) {
-			if(monster.getCounter() == 3) {
-				monster.setCounter(0);
-				monster.setRotationDirection(!monster.isRotationDirection());
-			}
-			else {
-				monster.setCounter(monster.getCounter() + 1);
-			}
-			theoricalPosition = getTheoricalPositionElement(monster, direction);
-			if (!Collisions.testNextCaseWall(monster, theoricalPosition, lorannmodel)) {
-				monster.setPosition(theoricalPosition);
-			}
-			else {
-				if(monster.isRotationDirection()) { 
-					direction = changeClockwiseMonsterDirection(direction);
-				}
-				else
-					direction = changeCounterclockwiseMonsterDirection(direction);
-				}
-				movementMonster2(monster, theoricalPosition, direction);
-			}
+//		public void movementMonster3(IMonster monster, Position theoricalPosition, Player player) {
+//			if(monster.getCounter() == 3) {
+//				monster.setCounter(0);
+//				monster.setRotationDirection(!monster.isRotationDirection());
+//			}
+//			else {
+//				monster.setCounter(monster.getCounter() + 1);
+//			}
+//			if (Collisions.testNextCaseWall(monster, theoricalPosition, lorannmodel) || Collisions.testNextCaseObjectGrabable(monster, theoricalPosition, lorannmodel) || Collisions.testNextCaseDoor(monster, theoricalPosition, lorannmodel)) {
+//				if(monster.isRotationDirection()) { 
+//					monster.setDirection(changeClockwiseMonsterDirection(monster.getDirection()));
+//				}
+//				else
+//					monster.setDirection(changeCounterclockwiseMonsterDirection(monster.getDirection()));
+//					movementMonster3(monster, theoricalPosition, player);
+//			}
+//			else {
+//				monster.setPosition(theoricalPosition);
+//			}
+//}
 //___________________________________________________________________________________________________________________________________
 
 

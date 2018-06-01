@@ -14,7 +14,7 @@ import model.element.Position;
  *
  */
 public abstract class Monster extends MobileElement implements IMonster {
-	private int behaviour  = 1;
+	private int behaviour  = 2;
 	private int counter = 0;
 	private boolean rotationDirection = false;
 	
