@@ -21,18 +21,21 @@ public class Collisions {
 	
 
 	//------------------Test position of a player or a spell with all the others Movable Entity
-	public static boolean testMonsterOnTheCaseThenKill(IElement element1, ArrayList<IMonster> monsters) {
-		for(int i=0; i <= monsters.size()-1; i++) {
+	public static boolean testMonsterOnTheCaseThenKill(IElement element, ILorannModel lorannModel) {
+		for(int i=0; i <= lorannModel.getMonsters().size()-1; i++) {
 			//if it is a player
-			if (element1.getPermeability() == Permeability.BLOCKING && element1.getPosition().getX() == ((IMonster)monsters.get(i)).getPosition().getX() && element1.getPosition().getY() == ((IMonster)monsters.get(i)).getPosition().getY()) {
-				((Player) element1).getLife();
-				((Player) element1).removeLife(1);
-				element1.setAlive(false);
+			if (element.getPermeability() == Permeability.BLOCKING && element.getPosition().getX() == lorannModel.getMonsters().get(i).getPosition().getX() && element.getPosition().getY() == lorannModel.getMonsters().get(i).getPosition().getY()) {
+				if (((Player) element).getLife() > 0)
+					((Player) element).removeLife(1);
+				else {
+					System.out.println("Game Over");	
+				}
+				element.setAlive(false);
 				return true;
 			}
 			//if it is a spell
-			else if(element1.getPermeability() == Permeability.KILLER && element1.getPosition().getX() == ((IMonster)monsters.get(i)).getPosition().getX() && element1.getPosition().getY() == ((IMonster)monsters.get(i)).getPosition().getY()) {
-				((IMonster)monsters.get(i)).setAlive(false);
+			else if(element.getPermeability() == Permeability.KILLER && element.getPosition().getX() == lorannModel.getMonsters().get(i).getPosition().getX() && element.getPosition().getY() == lorannModel.getMonsters().get(i).getPosition().getY()) {
+				lorannModel.getMonsters().get(i).setAlive(false);
 				return true;
 			}
 		}
@@ -81,9 +84,9 @@ public class Collisions {
 		return false;
 	}	
 	//--------------------Test next case Object for IElement------------------------------------------- 
-	public static boolean testNextCaseObjectGrabable(IElement element, Position nextPosition) {
+	public static boolean testNextCaseObjectGrabable(IElement element, Position nextPosition, ILorannModel lorannModel) {
 		
-		if (ControllerFacade.map[element.getPosition().getY()+nextPosition.getY()][element.getPosition().getX() +nextPosition.getX()].getPermeability() == Permeability.GRABABLE) {
+		if (lorannModel.getMap().getOnTheMap(element.getPosition().getX()+nextPosition.getX(),element.getPosition().getY() +nextPosition.getY()).getPermeability() == Permeability.GRABABLE) {
 			return true;
 		}
 		return false;

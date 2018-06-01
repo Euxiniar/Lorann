@@ -133,20 +133,28 @@ public class TryMove {
             switch(direction) {
             case UP:
                 direction = Direction.DOWN;
+                break;
             case DOWN:
                 direction = Direction.UP;
+                break;
             case LEFT:
                 direction = Direction.RIGHT;
+                break;
             case RIGHT:
                 direction = Direction.LEFT;
+                break;
             case UPLEFT:
                 direction = Direction.DOWNRIGHT;
+                break;
             case UPRIGHT:
                 direction = Direction.DOWNLEFT;
+                break;
             case DOWNLEFT:
                 direction = Direction.UPRIGHT;
+                break;
             case DOWNRIGHT:
                 direction = Direction.UPLEFT;
+                break;
             default:
                 break;
             }
