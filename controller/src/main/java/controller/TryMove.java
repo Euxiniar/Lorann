@@ -278,7 +278,6 @@ public class TryMove {
 		
 		public void tryMoveMonster(IMonster monster, Player player) {
 			Position theoricalPosition = new Position();
-			//Direction redirection = null;
 			theoricalPosition = getTheoricalPositionElement(monster, monster.getDirection());
 	//---------Determination of	the direction and the theorical position of the monster relative to his position and that of the player
 			
@@ -323,8 +322,9 @@ public class TryMove {
 //______________________Movement of the monster with the behaviour 2_________________________________________________________________
 		public void movementMonster2(IMonster monster, Position theoricalPosition, Player player) {
 			//theoricalPosition = getTheoricalPositionElement(monster, monster.getDirection());
+
 			if (Collisions.testNextCaseWall(monster, theoricalPosition, lorannmodel) || Collisions.testNextCaseObjectGrabable(monster, theoricalPosition, lorannmodel) || Collisions.testNextCaseDoor(monster, theoricalPosition, lorannmodel)) {
-				if (Collisions.testNextCaseWall(monster, getTheoricalPositionElement(monster, getMobDirection(monster, player)), lorannmodel) || Collisions.testNextCaseObjectGrabable(monster, theoricalPosition, lorannmodel) || Collisions.testNextCaseDoor(monster, theoricalPosition, lorannmodel))
+				if (Collisions.testNextCaseWall(monster, getTheoricalPositionElement(monster, getMobDirection(monster, player)), lorannmodel) || Collisions.testNextCaseObjectGrabable(monster, getTheoricalPositionElement(monster, getMobDirection(monster, player)), lorannmodel) || Collisions.testNextCaseDoor(monster, getTheoricalPositionElement(monster, getMobDirection(monster, player)), lorannmodel))
 					monster.setDirection(changeClockwiseMonsterDirection(monster.getDirection()));
 				else {
 					monster.setDirection(getMobDirection(monster, player));
