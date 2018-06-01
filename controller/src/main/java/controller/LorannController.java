@@ -114,7 +114,21 @@ public class LorannController implements IOrderPerformer{
 		}
 	}
 	public void buildMap() {
-		Level level = catchMapFromBDD(1);
+		//Level level = catchMapFromBDD(1);
+		String mapString = 			"O------------------OE"
+				+ 					"|                  |E"
+				+ 					"|       | * |      |E"
+				+ 					"|       | D |      |E"
+				+ 					"|       O---O      |E"
+				+ 					"|        324       |E"
+				+ 					"|                  |E"
+				+ 					"|                  |E"
+				+ 					"| -----------------|E"
+				+ 					"|P  P    P  P    P |E"
+				+ 					"|----------------- |E"
+				+ 					"| K1  P   P    P   |E"
+				+ 					"O------------------OEF";
+		Level level = new Level(1, mapString, 13, 20);
 		int i = 0, y = 0, x = 0;
 		Map map = new Map(level.getWidth(), level.getHeight());
 			
@@ -179,6 +193,7 @@ public class LorannController implements IOrderPerformer{
 			}
 			else if (bools[0]) {
 				order = new UserOrder(Order.UP);
+				System.out.println(order.getOrder());
 			}
 			else if (bools[1]) {
 				order = new UserOrder(Order.RIGHT);
@@ -187,6 +202,35 @@ public class LorannController implements IOrderPerformer{
 				order = new UserOrder(Order.DOWN);
 			}
 			else if (bools[3]) {
+				order = new UserOrder(Order.LEFT);
+			}
+			else {
+			order = new UserOrder(Order.STOP);
+			}
+			
+			if (bools[4] && bools[5]) {
+				order = new UserOrder(Order.UPRIGHT);
+			}
+			else if (bools[4] && bools[7]) {
+				order = new UserOrder(Order.UPLEFT);
+			}
+			else if (bools[6] && bools[5]) {
+				order = new UserOrder(Order.DOWNRIGHT);
+			}
+			else if (bools[6] && bools[7]) {
+				order = new UserOrder(Order.DOWNLEFT);
+			}
+			else if (bools[4]) {
+				order = new UserOrder(Order.UP);
+				System.out.println(order.getOrder());
+			}
+			else if (bools[5]) {
+				order = new UserOrder(Order.RIGHT);
+			}
+			else if (bools[6]) {
+				order = new UserOrder(Order.DOWN);
+			}
+			else if (bools[7]) {
 				order = new UserOrder(Order.LEFT);
 			}
 			else {

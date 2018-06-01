@@ -246,7 +246,7 @@ public class TryMove {
                 }
                 }
             else {
-                if (Collisions.testMonsterOnTheCaseThenKill(lorannmodel.getPlayer(), lorannmodel.getMonsters())) { 
+                if (Collisions.testMonsterOnTheCaseThenKill(lorannmodel.getPlayer(), lorannmodel)) { 
                 		lorannmodel.getPlayer().setAlive(false);
                  System.out.println("you died");
                  //Collisions.testCaseDoorClose(lorannmodel.getPlayer()))
@@ -332,39 +332,35 @@ public class TryMove {
 //___________________________________________________________________________________________________________________________________
 
 
-		public void tryMoveSpell(Spell spell, Order order, ArrayList<IMonster> monsters) {
+		public void tryMoveSpell(Spell spell, Order order) {
             Position theoricalPosition = new Position();
             Direction direction;
             direction = getOrderToDirection(order);
             theoricalPosition = getTheoricalPositionElement(spell, direction);
-
+                
             if(spell.getIsAlive()==true){
-                if(Collisions.testNextCaseObjectGrabable(spell, theoricalPosition) || Collisions.testNextCaseDoor(spell, theoricalPosition) || Collisions.testNextCaseWall(spell, theoricalPosition, lorannmodel)){
+                if(Collisions.testNextCaseObjectGrabable(spell, theoricalPosition, lorannmodel) || Collisions.testNextCaseDoor(spell, theoricalPosition) || Collisions.testNextCaseWall(spell, theoricalPosition, lorannmodel)){
                     Direction newDirection = reverseDirection(direction);
                     theoricalPosition = getTheoricalPositionElement(spell, newDirection);
-                    spell.setPosition(theoricalPosition);
                 }
-                else {
-                    if(Collisions.testMonsterOnTheCaseThenKill(spell, monsters)){
-                    	spell.setAlive(false);
-                    }
-                    else{
-                        if(Collisions.testCasePlayer(lorannmodel.getPlayer(), spell)){ //here
-                            spell.setAlive(false);
-                        };
-                    }
-                    spell.setPosition(theoricalPosition);
+                spell.setPosition(theoricalPosition);
+                if(Collisions.testMonsterOnTheCaseThenKill(spell, lorannmodel)){
+                    spell.setAlive(false);
                 }
-            }
-                //peindre composants
+                else if(Collisions.testCasePlayer(lorannmodel.getPlayer(), spell)){
+                        spell.setAlive(false);
+                    }
         }
+            //peindre composants
+    }
+		
 		public void setLorannModel(ILorannModel lorannmodel) {
 			this.lorannmodel = lorannmodel;
 		}
 		public void launchSpell(Spell spell, Player player) {
             spell.setPosition(player.getPosition());
             //setDirection à l'opposé de la direction précédente du joueur?
-            spell.getIsAlive();
+            spell.setAlive(true);
         }
 
 }
