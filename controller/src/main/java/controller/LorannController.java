@@ -43,8 +43,8 @@ public class LorannController implements IOrderPerformer{
 			+ 					"|----------------- |E"
 			+ 					"| K1  P  4P  3 P   |E"
 			+ 					"O------------------OEF";
-	private int mapWidth = 13;
-	private int mapHeight = 20;
+	private int mapWidth = 20;
+	private int mapHeight = 13;
 	//private String mapString = "|-ODDE*1234EPK   EF";
 	
 	private Animator playerAnimator;
@@ -120,7 +120,7 @@ public class LorannController implements IOrderPerformer{
 		}
 	}
 	public void buildMap() {
-		Level level = new Level(1, mapString, this.mapWidth, this.mapHeight);
+		Level level = new Level(1, mapString, this.mapHeight, this.mapWidth);
 		if(USE_BDD) {
 			level = catchMapFromBDD(numlevel);
 		}

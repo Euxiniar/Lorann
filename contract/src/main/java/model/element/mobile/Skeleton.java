@@ -12,6 +12,6 @@ import model.element.Position;
 
 class Skeleton extends Monster{
 	public Skeleton(Position position) {
-    	super('1', 0, 1, 8, Permeability.KILLER, position, Behaviour.NORMAL);
+    	super('1', 0, 1, 8, Permeability.KILLER, position, Behaviour.SMART);
 	}
 }
