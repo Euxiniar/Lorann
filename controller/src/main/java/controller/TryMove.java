@@ -368,7 +368,7 @@ public class TryMove {
                 if (spell.getDirection() != Direction.STATIC && !spell.getIsAlive()) {
                     launchSpell(spell, lorannmodel.getPlayer());
                     theoricalPosition = getTheoricalPositionElement(spell, spell.getDirection());
-                    if(Collisions.testNextCaseWall(spell, theoricalPosition, lorannmodel)) {
+                    if(Collisions.testNextCaseWall(spell, theoricalPosition, lorannmodel) || Collisions.testNextCaseObjectGrabable(spell, theoricalPosition, lorannmodel) || Collisions.testNextCaseDoor(spell, theoricalPosition, lorannmodel)) {
                         spell.setAlive(false);
                         spell.setDirection(Direction.STATIC);
                     }
