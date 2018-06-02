@@ -6,9 +6,9 @@ import model.LorannModel;
 import view.LorannView;
 
 /**
- * <h1>The Class Main.</h1>
+ * <h1>The Main.java Class.</h1>
  *
- * @author Jean-Aymeric DIET jadiet@cesi.fr
+ * @author Charles Agostini / Vicente Vaz / Anatole Couasnon / Louis Marjolet
  * @version 1.0
  */
 public abstract class Main {
@@ -25,8 +25,6 @@ public abstract class Main {
     	LorannView view = new LorannView( model, model);
     	final LorannController controller = new LorannController(view, model);
     	
-        //final LorannController controller = new LorannController(model);
-
         controller.play();
     }
 

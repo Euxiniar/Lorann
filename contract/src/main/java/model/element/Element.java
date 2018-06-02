@@ -22,9 +22,6 @@ public abstract class Element implements IElement{
 		createSpriteArray(symbol, xImagePos, yImagePos, nbSprites);
 	}
 
-	/* (non-Javadoc)
-	 * @see model.element.IElement#getSpriteArray()
-	 */
 	@Override
 	public ArrayList<Sprite> getSpriteArray() {
 		return this.spriteArray;

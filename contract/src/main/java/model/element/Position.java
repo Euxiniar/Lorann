@@ -6,10 +6,6 @@
  */
 package model.element;
 
-/**
- * @author Euxiniar
- *
- */
 public class Position {
 	private int x;
 	private int y;

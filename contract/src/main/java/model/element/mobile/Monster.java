@@ -9,10 +9,6 @@ package model.element.mobile;
 import model.element.Permeability;
 import model.element.Position;
 
-/**
- * @author Euxiniar
- *
- */
 public abstract class Monster extends MobileElement implements IMonster {
 	private Behaviour behaviour  = Behaviour.NORMAL;
 	private int counter = 0;

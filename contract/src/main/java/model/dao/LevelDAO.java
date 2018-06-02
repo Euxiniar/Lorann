@@ -1,7 +1,7 @@
 /**
  * <h1>The LevelDAO.java Class.</h1>
  *
- * @author Charles Agostini
+ * @author Charles Agostini/Vicente Vaz
  * @version 1.0
  */
 package model.dao;
@@ -12,10 +12,6 @@ import java.sql.SQLException;
 
 import model.Level;
 
-/**
- * @author vazvi
- *
- */
 public class LevelDAO extends AbstractDAO{
     
     /** The string used for draw the level's map */ 

@@ -13,8 +13,10 @@ import model.element.mobile.Player;
 import model.element.mobile.Spell;
 
 /**
- * @author Snargol/Vicente
+ * <h1>The TryMove.java Class.</h1>
  *
+ * @author Charles Agostini / Vicente Vaz / Anatole Couasnon / Louis Marjolet
+ * @version 1.0
  */
 public class TryMove {
 		
@@ -340,27 +342,31 @@ public class TryMove {
 //___________________________________________________________________________________________________________________________________
 //______________________Movement of the monster with the behaviour 3_________________________________________________________________
 		public static void movementMonster3(IMonster monster, Position theoricalPosition, Player player) {
-			if(monster.getCounter() == 4) {
-				monster.setCounter(0);
-				monster.setRotationDirection(!monster.isRotationDirection());
-			}
-			else {
-				monster.setCounter(monster.getCounter() + 1);
-			}
-			if (Collisions.testNextCaseWall(monster, theoricalPosition, lorannModel) || Collisions.testNextCaseObjectGrabable(monster, theoricalPosition, lorannModel) || Collisions.testNextCaseDoor(monster, theoricalPosition, lorannModel)) {
-				if(monster.isRotationDirection()) { 
-					monster.setDirection(changeClockwiseMonsterDirection(monster.getDirection()));
-				}
-				else {
-					monster.setDirection(changeCounterclockwiseMonsterDirection(monster.getDirection()));
-					theoricalPosition = getTheoricalPositionElement(monster, monster.getDirection());
-					movementMonster3(monster, theoricalPosition, player);
-				}
-			}
-			else {
-				monster.setPosition(theoricalPosition);
-			}
+            //theoricalPosition = getTheoricalPositionElement(monster, monster.getDirection());
+
+            if (Collisions.testNextCaseWall(monster, theoricalPosition, lorannModel) || Collisions.testNextCaseObjectGrabable(monster, theoricalPosition, lorannModel) || Collisions.testNextCaseDoor(monster, theoricalPosition, lorannModel)) {
+                if (Collisions.testNextCaseWall(monster, getTheoricalPositionElement(monster, getMobDirection(monster, player)), lorannModel) || Collisions.testNextCaseObjectGrabable(monster, getTheoricalPositionElement(monster, getMobDirection(monster, player)), lorannModel) || Collisions.testNextCaseDoor(monster, getTheoricalPositionElement(monster, getMobDirection(monster, player)), lorannModel))
+                    if(monster.isRotationDirection()) {
+                        monster.setDirection(changeClockwiseMonsterDirection(monster.getDirection()));
+                        theoricalPosition = getTheoricalPositionElement(monster, monster.getDirection());
+                        movementMonster3(monster, theoricalPosition, player);
+                    }
+                    else {
+                        monster.setDirection(changeCounterclockwiseMonsterDirection(monster.getDirection()));
+                        theoricalPosition = getTheoricalPositionElement(monster, monster.getDirection());
+                        movementMonster3(monster, theoricalPosition, player);
 }
+                else {
+                    monster.setDirection(getMobDirection(monster, player));
+                    //monster.setPosition(getTheoricalPositionElement(monster, monster.getDirection()));
+                    theoricalPosition = getTheoricalPositionElement(monster, monster.getDirection());
+                    movementMonster3(monster, theoricalPosition, player);
+                }
+            }
+            else {
+                monster.setPosition(theoricalPosition); 
+            }
+        }
 //___________________________________________________________________________________________________________________________________
 
 

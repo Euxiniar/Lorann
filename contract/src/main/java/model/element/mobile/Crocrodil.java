@@ -1,5 +1,5 @@
 /**
- * <h1>The Crocodil.java Class.</h1>
+ * <h1>The Crocrodil.java Class.</h1>
  *
  * @author Charles Agostini
  * @version 1.0

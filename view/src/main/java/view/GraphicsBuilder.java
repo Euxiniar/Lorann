@@ -10,7 +10,12 @@ import model.ILorannModel;
 import model.element.IElement;
 import model.element.Position;
 import model.element.mobile.IMonster;
-
+/**
+ * <h1>The GraphicsBuilder.java Class.</h1>
+ *
+ * @author Charles Agostini / Anatole Couasnon
+ * @version 1.0
+ */
 class GraphicsBuilder implements IGraphicsBuilder {
 	private final ILorannModel lorannModel;
 

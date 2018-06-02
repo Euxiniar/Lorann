@@ -6,7 +6,7 @@
   <version>0.0.1-SNAPSHOT</version>
   <packaging>pom</packaging>
   <name>lorann</name>
-  <description>Base project to start BoulderDash software</description>
+  <description>Base project to start Lorann software</description>
   <build>
     <plugins>
       <plugin>
@@ -61,7 +61,7 @@
   </reporting>
   <distributionManagement>
     <site>
-      <id>insane_vehicles</id>
+      <id>lorann_software</id>
       <url>file:///C:/temp/</url>
     </site>
   </distributionManagement>

@@ -1,6 +1,4 @@
-/**
- * 
- */
+
 package controller;
 
 import java.sql.SQLException;
@@ -19,8 +17,10 @@ import model.element.motionless.MotionlessElementFactory;
 import view.ILorannView;
 
 /**
- * @author Vicente Vaz/Charles Agostini
+ * <h1>The LorannController.java Class.</h1>
  *
+ * @author Charles Agostini / Vicente Vaz / Anatole Couasnon / Louis Marjolet
+ * @version 1.0
  */
 public class LorannController implements IOrderPerformer{
 	private static boolean USE_BDD = true;

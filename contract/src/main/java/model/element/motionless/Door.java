@@ -12,7 +12,7 @@ import model.element.Position;
 class Door extends MotionlessElement {
     
     /**
-     * Instantiates a new VerticalBone.
+     * Instantiates a new Door.
      */
 	Door(Position position) {
     	super('D', 0, 9, 2, Permeability.KILLER, position);

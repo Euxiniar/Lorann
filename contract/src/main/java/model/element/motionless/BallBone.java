@@ -12,7 +12,7 @@ import model.element.Position;
 class BallBone extends MotionlessElement {
     
     /**
-     * Instantiates a new VerticalBone.
+     * Instantiates a new BallBone.
      */
 	BallBone(Position position) {
     	super('O', 2, 6, Permeability.BLOCKING, position);
