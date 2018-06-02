@@ -14,15 +14,15 @@ import model.element.Position;
  *
  */
 public abstract class Monster extends MobileElement implements IMonster {
-	private int behaviour  = 2;
+	private Behaviour behaviour  = Behaviour.NORMAL;
 	private int counter = 0;
 	private boolean rotationDirection = false;
 	
-	public int getBehaviour() {
-		return behaviour;
+	public Behaviour getBehaviour() {
+		return this.behaviour;
 	}
 
-	public void setBehaviour(int behaviour) {
+	public void setBehaviour(Behaviour behaviour) {
 		this.behaviour = behaviour;
 	}
 
@@ -43,14 +43,15 @@ public abstract class Monster extends MobileElement implements IMonster {
 	}
 
 	public Monster(char symbol, int xSpritePos, int ySpritePos, int nbSprites,
-			Permeability permeability, Position position) {
+			Permeability permeability, Position position, Behaviour behaviour) {
 		super(symbol, xSpritePos, ySpritePos, nbSprites, permeability, position);
 		this.setDirection(Direction.DOWN);
+		this.setBehaviour(behaviour);
 	}
 	
 	public Monster(char symbol, int xSpritePos, int ySpritePos,
-			Permeability permeability, Position position) {
-		this(symbol, xSpritePos, ySpritePos, 1, permeability, position);
+			Permeability permeability, Position position, Behaviour behaviour) {
+		this(symbol, xSpritePos, ySpritePos, 1, permeability, position, behaviour);
 		this.setDirection(Direction.DOWN);
 	}
 }

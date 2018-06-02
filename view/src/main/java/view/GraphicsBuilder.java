@@ -77,18 +77,18 @@ class GraphicsBuilder implements IGraphicsBuilder {
 		Font font = new Font("Courier", Font.BOLD, 30);
         g.setFont(font);
         g.setColor(Color.RED);
-        g.drawString("Ton score est de : ", 20, 680);
+        g.drawString("Score : ", 100, 680);
         font = new Font("Courier", Font.ITALIC, 30);
         g.setFont(font);
         g.setColor(Color.RED);
-        g.drawString(String.valueOf(lorannModel.getPlayer().getScore()), 350, 680);
+        g.drawString(String.valueOf(lorannModel.getPlayer().getScore()), 300, 680);
 	}
 	
 	private void drawLife(Graphics g) {
 		Font font = new Font("Courier", Font.BOLD, 30);
         g.setFont(font);
         g.setColor(Color.GREEN);
-        g.drawString("Il te reste : ", 600, 680);
+        g.drawString("Life : ", 650, 680);
         font = new Font("Courier", Font.ITALIC, 30);
         g.setFont(font);
         g.setColor(Color.GREEN);

@@ -3,13 +3,10 @@
  */
 package controller;
 
-import java.util.ArrayList;
-
 import model.ILorannModel;
 import model.element.IElement;
 import model.element.Permeability;
 import model.element.Position;
-import model.element.mobile.IMonster;
 import model.element.mobile.Player;
 import model.element.mobile.Spell;
 
@@ -88,11 +85,6 @@ public class Collisions {
 	public static boolean testCaseDoorClose(IElement element, ILorannModel lorannmodel) {
 	        
 	        if (lorannmodel.getMap().getOnTheMap(lorannmodel.getPlayer().getPosition()).getPermeability() == Permeability.KILLER) {
-	            if (((Player) element).getLife() > 0)
-	                ((Player) element).removeLife(1);
-	            else {
-	                System.out.println("Game Over");    
-	            }
 	            element.setAlive(false);
 	            return true;
 	        }
