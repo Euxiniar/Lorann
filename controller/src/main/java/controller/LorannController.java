@@ -33,7 +33,7 @@ public class LorannController implements IOrderPerformer{
 	private String mapString = 	"O------------------OE"
 			+ 					"| P                |E"
 			+ 					"|       | * |      |E"
-			+ 					"|       | D |      |E"
+			+ 					"|  K    | D |      |E"
 			+ 					"|       O---O      |E"
 			+ 					"|       1   2      |E"
 			+ 					"| O--------------O |E"
@@ -54,7 +54,7 @@ public class LorannController implements IOrderPerformer{
 	public LorannController(ILorannView lorannView, ILorannModel lorannModel) {
 		this.lorannModel = lorannModel;
 		this.lorannView = lorannView;
-		TryMove trymove = new TryMove(lorannModel);
+		TryMove.setLorannModel(lorannModel);
 	}
 	
 	public void play() {
@@ -182,18 +182,10 @@ public class LorannController implements IOrderPerformer{
 		}
 		
 		if (!lorannModel.getPlayer().getIsAlive()) {
-			if (lorannModel.getPlayer().getLife()>=0) {
+			if (lorannModel.getPlayer().getLife()>=2) {
 				lorannModel.getPlayer().removeLife(1);
 				System.out.println(lorannModel.getPlayer().getLife());
-				IElement element = null;
-				for(int y = 0; y < lorannModel.getMap().getHeight(); y++) {
-	    			for(int x = 0; x < lorannModel.getMap().getWidth(); x++) {
-	    				element = lorannModel.getMap().getOnTheMap(new Position(x, y));
-	    				if(element.getSymbol() == 'D') {
-	    					element.setPermeability(Permeability.KILLER);
-	    				}
-	    			}
-	    		}
+				
 				lorannModel.getMonsters().clear();
 				lorannModel.getPlayer().setPlayerhasMoved(false);
 				lorannModel.getPlayer().setScore(0);

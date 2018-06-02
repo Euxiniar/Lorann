@@ -3,10 +3,6 @@
  */
 package controller;
 
-
-
-import java.util.ArrayList;
-
 import model.ILorannModel;
 import model.element.IElement;
 import model.element.Permeability;
@@ -22,10 +18,12 @@ import model.element.mobile.Spell;
  */
 public class TryMove {
 		
-	static ILorannModel lorannmodel;
-		public TryMove(ILorannModel lorannModel) {
-			TryMove.lorannmodel=lorannModel;
+	private static ILorannModel lorannmodel;
+		
+		public static void setLorannModel(ILorannModel lorannModel) {
+			TryMove.lorannmodel = lorannModel;
 		}
+		
 		public static Position getTheoricalPositionElement(IElement element, Direction direction) {
 	        Position position = new Position(element.getPosition().getX(), element.getPosition().getY() );
 	        switch(direction) {
@@ -255,6 +253,7 @@ public class TryMove {
             				element = lorannmodel.getMap().getOnTheMap(new Position(x, y));
             				if(element.getSymbol() == 'D') {
             					element.setPermeability(Permeability.ENDER);
+            					element.setSelectedSpriteValue(1);
             				}
             			}
             		}
@@ -402,9 +401,6 @@ public class TryMove {
             //peindre composants
     }
 		
-		public void setLorannModel(ILorannModel lorannmodel) {
-			this.lorannmodel = lorannmodel;
-		}
 		public static void launchSpell(Spell spell, Player player) {
             spell.setPosition(player.getPosition());
             System.out.println(spell.getPosition().getX() + " " + spell.getPosition().getY());
