@@ -30,7 +30,7 @@ public class LorannController implements IOrderPerformer{
 	private final ILorannModel lorannModel;
 	private ILorannView lorannView;
 	private String mapString = 	"O------------------OE"
-			+ 					"|                  |E"
+			+ 					"| P                |E"
 			+ 					"|       | * |      |E"
 			+ 					"|       | D |      |E"
 			+ 					"|       O---O      |E"
