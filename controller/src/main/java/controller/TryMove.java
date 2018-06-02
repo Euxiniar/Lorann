@@ -190,7 +190,7 @@ public class TryMove {
             }
             return direction;
 		}
-		public Direction changeCounterclockwiseMonsterDirection(Direction direction) {
+		public static Direction changeCounterclockwiseMonsterDirection(Direction direction) {
 			switch(direction) {
             case UP:
                 direction = Direction.UPLEFT;
@@ -293,9 +293,9 @@ public class TryMove {
 			case NORMAL:
 				movementMonster2(monster, theoricalPosition, player);
 				break;
-//			case SMART:
-//				movementMonster3(monster, theoricalPosition, player);
-//				break;
+			case SMART:
+				movementMonster3(monster, theoricalPosition, player);
+				break;
 			default:
 				break;
 			}
@@ -329,6 +329,7 @@ public class TryMove {
 				else {
 					monster.setDirection(getMobDirection(monster, player));
 					monster.setPosition(getTheoricalPositionElement(monster, monster.getDirection()));
+					movementMonster2(monster, theoricalPosition, player);
 				}
 			}
 			else {
@@ -337,26 +338,28 @@ public class TryMove {
 		}
 //___________________________________________________________________________________________________________________________________
 //______________________Movement of the monster with the behaviour 3_________________________________________________________________
-//		public void movementMonster3(IMonster monster, Position theoricalPosition, Player player) {
-//			if(monster.getCounter() == 3) {
-//				monster.setCounter(0);
-//				monster.setRotationDirection(!monster.isRotationDirection());
-//			}
-//			else {
-//				monster.setCounter(monster.getCounter() + 1);
-//			}
-//			if (Collisions.testNextCaseWall(monster, theoricalPosition, lorannmodel) || Collisions.testNextCaseObjectGrabable(monster, theoricalPosition, lorannmodel) || Collisions.testNextCaseDoor(monster, theoricalPosition, lorannmodel)) {
-//				if(monster.isRotationDirection()) { 
-//					monster.setDirection(changeClockwiseMonsterDirection(monster.getDirection()));
-//				}
-//				else
-//					monster.setDirection(changeCounterclockwiseMonsterDirection(monster.getDirection()));
-//					movementMonster3(monster, theoricalPosition, player);
-//			}
-//			else {
-//				monster.setPosition(theoricalPosition);
-//			}
-//}
+		public static void movementMonster3(IMonster monster, Position theoricalPosition, Player player) {
+			if(monster.getCounter() == 4) {
+				monster.setCounter(0);
+				monster.setRotationDirection(!monster.isRotationDirection());
+			}
+			else {
+				monster.setCounter(monster.getCounter() + 1);
+			}
+			if (Collisions.testNextCaseWall(monster, theoricalPosition, lorannModel) || Collisions.testNextCaseObjectGrabable(monster, theoricalPosition, lorannModel) || Collisions.testNextCaseDoor(monster, theoricalPosition, lorannModel)) {
+				if(monster.isRotationDirection()) { 
+					monster.setDirection(changeClockwiseMonsterDirection(monster.getDirection()));
+				}
+				else {
+					monster.setDirection(changeCounterclockwiseMonsterDirection(monster.getDirection()));
+					theoricalPosition = getTheoricalPositionElement(monster, monster.getDirection());
+					movementMonster3(monster, theoricalPosition, player);
+				}
+			}
+			else {
+				monster.setPosition(theoricalPosition);
+			}
+}
 //___________________________________________________________________________________________________________________________________
 
 
