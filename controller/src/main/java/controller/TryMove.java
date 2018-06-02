@@ -328,7 +328,8 @@ public class TryMove {
 					monster.setDirection(changeClockwiseMonsterDirection(monster.getDirection()));
 				else {
 					monster.setDirection(getMobDirection(monster, player));
-					monster.setPosition(getTheoricalPositionElement(monster, monster.getDirection()));
+					//monster.setPosition(getTheoricalPositionElement(monster, monster.getDirection()));
+					theoricalPosition = getTheoricalPositionElement(monster, monster.getDirection());
 					movementMonster2(monster, theoricalPosition, player);
 				}
 			}
