@@ -3,8 +3,9 @@
  */
 package controller;
 
-import static org.junit.Assert.*;
+import static org.junit.Assert.assertEquals;
 
+import org.junit.Before;
 import org.junit.Test;
 
 import model.element.Position;
@@ -20,6 +21,13 @@ public class TryMoveTest {
 	/**
 	 * Test method for {@link controller.TryMove#getTheoricalPosition(model.element.Direction, model.element.mobile.MobileElement)}.
 	 */
+
+	@Before
+	public void setUp() throws Exception{
+		
+
+	}
+	
 	@Test
 	public void testGetTheoricalPosition() {
 		 
@@ -58,6 +66,11 @@ public class TryMoveTest {
 	        }
 		 assertEquals(position.getX(), expected.getX());
 		 assertEquals(position.getY(), expected.getY());
+	}
+	
+	@Test
+	public void testMovementMonster3() {
+		
 	}
 
 }
