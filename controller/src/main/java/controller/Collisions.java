@@ -3,13 +3,10 @@
  */
 package controller;
 
-import java.util.ArrayList;
-
 import model.ILorannModel;
 import model.element.IElement;
 import model.element.Permeability;
 import model.element.Position;
-import model.element.mobile.IMonster;
 import model.element.mobile.Player;
 import model.element.mobile.Spell;
 

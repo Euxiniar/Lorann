@@ -18,10 +18,10 @@ import model.element.mobile.Spell;
  */
 public class TryMove {
 		
-	private static ILorannModel lorannmodel;
+	private static ILorannModel lorannModel;
 		
 		public static void setLorannModel(ILorannModel lorannModel) {
-			TryMove.lorannmodel = lorannModel;
+			TryMove.lorannModel = lorannModel;
 		}
 		
 		public static Position getTheoricalPositionElement(IElement element, Direction direction) {
@@ -228,18 +228,18 @@ public class TryMove {
             
             Position theoricalPosition = new Position();
             Direction direction;
-            IElement element = lorannmodel.getMap().getOnTheMap(lorannmodel.getPlayer().getPosition().getX(), lorannmodel.getPlayer().getPosition().getY());
+            IElement element = lorannModel.getMap().getOnTheMap(lorannModel.getPlayer().getPosition().getX(), lorannModel.getPlayer().getPosition().getY());
             
-            Collisions.testMonsterOnTheCaseThenKill(lorannmodel.getPlayer(), lorannmodel);
+            Collisions.testMonsterOnTheCaseThenKill(lorannModel.getPlayer(), lorannModel);
             
             direction = getOrderToDirection(order);
             theoricalPosition = getTheoricalPositionElement(player, direction);
             
-            if (!Collisions.testNextCaseWall(lorannmodel.getPlayer(), theoricalPosition, lorannmodel)) { 
+            if (!Collisions.testNextCaseWall(lorannModel.getPlayer(), theoricalPosition, lorannModel)) { 
                 player.setPosition(theoricalPosition);
-                element = lorannmodel.getMap().getOnTheMap(lorannmodel.getPlayer().getPosition().getX(), lorannmodel.getPlayer().getPosition().getY());
+                element = lorannModel.getMap().getOnTheMap(lorannModel.getPlayer().getPosition().getX(), lorannModel.getPlayer().getPosition().getY());
             }
-            if (Collisions.testCaseObject(lorannmodel.getPlayer(), lorannmodel)) { 
+            if (Collisions.testCaseObject(lorannModel.getPlayer(), lorannModel)) { 
                 if (element.getSymbol() == 'P' && element.getIsAlive()) {
                     player.incrementScore();
                     element.setAlive(false);
@@ -248,9 +248,9 @@ public class TryMove {
                 else if (element.getSymbol() == 'K' && element.getIsAlive()) {
                     element.setAlive(false);
                     
-                    for(int y = 0; y < lorannmodel.getMap().getHeight(); y++) {
-            			for(int x = 0; x < lorannmodel.getMap().getWidth(); x++) {
-            				element = lorannmodel.getMap().getOnTheMap(new Position(x, y));
+                    for(int y = 0; y < lorannModel.getMap().getHeight(); y++) {
+            			for(int x = 0; x < lorannModel.getMap().getWidth(); x++) {
+            				element = lorannModel.getMap().getOnTheMap(new Position(x, y));
             				if(element.getSymbol() == 'D') {
             					element.setPermeability(Permeability.ENDER);
             					element.setSelectedSpriteValue(1);
@@ -260,15 +260,15 @@ public class TryMove {
                 }
             }
             else {
-                Collisions.testMonsterOnTheCaseThenKill(lorannmodel.getPlayer(), lorannmodel);
+                Collisions.testMonsterOnTheCaseThenKill(lorannModel.getPlayer(), lorannModel);
               //---------------------------------------mort potentielle
                 
-                 if (Collisions.testCaseDoorClose(lorannmodel.getPlayer(), lorannmodel)) {
+                 if (Collisions.testCaseDoorClose(lorannModel.getPlayer(), lorannModel)) {
                      System.out.println("porte fermée");
                      //---------------------------------------mort
                  }
-                    if (Collisions.testCaseDoorOpen(lorannmodel.getPlayer(), lorannmodel)) {
-                         System.out.println("porte ouverte");
+                    if (Collisions.testCaseDoorOpen(lorannModel.getPlayer(), lorannModel)) {
+                    	lorannModel.getPlayer().setHasSucceedLvl(true);
                     //     Win() (ou retour au menu);
                     }
             }
@@ -287,13 +287,13 @@ public class TryMove {
 	//---------------------------------------------------------------------------------------------------------------------------------
 	//-------Execution of the matching behaviour---------------------------------------------------------------------------------------
 			switch(monster.getBehaviour()) {
-			case 1:
+			case SILLY:
 				movementMonster1(monster, theoricalPosition, player);
 				break;
-			case 2:
+			case NORMAL:
 				movementMonster2(monster, theoricalPosition, player);
 				break;
-//			case 3:
+//			case SMART:
 //				movementMonster3(monster, theoricalPosition, player);
 //				break;
 			default:
@@ -307,8 +307,8 @@ public class TryMove {
 
 //______________________Movement of the monster with the behaviour 1________________________________________________________________
 		public static void movementMonster1(IMonster monster, Position theoricalPosition, Player player) {
-			if (Collisions.testNextCaseWall(monster, theoricalPosition, lorannmodel) || Collisions.testNextCaseObjectGrabable(monster, theoricalPosition, lorannmodel) || Collisions.testNextCaseDoor(monster, theoricalPosition, lorannmodel))
-				if (Collisions.testNextCaseWall(monster, getTheoricalPositionElement(monster, getMobDirection(monster, player)), lorannmodel) || Collisions.testNextCaseObjectGrabable(monster, theoricalPosition, lorannmodel) || Collisions.testNextCaseDoor(monster, theoricalPosition, lorannmodel))
+			if (Collisions.testNextCaseWall(monster, theoricalPosition, lorannModel) || Collisions.testNextCaseObjectGrabable(monster, theoricalPosition, lorannModel) || Collisions.testNextCaseDoor(monster, theoricalPosition, lorannModel))
+				if (Collisions.testNextCaseWall(monster, getTheoricalPositionElement(monster, getMobDirection(monster, player)), lorannModel) || Collisions.testNextCaseObjectGrabable(monster, theoricalPosition, lorannModel) || Collisions.testNextCaseDoor(monster, theoricalPosition, lorannModel))
 					monster.setDirection(reverseDirection(monster.getDirection()));
 				else {
 					monster.setDirection(getMobDirection(monster, player));
@@ -323,8 +323,8 @@ public class TryMove {
 		public static void movementMonster2(IMonster monster, Position theoricalPosition, Player player) {
 			//theoricalPosition = getTheoricalPositionElement(monster, monster.getDirection());
 
-			if (Collisions.testNextCaseWall(monster, theoricalPosition, lorannmodel) || Collisions.testNextCaseObjectGrabable(monster, theoricalPosition, lorannmodel) || Collisions.testNextCaseDoor(monster, theoricalPosition, lorannmodel)) {
-				if (Collisions.testNextCaseWall(monster, getTheoricalPositionElement(monster, getMobDirection(monster, player)), lorannmodel) || Collisions.testNextCaseObjectGrabable(monster, getTheoricalPositionElement(monster, getMobDirection(monster, player)), lorannmodel) || Collisions.testNextCaseDoor(monster, getTheoricalPositionElement(monster, getMobDirection(monster, player)), lorannmodel))
+			if (Collisions.testNextCaseWall(monster, theoricalPosition, lorannModel) || Collisions.testNextCaseObjectGrabable(monster, theoricalPosition, lorannModel) || Collisions.testNextCaseDoor(monster, theoricalPosition, lorannModel)) {
+				if (Collisions.testNextCaseWall(monster, getTheoricalPositionElement(monster, getMobDirection(monster, player)), lorannModel) || Collisions.testNextCaseObjectGrabable(monster, getTheoricalPositionElement(monster, getMobDirection(monster, player)), lorannModel) || Collisions.testNextCaseDoor(monster, getTheoricalPositionElement(monster, getMobDirection(monster, player)), lorannModel))
 					monster.setDirection(changeClockwiseMonsterDirection(monster.getDirection()));
 				else {
 					monster.setDirection(getMobDirection(monster, player));
@@ -365,16 +365,16 @@ public class TryMove {
             if (spell.getDirection() == Direction.STATIC) {
                 spell.setDirection(getOrderToDirection(order));
                 if (spell.getDirection() != Direction.STATIC && !spell.getIsAlive()) {
-                    launchSpell(spell, lorannmodel.getPlayer());
+                    launchSpell(spell, lorannModel.getPlayer());
                     theoricalPosition = getTheoricalPositionElement(spell, spell.getDirection());
-                    if(Collisions.testNextCaseWall(spell, theoricalPosition, lorannmodel) || Collisions.testNextCaseObjectGrabable(spell, theoricalPosition, lorannmodel) || Collisions.testNextCaseDoor(spell, theoricalPosition, lorannmodel)) {
+                    if(Collisions.testNextCaseWall(spell, theoricalPosition, lorannModel) || Collisions.testNextCaseObjectGrabable(spell, theoricalPosition, lorannModel) || Collisions.testNextCaseDoor(spell, theoricalPosition, lorannModel)) {
                         spell.setAlive(false);
                         spell.setDirection(Direction.STATIC);
                     }
                 }
             }
             
-            if(Collisions.testMonsterOnTheCaseThenKill(spell, lorannmodel)){
+            if(Collisions.testMonsterOnTheCaseThenKill(spell, lorannModel)){
                 spell.setAlive(false);
                 spell.setDirection(Direction.STATIC);
             }
@@ -382,18 +382,18 @@ public class TryMove {
             theoricalPosition = getTheoricalPositionElement(spell, spell.getDirection());
            
             if(spell.getIsAlive()==true){
-                if(Collisions.testNextCaseObjectGrabable(spell, theoricalPosition, lorannmodel) || Collisions.testNextCaseDoor(spell, theoricalPosition, lorannmodel) || Collisions.testNextCaseWall(spell, theoricalPosition, lorannmodel)){
-                    if (lorannmodel.getMap().getOnTheMap(theoricalPosition).getIsAlive()) {
+                if(Collisions.testNextCaseObjectGrabable(spell, theoricalPosition, lorannModel) || Collisions.testNextCaseDoor(spell, theoricalPosition, lorannModel) || Collisions.testNextCaseWall(spell, theoricalPosition, lorannModel)){
+                    if (lorannModel.getMap().getOnTheMap(theoricalPosition).getIsAlive()) {
                         spell.setDirection(reverseDirection(spell.getDirection()));
                         theoricalPosition = getTheoricalPositionElement(spell, spell.getDirection());
                     }
                 }
                 spell.setPosition(theoricalPosition);
-                if(Collisions.testMonsterOnTheCaseThenKill(spell, lorannmodel)){
+                if(Collisions.testMonsterOnTheCaseThenKill(spell, lorannModel)){
                     spell.setAlive(false);
                     spell.setDirection(Direction.STATIC);
                 }
-                else if(Collisions.testCasePlayer(lorannmodel.getPlayer(), spell)){
+                else if(Collisions.testCasePlayer(lorannModel.getPlayer(), spell)){
                         spell.setAlive(false);
                         spell.setDirection(Direction.STATIC);
                     }

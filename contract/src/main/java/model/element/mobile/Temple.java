@@ -12,13 +12,6 @@ import model.element.Position;
 class Temple extends Monster{
 
 	public Temple(Position position) {
-    	super('3', 0, 3, 1, Permeability.KILLER, position);
+    	super('3', 0, 3, 1, Permeability.KILLER, position, Behaviour.SILLY);
 	}
-
-	@Override
-	public Direction getMobDirection(IMonster monster, Player player) {
-		// TODO Auto-generated method stub
-		return null;
-	}
-
 }
