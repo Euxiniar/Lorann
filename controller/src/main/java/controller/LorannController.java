@@ -26,6 +26,7 @@ public class LorannController implements IOrderPerformer{
 	private static boolean USE_BDD = false;
 	private static int numlevel = 1;
 	private static int TIME_SLEEP = 30;
+	private boolean gameHasStarted = false;
 	private boolean isGameOver	= false;
 	private final ILorannModel lorannModel;
 	private ILorannView lorannView;
@@ -58,6 +59,7 @@ public class LorannController implements IOrderPerformer{
 	
 	public void play() {
 		buildMap();
+		this.gameHasStarted = true;
 		playerAnimator = new Animator(lorannModel.getPlayer());
 		playerAnimator.setSpeed(100);
 		playerAnimator.start();
@@ -128,9 +130,14 @@ public class LorannController implements IOrderPerformer{
 			
 		while(level.getCode().charAt(i) != 'F') {
 			while (level.getCode().charAt(i) != 'E') {
-				if(level.getCode().charAt(i) == '*') {
+				if(level.getCode().charAt(i) == '*' && !gameHasStarted) {
 					Player player = new Player(new Position(x, y));
 					lorannModel.setPlayer(player);
+				}
+				else if(level.getCode().charAt(i) == '*' && gameHasStarted) {
+					lorannModel.getPlayer().setPosition(new Position(x, y));
+					lorannModel.getPlayer().setAlive(true);
+					lorannModel.getPlayer().setDirection(Direction.STATIC);
 				}
 				else if(level.getCode().charAt(i) == '1' || level.getCode().charAt(i) == '2' || level.getCode().charAt(i) == '3' || level.getCode().charAt(i) == '4') {
 					lorannModel.addMonster(MonsterFactory.getFromSymbol(level.getCode().charAt(i), new Position(x, y)));
@@ -175,7 +182,7 @@ public class LorannController implements IOrderPerformer{
 		}
 		
 		if (!lorannModel.getPlayer().getIsAlive()) {
-			if (lorannModel.getPlayer().getLife()>0) {
+			if (lorannModel.getPlayer().getLife()>=0) {
 				lorannModel.getPlayer().removeLife(1);
 				System.out.println(lorannModel.getPlayer().getLife());
 				IElement element = null;

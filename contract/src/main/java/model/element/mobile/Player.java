@@ -14,6 +14,10 @@ public class Player extends MobileElement{
 	private int score = 0;
 	private boolean isPlayerhasMoved = false;
 
+	public Player(Position position) {
+    	super('*', 0, 0, 8, Permeability.BLOCKING, position);
+	}
+	
 	public boolean isPlayerhasMoved() {
 		return isPlayerhasMoved;
 	}
@@ -23,18 +27,18 @@ public class Player extends MobileElement{
 	}
 
 	public int getLife() {
-		return life;
+		return this.life;
 	}
 
 	public void setLife(int life) {
 		this.life = life;
 	}
 	public void addLife(int nbrLife) {
-		this.life = life + nbrLife;
+		this.life += nbrLife;
 	}
 
 	public void removeLife(int nbrLife) {
-		this.life = life - nbrLife;
+		this.life -= nbrLife;
 	}
 	
 	public int getScore() {
@@ -51,9 +55,5 @@ public class Player extends MobileElement{
 	
 	public void resetScore() {
     	this.setScore(0);
-	}
-
-	public Player(Position position) {
-    	super('*', 0, 0, 8, Permeability.BLOCKING, position);
 	}
 }

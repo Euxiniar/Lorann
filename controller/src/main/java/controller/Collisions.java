@@ -88,11 +88,6 @@ public class Collisions {
 	public static boolean testCaseDoorClose(IElement element, ILorannModel lorannmodel) {
 	        
 	        if (lorannmodel.getMap().getOnTheMap(lorannmodel.getPlayer().getPosition()).getPermeability() == Permeability.KILLER) {
-	            if (((Player) element).getLife() > 0)
-	                ((Player) element).removeLife(1);
-	            else {
-	                System.out.println("Game Over");    
-	            }
 	            element.setAlive(false);
 	            return true;
 	        }
