@@ -18,7 +18,7 @@ import model.element.Position;
 class Macadam extends MotionlessElement {
     
     /**
-     * Instantiates a new VerticalBone.
+     * Instantiates a new Macadam.
      */
 	Macadam(Position position) {
     	super(' ', 1, 3, Permeability.PENETRABLE, position);

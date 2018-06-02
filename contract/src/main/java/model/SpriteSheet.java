@@ -12,10 +12,6 @@ import java.io.IOException;
 
 import javax.imageio.ImageIO;
 
-/**
- * @author Euxiniar
- *
- */
 public abstract class SpriteSheet {
 	private static BufferedImage spriteSheet = null;
 	private static String PATH = "../textures/texture_atlas.png";

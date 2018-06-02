@@ -12,7 +12,7 @@ import model.element.Position;
 class Key extends MotionlessElement {
     
     /**
-     * Instantiates a new VerticalBone.
+     * Instantiates a new Key.
      */
 	Key(Position position) {
     	super('K', 0, 7, Permeability.GRABABLE, position);

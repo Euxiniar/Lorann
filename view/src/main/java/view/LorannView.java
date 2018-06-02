@@ -8,7 +8,12 @@ import GameFrame.GameFrame;
 import model.ILorannModel;
 
 @SuppressWarnings("deprecation")
-	
+/**
+ * <h1>The LorannView.java Class.</h1>
+ *
+ * @author Anatole Couasnon
+ * @version 1.0
+ */
 public class LorannView implements ILorannView{
 	private final GraphicsBuilder graphicsBuilder;
 	private final Observable observable;

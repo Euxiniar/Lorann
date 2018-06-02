@@ -13,7 +13,7 @@ import model.element.Position;
 class HorizontalBone extends MotionlessElement {
     
     /**
-     * Instantiates a new VerticalBone.
+     * Instantiates a new HorizontalBone.
      */
 	HorizontalBone(Position position) {
     	super('-', 0, 6, Permeability.BLOCKING, position);

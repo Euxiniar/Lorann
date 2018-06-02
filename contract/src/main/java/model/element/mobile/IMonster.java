@@ -8,10 +8,6 @@ package model.element.mobile;
 
 import model.element.IElement;
 
-/**
- * @author Euxiniar
- *
- */
 public interface IMonster extends IElement {
 	void setDirection(Direction direction);
 	Behaviour getBehaviour();

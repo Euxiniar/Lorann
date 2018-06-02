@@ -1,5 +1,8 @@
 /**
- * 
+ * <h1>The ILorannModel.java Class.</h1>
+ *
+ * @author Charles Agostini/ Couasnon Anatole / Vicente Vaz
+ * @version 1.0
  */
 package controller;
 
@@ -117,10 +120,5 @@ public class Collisions {
 	            return true;
 	        }
 	        return false;
-	    }
-		
-	public Collisions(ILorannModel lorannmodel) {
-		
-	}
-	
+	    }	
 }

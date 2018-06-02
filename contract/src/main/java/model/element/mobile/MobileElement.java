@@ -1,5 +1,5 @@
 /**
- * <h1>The Mobile.java Class.</h1>
+ * <h1>The MobileElement.java Class.</h1>
  *
  * @author Charles Agostini
  * @version 1.0
@@ -14,14 +14,7 @@ public abstract class MobileElement extends Element {
 
 	Direction direction = Direction.STATIC;
 	
-	/**
-	 * @param character
-	 * @param spriteSheet
-	 * @param xPos
-	 * @param yPos
-	 * @param nbSprites
-	 * @param permeability
-	 */
+
 	public MobileElement(char symbol, int xSpritePos, int ySpritePos, int nbSprites,
 			Permeability permeability, Position position) {
 		super(symbol, xSpritePos, ySpritePos, nbSprites, permeability, position);

@@ -1,3 +1,9 @@
+/**
+ * <h1>The Animator.java Class.</h1>
+ *
+ * @author Charles Agostini/Anatole Couasnon
+ * @version 1.0
+ */
 package controller;
 
 import java.util.ArrayList;
@@ -18,11 +24,6 @@ public class Animator {
 		elementArray = new ArrayList<IElement>();
 		this.elementArray.add(element);
 	}
-
-	/**
-	 * @param monsters
-	 */
-
 	
 	public Animator(ArrayList<IMonster> monsters) {
 		this.monstersArray = monsters;

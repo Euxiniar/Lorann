@@ -6,10 +6,6 @@
  */
 package model.element;
 
-/**
- * @author Euxiniar
- *
- */
 public class Map {
 	private static int WIDTH = 20;    
 	private static int HEIGHT = 13;

@@ -15,10 +15,6 @@ import model.element.mobile.Player;
 import model.element.mobile.Spell;
 
 
-/**
- * @author Euxiniar
- *
- */
 @SuppressWarnings("deprecation")
 public class LorannModel extends Observable implements ILorannModel{
 	

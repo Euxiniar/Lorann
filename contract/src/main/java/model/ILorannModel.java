@@ -13,10 +13,6 @@ import model.element.mobile.IMonster;
 import model.element.mobile.Player;
 import model.element.mobile.Spell;
 
-/**
- * @author Euxiniar
- *
- */
 public interface ILorannModel {
 	Map getMap();
 	void setMap(Map map);

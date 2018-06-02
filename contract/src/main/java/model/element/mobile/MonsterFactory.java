@@ -8,10 +8,6 @@ package model.element.mobile;
 
 import model.element.Position;
 
-/**
- * @author Euxiniar
- *
- */
 public abstract class MonsterFactory {
   
     public static Monster createSkeleton(Position position) {
