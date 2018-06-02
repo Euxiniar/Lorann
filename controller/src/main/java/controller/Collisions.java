@@ -22,22 +22,17 @@ public class Collisions {
         for(int i=0; i <= lorannModel.getMonsters().size()-1; i++) {
         	if (lorannModel.getMonsters().get(i).getIsAlive()) {
             //if it is a player
-            if (element.getPermeability() == Permeability.BLOCKING && element.getPosition().getX() == lorannModel.getMonsters().get(i).getPosition().getX() && element.getPosition().getY() == lorannModel.getMonsters().get(i).getPosition().getY()) {
-                if (lorannModel.getMonsters().get(i).getIsAlive()) {
-//                    if (((Player) element).getLife() > 0) {
-//                        ((Player) element).removeLife(1);
-//                        ((Player) element).setPlayerhasMoved(false);
-//                        
-//                    }
-//                    else {
-//                        System.out.println("Game Over");    
-                    }
+            if (element.getPermeability() == Permeability.BLOCKING && 
+            		element.getPosition().getX() == lorannModel.getMonsters().get(i).getPosition().getX() && 
+            		element.getPosition().getY() == lorannModel.getMonsters().get(i).getPosition().getY()) {
                     element.setAlive(false);
                     return true;
                 }
                 
             //if it is a spell
-            else if(element.getPermeability() == Permeability.KILLER && element.getPosition().getX() == lorannModel.getMonsters().get(i).getPosition().getX() && element.getPosition().getY() == lorannModel.getMonsters().get(i).getPosition().getY()) {
+            else if(element.getPermeability() == Permeability.KILLER && 
+            		element.getPosition().getX() == lorannModel.getMonsters().get(i).getPosition().getX() && 
+            		element.getPosition().getY() == lorannModel.getMonsters().get(i).getPosition().getY()) {
                 if (lorannModel.getMonsters().get(i).getIsAlive() && element.getIsAlive()) {
                     lorannModel.getMonsters().get(i).setAlive(false);
                     return true;
