@@ -19,7 +19,6 @@ import model.element.mobile.Spell;
 public class TryMove {
 		
 	private static ILorannModel lorannModel;
-	private static boolean spellJustLaunched = false;
 		
 		public static void setLorannModel(ILorannModel lorannModel) {
 			TryMove.lorannModel = lorannModel;
