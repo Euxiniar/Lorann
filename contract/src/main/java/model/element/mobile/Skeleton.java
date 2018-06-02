@@ -14,6 +14,7 @@ class Skeleton extends Monster{
 
 	public Skeleton(Position position) {
     	super('1', 0, 1, 8, Permeability.KILLER, position);
+    	this.setBehaviour(2);
 	}
 
 	@Override

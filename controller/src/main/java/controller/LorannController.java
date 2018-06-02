@@ -8,7 +8,9 @@ import java.sql.SQLException;
 import model.ILorannModel;
 import model.Level;
 import model.dao.LevelDAO;
+import model.element.IElement;
 import model.element.Map;
+import model.element.Permeability;
 import model.element.Position;
 import model.element.mobile.*;
 import model.element.mobile.MonsterFactory;
@@ -31,14 +33,14 @@ public class LorannController implements IOrderPerformer{
 			+ 					"|                  |E"
 			+ 					"|       | * |      |E"
 			+ 					"|       | D |      |E"
-			+ 					"|       O-O-O      |E"
-			+ 					"|         2        |E"
+			+ 					"|       O---O      |E"
+			+ 					"|       1   2      |E"
+			+ 					"| O--------------O |E"
 			+ 					"|                  |E"
-			+ 					"|                  |E"
-			+ 					"|P-----------------OE"
-			+ 					"|P  PPPPPPPPP    P |E"
-			+ 					"O----------------- |E"
-			+ 					"| K1  P   P    P   |E"
+			+ 					"|P-----------------|E"
+			+ 					"|P  P            P |E"
+			+ 					"|----------------- |E"
+			+ 					"| K1  P  4P  3 P   |E"
 			+ 					"O------------------OEF";
 	private int mapWidth = 13;
 	private int mapHeight = 20;
@@ -51,6 +53,7 @@ public class LorannController implements IOrderPerformer{
 	public LorannController(ILorannView lorannView, ILorannModel lorannModel) {
 		this.lorannModel = lorannModel;
 		this.lorannView = lorannView;
+		TryMove trymove = new TryMove(lorannModel);
 	}
 	
 	public void play() {
@@ -151,25 +154,54 @@ public class LorannController implements IOrderPerformer{
 	 */
 	@Override
 	public void orderPerform() {
+		if (lorannModel.getPlayer().getIsAlive()) {
 		try {
 			Thread.sleep(50);
 		} catch (InterruptedException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
-		TryMove tryMove = new TryMove(lorannModel);
 		UserOrder order = KeyToOrder();
 		TryMove.tryMovePlayer(lorannModel.getPlayer(), order.getOrder());
 		if (!lorannModel.getSpell().getIsAlive())
 			order = KeySpellToOrder();
-		tryMove.tryMoveSpell(lorannModel.getSpell(), order.getOrder());
+		TryMove.tryMoveSpell(lorannModel.getSpell(), order.getOrder());
 		
 		if (lorannModel.getPlayer().isPlayerhasMoved()) {
 			for (IMonster monster : lorannModel.getMonsters()) {
 				if (monster.getIsAlive())
-						tryMove.tryMoveMonster(monster, lorannModel.getPlayer());
+					TryMove.tryMoveMonster(monster, lorannModel.getPlayer());
 			}
 		}
+		
+		if (!lorannModel.getPlayer().getIsAlive()) {
+			if (lorannModel.getPlayer().getLife()>0) {
+				lorannModel.getPlayer().removeLife(1);
+				System.out.println(lorannModel.getPlayer().getLife());
+				IElement element = null;
+				for(int y = 0; y < lorannModel.getMap().getHeight(); y++) {
+	    			for(int x = 0; x < lorannModel.getMap().getWidth(); x++) {
+	    				element = lorannModel.getMap().getOnTheMap(new Position(x, y));
+	    				if(element.getSymbol() == 'D') {
+	    					element.setPermeability(Permeability.KILLER);
+	    				}
+	    			}
+	    		}
+				lorannModel.getMonsters().clear();
+				lorannModel.getPlayer().setPlayerhasMoved(false);
+				lorannModel.getPlayer().setScore(0);
+				lorannView.resetBools();
+				lorannModel.getPlayer().setDirection(Direction.STATIC);
+				lorannView.displayMessage("You died !");
+				lorannModel.getPlayer().setAlive(true);
+				play();
+				}
+			else {
+				lorannView.displayMessage("GameOver");
+				lorannView.closeAll();
+			}
+		}
+	}
 	}
 			
 
@@ -177,6 +209,8 @@ public class LorannController implements IOrderPerformer{
 	private UserOrder KeyToOrder() {
 		//Z, D, S, Q UP,RIGHT, DOWN, LEFT
 		boolean[] bools= lorannView.getBools();
+		for (int i = 0; i < bools.length -1; i++) {
+		}
 		
 		UserOrder order = null;
 			if (bools[0] && bools[1]) {
@@ -206,7 +240,6 @@ public class LorannController implements IOrderPerformer{
 			else {
 			order = new UserOrder(Order.STOP);
 			}
-			
 			return order;
 		}
 	
