@@ -24,7 +24,7 @@ import view.ILorannView;
  */
 public class LorannController implements IOrderPerformer{
 	private static boolean USE_BDD = true;
-	private static int numlevel = 1;
+	private static int numlevel = 11;
 	private static int TIME_SLEEP = 30;
 	private boolean gameHasStarted = false;
 	private boolean isGameOver	= false;
@@ -69,14 +69,8 @@ public class LorannController implements IOrderPerformer{
 		spellAnimator = new Animator(lorannModel.getSpell());
 		spellAnimator.setSpeed(200);
 		spellAnimator.start();
-//		try {
-//			Thread.sleep(1000);
-//		} catch (InterruptedException e) {
-//			// TODO Auto-generated catch block
-//			e.printStackTrace();
-//		}
+
 		gameLoop();
-		lorannView.displayMessage("You died !");
 	}
 	
 	public Level catchMapFromBDD(int id) {
@@ -193,6 +187,7 @@ public class LorannController implements IOrderPerformer{
 			else {
 				lorannView.displayMessage("GameOver");
 				lorannView.closeAll();
+				this.isGameOver = true;
 			}
 		}
 		if (lorannModel.getPlayer().getHasSucceedLvl()) {
@@ -204,7 +199,10 @@ public class LorannController implements IOrderPerformer{
 			loadLvl();
 			}
 			else {
+				lorannModel.getPlayer().setHasSucceedLvl(false);
 				lorannView.displayMessage("You win !!! :D");
+				lorannView.closeAll();
+				this.isGameOver=true;
 			}
 		}
 	}
