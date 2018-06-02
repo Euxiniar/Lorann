@@ -13,6 +13,7 @@ public class Player extends MobileElement{
 	private int life = 11;
 	private int score = 0;
 	private boolean isPlayerhasMoved = false;
+	private boolean hasSucceedLvl = false;
 
 	public Player(Position position) {
     	super('*', 0, 0, 8, Permeability.BLOCKING, position);
@@ -55,5 +56,13 @@ public class Player extends MobileElement{
 	
 	public void resetScore() {
     	this.setScore(0);
+	}
+	
+	public void setHasSucceedLvl(boolean hasSucceedLvl) {
+		this.hasSucceedLvl = hasSucceedLvl;
+	}
+	
+	public boolean getHasSucceedLvl() {
+		return  this.hasSucceedLvl;
 	}
 }

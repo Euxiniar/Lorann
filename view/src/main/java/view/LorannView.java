@@ -3,10 +3,8 @@ package view;
 import java.util.Observable;
 
 import javax.swing.JOptionPane;
-import javax.swing.SwingUtilities;
 
 import GameFrame.GameFrame;
-import controller.IOrderPerformer;
 import model.ILorannModel;
 
 @SuppressWarnings("deprecation")

@@ -8,9 +8,6 @@ import java.util.Observable;
 
 import javax.swing.JFrame;
 import javax.swing.SwingUtilities;
-
-import controller.EventPerformer;
-import view.IEventPerformer;
 	
 @SuppressWarnings("deprecation")
 //public class GameFrame extends JFrame implements KeyListener {
@@ -136,7 +133,6 @@ public class GameFrame extends JFrame implements KeyListener, Runnable {
 	
 	private static boolean[] tabBool = {boolZ,boolD,boolS,boolQ,boolUP,boolRIGHT,boolDOWN,boolLEFT};
 	
-	EventPerformer eventPerformer;
 	//-----------------------------eventPerformer---------------------------------------
 	//modify later
 	

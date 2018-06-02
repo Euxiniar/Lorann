@@ -12,12 +12,6 @@ import model.element.Position;
 class Krannox extends Monster{
 
 	public Krannox(Position position) {
-    	super('2', 0, 2, 7, Permeability.KILLER, position);
-	}
-
-	@Override
-	public Direction getMobDirection(IMonster monster, Player player) {
-		// TODO Auto-generated method stub
-		return null;
+    	super('2', 0, 2, 7, Permeability.KILLER, position, Behaviour.NORMAL);
 	}
 }

@@ -23,7 +23,7 @@ import view.ILorannView;
  *
  */
 public class LorannController implements IOrderPerformer{
-	private static boolean USE_BDD = false;
+	private static boolean USE_BDD = true;
 	private static int numlevel = 1;
 	private static int TIME_SLEEP = 30;
 	private boolean gameHasStarted = false;
@@ -33,7 +33,7 @@ public class LorannController implements IOrderPerformer{
 	private String mapString = 	"O------------------OE"
 			+ 					"| P                |E"
 			+ 					"|       | * |      |E"
-			+ 					"|       | D |      |E"
+			+ 					"|  K    | D |      |E"
 			+ 					"|       O---O      |E"
 			+ 					"|       1   2      |E"
 			+ 					"| O--------------O |E"
@@ -54,7 +54,7 @@ public class LorannController implements IOrderPerformer{
 	public LorannController(ILorannView lorannView, ILorannModel lorannModel) {
 		this.lorannModel = lorannModel;
 		this.lorannView = lorannView;
-		TryMove trymove = new TryMove(lorannModel);
+		TryMove.setLorannModel(lorannModel);
 	}
 	
 	public void play() {
@@ -67,7 +67,7 @@ public class LorannController implements IOrderPerformer{
 		monstersAnimator.setSpeed(100);
 		monstersAnimator.start();
 		spellAnimator = new Animator(lorannModel.getSpell());
-		spellAnimator.setSpeed(100);
+		spellAnimator.setSpeed(200);
 		spellAnimator.start();
 //		try {
 //			Thread.sleep(1000);
@@ -182,36 +182,52 @@ public class LorannController implements IOrderPerformer{
 		}
 		
 		if (!lorannModel.getPlayer().getIsAlive()) {
-			if (lorannModel.getPlayer().getLife()>=0) {
+			if (lorannModel.getPlayer().getLife()>=2) {
 				lorannModel.getPlayer().removeLife(1);
-				System.out.println(lorannModel.getPlayer().getLife());
-				IElement element = null;
-				for(int y = 0; y < lorannModel.getMap().getHeight(); y++) {
-	    			for(int x = 0; x < lorannModel.getMap().getWidth(); x++) {
-	    				element = lorannModel.getMap().getOnTheMap(new Position(x, y));
-	    				if(element.getSymbol() == 'D') {
-	    					element.setPermeability(Permeability.KILLER);
-	    				}
-	    			}
-	    		}
-				lorannModel.getMonsters().clear();
-				lorannModel.getPlayer().setPlayerhasMoved(false);
-				lorannModel.getPlayer().setScore(0);
-				lorannView.resetBools();
-				lorannModel.getPlayer().setDirection(Direction.STATIC);
-				lorannView.displayMessage("You died !");
-				lorannModel.getPlayer().setAlive(true);
-				play();
-				}
+		        lorannView.displayMessage("You died !");
+		        lorannModel.getPlayer().setScore(lorannModel.getPlayer().getScore()-1000);
+		        if(lorannModel.getPlayer().getScore() < 0)
+		        	lorannModel.getPlayer().setScore(0);
+				loadLvl();
+			}
 			else {
 				lorannView.displayMessage("GameOver");
 				lorannView.closeAll();
 			}
 		}
+		if (lorannModel.getPlayer().getHasSucceedLvl()) {
+			if (numlevel <= 6) {
+				numlevel += 1;
+			System.out.println("You achieved the Level !");
+			lorannView.displayMessage("You achieved the Level !");
+			lorannModel.getPlayer().setHasSucceedLvl(false);
+			loadLvl();
+			}
+			else {
+				lorannView.displayMessage("You win !!! :D");
+			}
+		}
 	}
 	}
 			
-
+	private void loadLvl() {
+        System.out.println(lorannModel.getPlayer().getLife());
+        IElement element = null;
+        for(int y = 0; y < lorannModel.getMap().getHeight(); y++) {
+            for(int x = 0; x < lorannModel.getMap().getWidth(); x++) {
+                element = lorannModel.getMap().getOnTheMap(new Position(x, y));
+                if(element.getSymbol() == 'D') {
+                    element.setPermeability(Permeability.KILLER);
+                }
+            }
+        }
+        lorannModel.getMonsters().clear();
+        lorannModel.getPlayer().setPlayerhasMoved(false);
+        lorannView.resetBools();
+        lorannModel.getPlayer().setDirection(Direction.STATIC);
+        lorannModel.getPlayer().setAlive(true);
+        play();
+        }
 	
 	private UserOrder KeyToOrder() {
 		//Z, D, S, Q UP,RIGHT, DOWN, LEFT
