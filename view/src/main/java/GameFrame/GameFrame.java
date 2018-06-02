@@ -214,7 +214,7 @@ public class GameFrame extends JFrame implements KeyListener, Runnable {
 	}
 	
 	public void resetBools() {
-		for (int i = 0; i < tabBool.length -1; i++) {
+		for (int i = 0; i < tabBool.length; i++) {
 			tabBool[i] = false;
 		}
 	}
