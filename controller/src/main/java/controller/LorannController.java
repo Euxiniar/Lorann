@@ -24,6 +24,7 @@ import view.ILorannView;
  */
 public class LorannController implements IOrderPerformer{
 	private static boolean USE_BDD = false;
+	private static int numlevel = 1;
 	private static int TIME_SLEEP = 30;
 	private boolean isGameOver	= false;
 	private final ILorannModel lorannModel;
@@ -119,7 +120,7 @@ public class LorannController implements IOrderPerformer{
 	public void buildMap() {
 		Level level = new Level(1, mapString, this.mapWidth, this.mapHeight);
 		if(USE_BDD) {
-			level = catchMapFromBDD(1);
+			level = catchMapFromBDD(numlevel);
 		}
 			
 		int i = 0, y = 0, x = 0;
