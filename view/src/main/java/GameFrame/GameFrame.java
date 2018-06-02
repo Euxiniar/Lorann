@@ -213,8 +213,14 @@ public class GameFrame extends JFrame implements KeyListener, Runnable {
 	
 	}
 
-	public synchronized boolean[] getBools() {
+	public boolean[] getBools() {
 		return tabBool;
+	}
+	
+	public void resetBools() {
+		for (int i = 0; i < tabBool.length -1; i++) {
+			tabBool[i] = false;
+		}
 	}
 
 
