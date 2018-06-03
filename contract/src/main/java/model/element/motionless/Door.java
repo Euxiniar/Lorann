@@ -9,12 +9,14 @@ import model.element.Position;
  * @author Charles Agostini
  * @version 1.0
  */
-class Door extends MotionlessElement {
+public class Door extends MotionlessElement {
     
     /**
      * Instantiates a new Door.
+     * @param position
+     * 			the position.
      */
-	Door(Position position) {
+	public Door(Position position) {
     	super('D', 0, 9, 2, Permeability.KILLER, position);
     }
 	

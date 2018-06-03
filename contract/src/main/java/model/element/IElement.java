@@ -64,7 +64,8 @@ public interface IElement {
 	 */
 	void setAlive(boolean isAlive);
 	/**
-	 * @deprecated Sets the position with coordinates.
+	 * @deprecated Sets the position with coordinates
+	 * replaced by {@link #setPosition(Position position)}
 	 * @param x
 	 * 			the x position.
 	 * @param y

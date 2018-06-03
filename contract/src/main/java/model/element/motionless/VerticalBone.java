@@ -9,10 +9,12 @@ import model.element.Position;
  * @author Charles Agostini
  * @version 1.0
  */
-class VerticalBone extends MotionlessElement {
+public class VerticalBone extends MotionlessElement {
     
-    /**
+	/**
      * Instantiates a new VerticalBone.
+     * @param position
+     * 			the position.
      */
     public VerticalBone(Position position) {
     	super('|', 1, 6, Permeability.BLOCKING, position);

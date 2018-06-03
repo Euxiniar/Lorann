@@ -24,7 +24,7 @@ import view.ILorannView;
  */
 public class LorannController implements IOrderPerformer{
 	private static boolean USE_BDD = true;
-	private static int numlevel = 102;
+	private static int numlevel = 1;
 	private static int TIME_SLEEP = 30;
 	private boolean gameHasStarted = false;
 	private boolean isGameOver	= false;
