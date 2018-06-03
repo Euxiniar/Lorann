@@ -19,15 +19,14 @@ import javax.swing.SwingUtilities;
 public class GameFrame extends JFrame implements KeyListener, Runnable {
 	
 	/**
-	 * 
+	 * the serialVersionUID
 	 */
 	private static final long serialVersionUID = 1L;
 	//----------------------------Key Boolean------------------------------------------
 
-/**
- * 
- */
-
+	/**
+	 * all the boolean order
+	 */
 	private static boolean boolZ = false;
 	private static boolean boolD = false;
 	private static boolean boolS = false;
@@ -38,19 +37,37 @@ public class GameFrame extends JFrame implements KeyListener, Runnable {
 	private static boolean boolDOWN = false;
 	private static boolean boolLEFT = false;
 	
+	/**
+	 * a array witch contain all the orders bools
+	 */
 	private static boolean[] tabBool = {boolZ,boolD,boolS,boolQ,boolUP,boolRIGHT,boolDOWN,boolLEFT};
 	
 	//-----------------------------eventPerformer---------------------------------------
 	//modify later
-	
+	/**
+	 * the observable
+	 */
 	Observable observable;
+	/**
+	 * *the graphicsBuilder
+	 */
 	IGraphicsBuilder graphicsBuilder;
+	/**
+	 * the title of the frame
+	 */
 	String title;
 	
 	//D---------------------------detect the key in use and start eventPerform--------------
-	
-	public GameFrame(final String title, final IGraphicsBuilder graphicsBuilder, final Observable observable)
-			throws HeadlessException {
+	/**
+	 * Constructor of GameFrame
+	 * @param title
+	 * set the title of the Frame in the object GameFrame
+	 * @param graphicsBuilder
+	 * set the graphicsBuilder in the object GameFrame
+	 * @param observable
+	 * set the observable  in the object GameFrame
+	 */
+	public GameFrame(final String title, final IGraphicsBuilder graphicsBuilder, final Observable observable){
 		this.observable = observable;
 		this.graphicsBuilder = graphicsBuilder;
 		this.title = title;
@@ -115,11 +132,17 @@ public class GameFrame extends JFrame implements KeyListener, Runnable {
 		// TODO Auto-generated method stub
 	
 	}
-
+	/**
+	 * get the order bools
+	 * @return
+	 * the orders bools
+	 */
 	public boolean[] getBools() {
 		return tabBool;
 	}
-	
+	/**
+	 * reset the orders bools
+	 */
 	public void resetBools() {
 		for (int i = 0; i < tabBool.length; i++) {
 			tabBool[i] = false;

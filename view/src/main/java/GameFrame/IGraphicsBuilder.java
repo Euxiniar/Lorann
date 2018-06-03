@@ -8,6 +8,10 @@ package GameFrame;
 import java.awt.Graphics;
 
 public interface IGraphicsBuilder {
+	/**
+	 * draw All the components
+	 * @param graphics
+	 */
 	public void applyModelToGraphic(Graphics graphics);
 
 }
