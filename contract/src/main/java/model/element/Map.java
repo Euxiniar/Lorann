@@ -1,11 +1,11 @@
+package model.element;
+
 /**
  * <h1>The Map.java Class.</h1>
  *
  * @author Charles Agostini
  * @version 1.0
  */
-package model.element;
-
 public class Map {
 	private static int WIDTH = 20;    
 	private static int HEIGHT = 13;
