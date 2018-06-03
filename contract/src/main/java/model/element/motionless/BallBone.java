@@ -13,6 +13,8 @@ class BallBone extends MotionlessElement {
     
     /**
      * Instantiates a new BallBone.
+     * @param position
+     * 			the position.
      */
 	BallBone(Position position) {
     	super('O', 2, 6, Permeability.BLOCKING, position);

@@ -11,8 +11,10 @@ import model.element.Position;
  */
 class VerticalBone extends MotionlessElement {
     
-    /**
+	/**
      * Instantiates a new VerticalBone.
+     * @param position
+     * 			the position.
      */
     public VerticalBone(Position position) {
     	super('|', 1, 6, Permeability.BLOCKING, position);

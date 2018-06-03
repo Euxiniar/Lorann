@@ -13,6 +13,8 @@ class Door extends MotionlessElement {
     
     /**
      * Instantiates a new Door.
+     * @param position
+     * 			the position.
      */
 	Door(Position position) {
     	super('D', 0, 9, 2, Permeability.KILLER, position);

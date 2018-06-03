@@ -11,8 +11,10 @@ import model.element.Position;
  */
 class Key extends MotionlessElement {
     
-    /**
+	/**
      * Instantiates a new Key.
+     * @param position
+     * 			the position.
      */
 	Key(Position position) {
     	super('K', 0, 7, Permeability.GRABABLE, position);

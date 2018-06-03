@@ -23,6 +23,7 @@ public class LevelDAO extends AbstractDAO{
 	 * 		the id.
 	 * @return the string code.
 	 * @throws SQLException
+	 * 			the SQL exception.
 	 */
     public static Level getCodeLevel(final int id) throws SQLException {
     	final CallableStatement callStatement = prepareCall(codeLevel);
