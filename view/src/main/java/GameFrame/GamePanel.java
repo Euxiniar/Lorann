@@ -29,6 +29,6 @@ public class GamePanel extends JPanel implements Observer{
 	
 	@Override
 	public void paintComponent(Graphics g) {
-		this.graphicsBuilder.applyModelToGraphic(g, this);
+		this.graphicsBuilder.applyModelToGraphic(g);
 	}
 }

@@ -3,7 +3,6 @@ package view;
 import java.awt.Color;
 import java.awt.Font;
 import java.awt.Graphics;
-import java.awt.image.ImageObserver;
 
 import GameFrame.IGraphicsBuilder;
 import model.ILorannModel;
@@ -24,12 +23,12 @@ class GraphicsBuilder implements IGraphicsBuilder {
 	}
 
 	@Override
-	public void applyModelToGraphic(final Graphics graphics, final ImageObserver observer) {
+	public void applyModelToGraphic(final Graphics graphics) {
 		if(lorannModel.getMap() != null && lorannModel.getPlayer() != null && lorannModel.getMonsters() != null) {
 	        clearScreen(graphics);
 	        buildMapGraph(graphics);
 	        drawMonsters(graphics);
-	        drawPlayer(graphics, observer);
+	        drawPlayer(graphics);
 	        drawSpell(graphics);
 	        drawScore(graphics);
 	        drawLife(graphics);
@@ -59,7 +58,7 @@ class GraphicsBuilder implements IGraphicsBuilder {
 		}
 	}
 	
-	private void drawPlayer(Graphics g, ImageObserver observer) {
+	private void drawPlayer(Graphics g) {
 		if (lorannModel.getPlayer().getIsAlive() == true)
 			g.drawImage(lorannModel.getPlayer().getSelectedImage(), lorannModel.getPlayer().getPosition().getX()*50, lorannModel.getPlayer().getPosition().getY()*50, 50, 50, null);
 	}

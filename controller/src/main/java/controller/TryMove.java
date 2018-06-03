@@ -1,6 +1,3 @@
-/**
- * 
- */
 package controller;
 
 import model.ILorannModel;
@@ -13,7 +10,7 @@ import model.element.mobile.Player;
 import model.element.mobile.Spell;
 
 /**
- * <h1>The TryMove.java Class.</h1>
+ * <h1>The TryMove Class.</h1>
  *
  * @author Charles Agostini / Vicente Vaz / Anatole Couasnon / Louis Marjolet
  * @version 1.0
