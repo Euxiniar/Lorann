@@ -1,6 +1,6 @@
 package view;
 /**
- * <h1>The ILorannView.java Class.</h1>
+ * <h1>The ILorannView Class.</h1>
  *
  * @author Anatole Couasnon
  * @version 1.0

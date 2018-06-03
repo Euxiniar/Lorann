@@ -1,7 +1,7 @@
 package model.element;
 
 /**
- * <h1>The Map.java Class.</h1>
+ * <h1>The Map Class.</h1>
  *
  * @author Charles Agostini
  * @version 1.0

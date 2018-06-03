@@ -9,7 +9,7 @@ import model.element.Position;
  * @author Charles Agostini
  * @version 1.0
  */
-class Crocrodil extends Monster {
+public class Crocrodil extends Monster {
 
 	/**
 	 * Creates a Crocrodil.

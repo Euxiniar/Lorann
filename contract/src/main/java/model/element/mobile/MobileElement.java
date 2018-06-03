@@ -1,15 +1,15 @@
-/**
- * <h1>The MobileElement.java Class.</h1>
- *
- * @author Charles Agostini
- * @version 1.0
- */
 package model.element.mobile;
 
 import model.element.Element;
 import model.element.Permeability;
 import model.element.Position;
 
+/**
+ * <h1>The MobileElement Class.</h1>
+ *
+ * @author Charles Agostini
+ * @version 1.0
+ */
 public abstract class MobileElement extends Element {
 
 	/**
@@ -51,7 +51,7 @@ public abstract class MobileElement extends Element {
 	 * 			the position of the element.
 	 */
 	public MobileElement(char symbol, int xSpritePos, int ySpritePos,
-			Permeability permeability, int xPos, int yPos, Position position) {
+			Permeability permeability, Position position) {
 		this(symbol, xSpritePos, ySpritePos, 1, permeability, position);
 	}
 	

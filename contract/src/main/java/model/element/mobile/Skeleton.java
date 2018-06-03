@@ -9,7 +9,7 @@ import model.element.Position;
  * @author Charles Agostini
  * @version 1.0
  */
-class Skeleton extends Monster{
+public class Skeleton extends Monster{
 	
 	/**
 	 * Creates a Skeleton.

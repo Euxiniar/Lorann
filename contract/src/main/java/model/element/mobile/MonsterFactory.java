@@ -3,7 +3,7 @@ package model.element.mobile;
 import model.element.Position;
 
 /**
- * <h1>The MonsterFactory.java Class.</h1>
+ * <h1>The MonsterFactory Class.</h1>
  *
  * @author Charles Agostini
  * @version 1.0

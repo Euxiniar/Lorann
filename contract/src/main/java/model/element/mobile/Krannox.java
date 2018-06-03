@@ -4,13 +4,13 @@ import model.element.Permeability;
 import model.element.Position;
 
 /**
- * <h1>The Krannox.java Class.</h1>
+ * <h1>The Krannox Class.</h1>
  *
  * @author Charles Agostini
  * @version 1.0
  */
 
-class Krannox extends Monster{
+public class Krannox extends Monster{
 
 	/**
 	 * Creates a Krannox.

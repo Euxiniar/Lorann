@@ -3,7 +3,7 @@ package model.element.mobile;
 import model.element.IElement;
 
 /**
- * <h1>The IMonster.java Class.</h1>
+ * <h1>The IMonster Interface.</h1>
  *
  * @author Charles Agostini
  * @version 1.0

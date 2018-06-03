@@ -12,7 +12,7 @@ import java.sql.Statement;
  * @author Charles Agostini/Vicente Vaz
  * @version 1.0
  */
-final class LorannBDDConnector {
+public final class LorannBDDConnector {
 
     /** The instance. */
     private static LorannBDDConnector instance;

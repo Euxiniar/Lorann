@@ -64,6 +64,7 @@ public class Player extends MobileElement{
 	/**
 	 * Sets the player's life.
 	 * @param life
+	 * 			the number of lifes.
 	 */
 	public void setLife(int life) {
 		this.life = life;

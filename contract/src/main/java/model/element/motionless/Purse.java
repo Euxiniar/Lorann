@@ -16,7 +16,7 @@ public class Purse extends MotionlessElement {
      * @param position
      * 			the position.
      */
-	Purse(Position position) {
+	public Purse(Position position) {
     	super('P', 0, 8, Permeability.GRABABLE, position);
     }
 }

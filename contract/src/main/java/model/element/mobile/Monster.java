@@ -4,7 +4,7 @@ import model.element.Permeability;
 import model.element.Position;
 
 /**
- * <h1>The Monster.java Class.</h1>
+ * <h1>The Monster Class.</h1>
  *
  * @author Charles Agostini
  * @version 1.0

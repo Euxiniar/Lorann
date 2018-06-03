@@ -10,14 +10,14 @@ import model.element.Position;
  * @author Charles Agostini
  * @version 1.0
  */
-class HorizontalBone extends MotionlessElement {
+public class HorizontalBone extends MotionlessElement {
     
 	/**
      * Instantiates a new HorizontalBone.
      * @param position
      * 			the position.
      */
-	HorizontalBone(Position position) {
+	public HorizontalBone(Position position) {
     	super('-', 0, 6, Permeability.BLOCKING, position);
     }
 }

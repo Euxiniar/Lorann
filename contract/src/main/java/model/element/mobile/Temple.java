@@ -9,7 +9,7 @@ import model.element.Position;
  * @author Charles Agostini
  * @version 1.0
  */
-class Temple extends Monster{
+public class Temple extends Monster{
 
 	/**
 	 * Creates a Crocrodil.

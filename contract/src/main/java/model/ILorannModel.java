@@ -62,7 +62,7 @@ public interface ILorannModel {
 	
 	/**
 	 * Call the view observer.
-	 * @see view.GameFrame.GamePanel
+	 * @see view.ILorannView
 	 */
 	public void setMobilesHavesMoved();
 }
