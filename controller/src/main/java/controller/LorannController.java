@@ -235,16 +235,16 @@ public class LorannController implements IOrderPerformer{
 				loadLvl();
 			}
 			else {
-				lorannView.displayMessage("GameOver");
-				lorannView.closeAll();
-				this.isGameOver = true;
+				lorannView.displayMessage("GameOver ! :(");
+				this.numlevel = 1;
+				loadLvl();
 			}
 		}
 		if (lorannModel.getPlayer().getHasSucceedLvl()) {
-			if (numlevel <= 6) {
+			String message = "You achieved the Level " + numlevel + " !";
+			lorannView.displayMessage(message);
+			if (numlevel <= 13) {
 				numlevel += 1;
-			System.out.println("You achieved the Level !");
-			lorannView.displayMessage("You achieved the Level !");
 			lorannModel.getPlayer().setHasSucceedLvl(false);
 			loadLvl();
 			}
