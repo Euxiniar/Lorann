@@ -17,19 +17,43 @@ import model.element.motionless.MotionlessElementFactory;
 import view.ILorannView;
 
 /**
- * <h1>The LorannController.java Class.</h1>
+ * <h1>The LorannController Class.</h1>
  *
  * @author Charles Agostini / Vicente Vaz / Anatole Couasnon / Louis Marjolet
  * @version 1.0
  */
 public class LorannController implements IOrderPerformer{
-	private static boolean USE_BDD = true;
+	/**
+	 * The constante to set the use of data base.
+	 */
+	private static boolean USE_DB = true;
+	/**
+	 * The level number.
+	 */
 	private static int numlevel = 1;
+	/**
+	 * The thread time sleep constant.
+	 */
 	private static int TIME_SLEEP = 30;
+	/**
+	 * Do the game has started.
+	 */
 	private boolean gameHasStarted = false;
+	/**
+	 * Do the game has finished.
+	 */
 	private boolean isGameOver	= false;
+	/**
+	 * The lorannModel.
+	 */
 	private final ILorannModel lorannModel;
+	/**
+	 * The lorannVIew.
+	 */
 	private ILorannView lorannView;
+	/**
+	 * The local map.
+	 */
 	private String mapString = 	"O------------------OE"
 			+ 					"| P                |E"
 			+ 					"|       | * |      |E"
@@ -43,20 +67,39 @@ public class LorannController implements IOrderPerformer{
 			+ 					"|----------------- |E"
 			+ 					"| K1  P  4P  3 P   |E"
 			+ 					"O------------------OEF";
+	/**
+	 * the local map width.
+	 */
 	private int mapWidth = 20;
+	/**
+	 * the local map height.
+	 */
 	private int mapHeight = 13;
 	//private String mapString = "|-ODDE*1234EPK   EF";
 	
+	/**
+	 * The animators.
+	 */
 	private Animator playerAnimator;
 	private Animator monstersAnimator;
 	private Animator spellAnimator;
 	
+	/**
+	 * Creates a lorannController.
+	 * @param lorannView
+	 * 			the lorannView.
+	 * @param lorannModel
+	 * 			the lorannModel.
+	 */
 	public LorannController(ILorannView lorannView, ILorannModel lorannModel) {
 		this.lorannModel = lorannModel;
 		this.lorannView = lorannView;
 		TryMove.setLorannModel(lorannModel);
 	}
 	
+	/**
+	 * Launch the game.
+	 */
 	public void play() {
 		buildMap();
 		this.gameHasStarted = true;
@@ -73,21 +116,35 @@ public class LorannController implements IOrderPerformer{
 		gameLoop();
 	}
 	
-	public Level catchMapFromBDD(int id) {
+	/**
+	 * Catch the map from the database.
+	 * @param id
+	 *				the id.
+	 * @return	the level.
+	 * @see model.Level 
+	 */
+	public Level catchMapFromDB(int id) {
 		Level level = null;
 		try {
 			level = LevelDAO.getCodeLevel(id);
 		} catch (SQLException e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
 		return level;
 	}
 	
+	/**
+	 * Sets the lorannView
+	 * @param lorannView
+	 * 			the lorannView.
+	 */
 	public void setLorannView(ILorannView lorannView) {
 		this.lorannView = lorannView;
 	}
 	
+	/**
+	 * The game loop.
+	 */
 	private void gameLoop() {
 		while (!this.isGameOver) {
 			try {
@@ -99,24 +156,18 @@ public class LorannController implements IOrderPerformer{
 			monstersAnimator.update(System.currentTimeMillis());
 			spellAnimator.update(System.currentTimeMillis());
 			
-//			final ArrayList<MobileElement> initialMobileElement = new ArrayList<MobileElement>();
-//			for (final MobileElement element : this.lorannModel.getElement()) {
-//				initialMobilesElement.add(element);
-//			}
-//			for (final IMobile mobile : initialMobiles) {
-//				mobile.move();
-//				if (mobile.isWeapon()) {
-//					this.manageCollision(mobile);
-//				}
-//			}
 			this.lorannModel.setMobilesHavesMoved();
 			orderPerform();
 		}
 	}
+	
+	/**
+	 * build the map, fill the monster array, and the player.
+	 */
 	public void buildMap() {
 		Level level = new Level(1, mapString, this.mapHeight, this.mapWidth);
-		if(USE_BDD) {
-			level = catchMapFromBDD(numlevel);
+		if(USE_DB) {
+			level = catchMapFromDB(numlevel);
 		}
 			
 		int i = 0, y = 0, x = 0;
@@ -159,7 +210,6 @@ public class LorannController implements IOrderPerformer{
 		try {
 			Thread.sleep(50);
 		} catch (InterruptedException e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
 		UserOrder order = KeyToOrder();
@@ -207,7 +257,10 @@ public class LorannController implements IOrderPerformer{
 		}
 	}
 	}
-			
+		
+	/**
+	 * Load the next level.
+	 */
 	private void loadLvl() {
         System.out.println(lorannModel.getPlayer().getLife());
         IElement element = null;
@@ -227,8 +280,11 @@ public class LorannController implements IOrderPerformer{
         play();
         }
 	
+	/**
+	 * Gets the booleans from the view and transform it to Orders.
+	 * @return the user orders.
+	 */
 	private UserOrder KeyToOrder() {
-		//Z, D, S, Q UP,RIGHT, DOWN, LEFT
 		boolean[] bools= lorannView.getBools();
 		for (int i = 0; i < bools.length -1; i++) {
 		}
@@ -264,6 +320,10 @@ public class LorannController implements IOrderPerformer{
 			return order;
 		}
 	
+	/**
+	 * Gets the booleans from the view and transform it to Orders.
+	 * @return the user order.
+	 */
 	private UserOrder KeySpellToOrder() {
 		
 		boolean[] bools= lorannView.getBools();
@@ -298,6 +358,6 @@ public class LorannController implements IOrderPerformer{
 		order = new UserOrder(Order.STOP);
 		}
 		return order;
-}
 	}
-//}
+}
+

@@ -10,7 +10,7 @@ import model.element.mobile.Spell;
 /**
  * <h1>The ILorannModel Class.</h1>
  *
- * @author Charles Agostini/ Couasnon Anatole / Vicente Vaz
+ * @author Charles Agostini/ Couasnon Anatole / Vicente Vaz / Louis Marjolet
  * @version 1.0
  */
 public class Collisions {
@@ -88,6 +88,7 @@ public class Collisions {
 	 * @param element
 	 * 			the element to test
 	 * @param lorannmodel
+	 * 			the lorannModel
 	 * @return true if there's a door at the element position, false if not.
 	 */
 	public static boolean testCaseDoor(IElement element, ILorannModel lorannmodel) {
