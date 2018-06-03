@@ -30,7 +30,7 @@ public class LorannController implements IOrderPerformer{
 	/**
 	 * The level number.
 	 */
-	private static int numlevel = 1;
+	private static int numlevel = 4;
 	/**
 	 * The thread time sleep constant.
 	 */
@@ -236,14 +236,15 @@ public class LorannController implements IOrderPerformer{
 			}
 			else {
 				lorannView.displayMessage("GameOver ! :(");
-				this.numlevel = 1;
+				LorannController.numlevel = 1;
+				this.gameHasStarted = false;
 				loadLvl();
 			}
 		}
 		if (lorannModel.getPlayer().getHasSucceedLvl()) {
 			String message = "You achieved the Level " + numlevel + " !";
 			lorannView.displayMessage(message);
-			if (numlevel <= 13) {
+			if (numlevel < 16) {
 				numlevel += 1;
 			lorannModel.getPlayer().setHasSucceedLvl(false);
 			loadLvl();

@@ -1,7 +1,6 @@
 package GameFrame;
 
 import java.awt.Color;
-import java.awt.HeadlessException;
 import java.awt.event.KeyEvent;
 import java.awt.event.KeyListener;
 import java.util.Observable;
@@ -38,7 +37,7 @@ public class GameFrame extends JFrame implements KeyListener, Runnable {
 	private static boolean boolLEFT = false;
 	
 	/**
-	 * a array witch contain all the orders bools
+	 * An array witch contain all the orders bools.
 	 */
 	private static boolean[] tabBool = {boolZ,boolD,boolS,boolQ,boolUP,boolRIGHT,boolDOWN,boolLEFT};
 	
@@ -74,10 +73,6 @@ public class GameFrame extends JFrame implements KeyListener, Runnable {
 		
 		this.addKeyListener(this);
 		SwingUtilities.invokeLater(this);
-		
-		
-		
-		//this.eventPerformer = new EventPerformer();
 	}
 	
 	

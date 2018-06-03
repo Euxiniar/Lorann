@@ -1,18 +1,20 @@
 package GameFrame;
 
 import java.awt.Graphics;
+
 import java.util.Observable;
 import java.util.Observer;
 
 
 import javax.swing.JPanel;
+
+@SuppressWarnings("deprecation")
 /**
  * <h1>The GamePanel.java Class.</h1>
  *
  * @author Anatole Couasnon
  * @version 1.0
  */
-@SuppressWarnings("deprecation")
 public class GamePanel extends JPanel implements Observer{
 	/**
 	 * set the serialVersionUID
@@ -27,6 +29,7 @@ public class GamePanel extends JPanel implements Observer{
 	/**
 	 * the constructor, set the graphicsBuilder
 	 * @param graphicsBuilder
+	 * 				the graphics builder.
 	 */
 	public GamePanel(IGraphicsBuilder graphicsBuilder) {
 		this.graphicsBuilder = graphicsBuilder;
