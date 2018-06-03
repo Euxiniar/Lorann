@@ -340,28 +340,32 @@ public class TryMove {
 //___________________________________________________________________________________________________________________________________
 //______________________Movement of the monster with the behaviour 3_________________________________________________________________
 		public static void movementMonster3(IMonster monster, Position theoricalPosition, Player player) {
-			if(monster.getCounter() == 4) {
-				monster.setCounter(0);
-				monster.setRotationDirection(!monster.isRotationDirection());
-			}
-			else {
-				monster.setCounter(monster.getCounter() + 1);
-			}
+			//theoricalPosition = getTheoricalPositionElement(monster, monster.getDirection());
+
 			if (Collisions.testNextCaseWall(monster, theoricalPosition, lorannModel) || Collisions.testNextCaseObjectGrabable(monster, theoricalPosition, lorannModel) || Collisions.testNextCaseDoor(monster, theoricalPosition, lorannModel)) {
-				if(monster.isRotationDirection()) { 
-					monster.setDirection(changeClockwiseMonsterDirection(monster.getDirection()));
-				}
+				if (Collisions.testNextCaseWall(monster, getTheoricalPositionElement(monster, getMobDirection(monster, player)), lorannModel) || Collisions.testNextCaseObjectGrabable(monster, getTheoricalPositionElement(monster, getMobDirection(monster, player)), lorannModel) || Collisions.testNextCaseDoor(monster, getTheoricalPositionElement(monster, getMobDirection(monster, player)), lorannModel))
+					if(monster.isRotationDirection()) {
+						monster.setDirection(changeClockwiseMonsterDirection(monster.getDirection()));
+						theoricalPosition = getTheoricalPositionElement(monster, monster.getDirection());
+						movementMonster3(monster, theoricalPosition, player);
+					}
+					else {
+						monster.setDirection(changeCounterclockwiseMonsterDirection(monster.getDirection()));
+						theoricalPosition = getTheoricalPositionElement(monster, monster.getDirection());
+						movementMonster3(monster, theoricalPosition, player);
+					}
 				else {
-					monster.setDirection(changeCounterclockwiseMonsterDirection(monster.getDirection()));
+					monster.setDirection(getMobDirection(monster, player));
+					//monster.setPosition(getTheoricalPositionElement(monster, monster.getDirection()));
 					theoricalPosition = getTheoricalPositionElement(monster, monster.getDirection());
 					movementMonster3(monster, theoricalPosition, player);
 				}
 			}
 			else {
-				monster.setPosition(theoricalPosition);
+				monster.setPosition(theoricalPosition); 
 			}
-}
-//___________________________________________________________________________________________________________________________________
+		}
+//__________________________________________________________________________________________________________________________
 
 
 		public static void tryMoveSpell(Spell spell, Order order) {
