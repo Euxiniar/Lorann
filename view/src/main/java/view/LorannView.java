@@ -15,10 +15,25 @@ import model.ILorannModel;
  * @version 1.0
  */
 public class LorannView implements ILorannView{
+	/**
+	 * the graphicsBuilder
+	 */
 	private final GraphicsBuilder graphicsBuilder;
+	/**
+	 * the observable
+	 */
 	private final Observable observable;
+	/**
+	 * the gameFrame
+	 */
 	private GameFrame gameFrame;
 	
+	/**
+	 * The constructor, set the parameters
+	 * @param lorannModel
+	 * contain all the usefull elements 
+	 * @param observable
+	 */
 	public LorannView(ILorannModel lorannModel , Observable observable ) {
 		this.observable = observable;
 		this.graphicsBuilder = new GraphicsBuilder(lorannModel);

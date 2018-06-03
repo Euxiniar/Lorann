@@ -14,10 +14,20 @@ import javax.swing.JPanel;
  */
 @SuppressWarnings("deprecation")
 public class GamePanel extends JPanel implements Observer{
-
+	/**
+	 * set the serialVersionUID
+	 */
 	private static final long serialVersionUID = 1L;
+	/**
+	 * the object graphicsBuilder
+	 */
 	private final IGraphicsBuilder	graphicsBuilder;
-
+	
+	
+	/**
+	 * the constructor, set the graphicsBuilder
+	 * @param graphicsBuilder
+	 */
 	public GamePanel(IGraphicsBuilder graphicsBuilder) {
 		this.graphicsBuilder = graphicsBuilder;
 	}

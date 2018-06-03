@@ -36,11 +36,21 @@ class GraphicsBuilder implements IGraphicsBuilder {
 
 	}
 	
+	/**
+	 * Clear the screen
+	 * @param g
+	 * to paint on the gamePanel
+	 */
 	private void clearScreen(Graphics g) {
 		g.setColor(Color.BLACK);
 		g.fillRect(0, 0, 1000, 800);
 	}
 	
+	/**
+	 * draw the map
+	 * @param g
+	 * to paint on the gamePanel
+	 */
 	private void buildMapGraph(Graphics g) {
 		int x = 0, y = 0;
 		Position position = new Position(x,y);
@@ -58,17 +68,32 @@ class GraphicsBuilder implements IGraphicsBuilder {
 		}
 	}
 	
+	/**
+	 * draw the player
+	 * @param g
+	 * to paint on the gamePanel
+	 */
 	private void drawPlayer(Graphics g) {
 		if (lorannModel.getPlayer().getIsAlive() == true)
 			g.drawImage(lorannModel.getPlayer().getSelectedImage(), lorannModel.getPlayer().getPosition().getX()*50, lorannModel.getPlayer().getPosition().getY()*50, 50, 50, null);
 	}
 	
+	/**
+	 * draw the spell
+	 * @param g
+	 * to paint on the gamePanel
+	 */
 	private void drawSpell(Graphics g) {
 		if (lorannModel.getSpell().getIsAlive() == true) {
 			g.drawImage(lorannModel.getSpell().getSelectedImage(), lorannModel.getSpell().getPosition().getX()*50, lorannModel.getSpell().getPosition().getY()*50, 50, 50, null);
 		}
 	}
 	
+	/**
+	 * draw all the monsters
+	 * @param g
+	 * to paint on the gamePanel
+	 */
 	private void drawMonsters(Graphics g) {
 		for (IMonster monster : lorannModel.getMonsters()) {
 			if (monster.getIsAlive() == true) {
@@ -77,6 +102,11 @@ class GraphicsBuilder implements IGraphicsBuilder {
 		}
 	}
 	
+	/**
+	 * draw the score
+	 * @param g
+	 * to paint on the gamePanel
+	 */
 	private void drawScore(Graphics g) {
 		Font font = new Font("Courier", Font.BOLD, 30);
         g.setFont(font);
@@ -88,6 +118,11 @@ class GraphicsBuilder implements IGraphicsBuilder {
         g.drawString(String.valueOf(lorannModel.getPlayer().getScore()), 300, 680);
 	}
 	
+	/**
+	 * draw the life
+	 * @param g
+	 * to paint on the gamePanel
+	 */
 	private void drawLife(Graphics g) {
 		Font font = new Font("Courier", Font.BOLD, 30);
         g.setFont(font);
