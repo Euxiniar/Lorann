@@ -95,9 +95,11 @@ class GraphicsBuilder implements IGraphicsBuilder {
 	 * to paint on the gamePanel
 	 */
 	private void drawMonsters(Graphics g) {
-		for (IMonster monster : lorannModel.getMonsters()) {
-			if (monster.getIsAlive() == true) {
-				g.drawImage(monster.getSelectedImage(), monster.getPosition().getX()*50, monster.getPosition().getY()*50, 50, 50, null);
+		if(!lorannModel.getMonsters().isEmpty()) {
+			for (IMonster monster : lorannModel.getMonsters()) {
+				if (monster.getIsAlive() == true) {
+					g.drawImage(monster.getSelectedImage(), monster.getPosition().getX()*50, monster.getPosition().getY()*50, 50, 50, null);
+				}
 			}
 		}
 	}

@@ -7,13 +7,13 @@ import javax.swing.JOptionPane;
 import GameFrame.GameFrame;
 import model.ILorannModel;
 
-@SuppressWarnings("deprecation")
 /**
- * <h1>The LorannView.java Class.</h1>
+ * <h1>The LorannView Class.</h1>
  *
  * @author Anatole Couasnon
  * @version 1.0
  */
+@SuppressWarnings("deprecation")
 public class LorannView implements ILorannView{
 	/**
 	 * the graphicsBuilder
@@ -31,8 +31,9 @@ public class LorannView implements ILorannView{
 	/**
 	 * The constructor, set the parameters
 	 * @param lorannModel
-	 * contain all the usefull elements 
+	 * contain all the useful elements 
 	 * @param observable
+	 * 			the observable.
 	 */
 	public LorannView(ILorannModel lorannModel , Observable observable ) {
 		this.observable = observable;

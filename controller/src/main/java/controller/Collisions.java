@@ -8,7 +8,7 @@ import model.element.mobile.Player;
 import model.element.mobile.Spell;
 
 /**
- * <h1>The ILorannModel Class.</h1>
+ * <h1>The Collisions Class.</h1>
  *
  * @author Charles Agostini/ Couasnon Anatole / Vicente Vaz / Louis Marjolet
  * @version 1.0
