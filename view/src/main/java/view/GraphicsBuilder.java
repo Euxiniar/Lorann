@@ -1,16 +1,18 @@
 package view;
 
 import java.awt.Color;
+
 import java.awt.Font;
 import java.awt.Graphics;
 
-import GameFrame.IGraphicsBuilder;
 import model.ILorannModel;
 import model.element.IElement;
 import model.element.Position;
 import model.element.mobile.IMonster;
+import view.gameFrame.IGraphicsBuilder;
+
 /**
- * <h1>The GraphicsBuilder.java Class.</h1>
+ * <h1>The GraphicsBuilder Class.</h1>
  *
  * @author Charles Agostini / Anatole Couasnon
  * @version 1.0

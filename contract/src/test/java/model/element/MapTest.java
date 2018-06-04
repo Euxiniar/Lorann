@@ -14,8 +14,10 @@ import org.junit.Test;
 import model.element.motionless.MotionlessElementFactory;
 
 /**
- * @author Euxiniar
+ * <h1>The MapTest Class.</h1>
  *
+ * @author Charles Agostini
+ * @version 1.0
  */
 public class MapTest {
 
