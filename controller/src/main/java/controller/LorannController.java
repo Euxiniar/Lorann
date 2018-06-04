@@ -30,7 +30,7 @@ public class LorannController implements IOrderPerformer{
 	/**
 	 * The level number.
 	 */
-	private static int numlevel = 4;
+	private int numlevel = 1;
 	/**
 	 * The thread time sleep constant.
 	 */
@@ -54,7 +54,7 @@ public class LorannController implements IOrderPerformer{
 	/**
 	 * The local map.
 	 */
-	private String mapString = 	"O------------------OE"
+	private String localLevel = "O------------------OE"
 			+ 					"| P                |E"
 			+ 					"|       | * |      |E"
 			+ 					"|  K    | D |      |E"
@@ -95,6 +95,40 @@ public class LorannController implements IOrderPerformer{
 		this.lorannModel = lorannModel;
 		this.lorannView = lorannView;
 		TryMove.setLorannModel(lorannModel);
+	}
+	
+	/**
+	 * Sets the num level.
+	 * @param numLevel
+	 * 			the num level.
+	 */
+	public void setNumLevel(int numLevel) {
+		this.numlevel = numLevel;
+	}
+	
+	/**
+	 * Gets the num level.
+	 * @return the num level.
+	 */
+	public int getNumLevel() {
+		return this.numlevel;
+	}
+
+	/**
+	 * Sets the local level.
+	 * @param localLevel
+	 * 			the local Level.
+	 */
+	public void setLocalLevel(String localLevel) {
+		this.localLevel = localLevel;
+	}
+	
+	/**
+	 * Gets the local level.
+	 * @return the local level.
+	 */
+	public String getLocalLevel() {
+		return this.localLevel;
 	}
 	
 	/**
@@ -165,7 +199,7 @@ public class LorannController implements IOrderPerformer{
 	 * build the map, fill the monster array, and the player.
 	 */
 	public void buildMap() {
-		Level level = new Level(1, mapString, this.mapHeight, this.mapWidth);
+		Level level = new Level(1, localLevel, this.mapHeight, this.mapWidth);
 		if(USE_DB) {
 			level = catchMapFromDB(numlevel);
 		}
@@ -207,56 +241,56 @@ public class LorannController implements IOrderPerformer{
 	@Override
 	public void orderPerform() {
 		if (lorannModel.getPlayer().getIsAlive()) {
-		try {
-			Thread.sleep(50);
-		} catch (InterruptedException e) {
-			e.printStackTrace();
-		}
-		UserOrder order = KeyToOrder();
-		TryMove.tryMovePlayer(lorannModel.getPlayer(), order.getOrder());
-		if (!lorannModel.getSpell().getIsAlive())
-			order = KeySpellToOrder();
-		TryMove.tryMoveSpell(lorannModel.getSpell(), order.getOrder());
-		
-		if (lorannModel.getPlayer().isPlayerhasMoved()) {
-			for (IMonster monster : lorannModel.getMonsters()) {
-				if (monster.getIsAlive())
-					TryMove.tryMoveMonster(monster, lorannModel.getPlayer());
+			try {
+				Thread.sleep(50);
+			} catch (InterruptedException e) {
+				e.printStackTrace();
 			}
-		}
-		
-		if (!lorannModel.getPlayer().getIsAlive()) {
-			if (lorannModel.getPlayer().getLife()>=2) {
-				lorannModel.getPlayer().removeLife(1);
-		        lorannView.displayMessage("You died !");
-		        lorannModel.getPlayer().setScore(lorannModel.getPlayer().getScore()-1000);
-		        if(lorannModel.getPlayer().getScore() < 0)
-		        	lorannModel.getPlayer().setScore(0);
-				loadLvl();
+			UserOrder order = KeyToOrder();
+			TryMove.tryMovePlayer(lorannModel.getPlayer(), order.getOrder());
+			if (!lorannModel.getSpell().getIsAlive())
+				order = KeySpellToOrder();
+			TryMove.tryMoveSpell(lorannModel.getSpell(), order.getOrder());
+			
+			if (lorannModel.getPlayer().isPlayerhasMoved()) {
+				for (IMonster monster : lorannModel.getMonsters()) {
+					if (monster.getIsAlive())
+						TryMove.tryMoveMonster(monster, lorannModel.getPlayer());
+				}
 			}
-			else {
-				lorannView.displayMessage("GameOver ! :(");
-				LorannController.numlevel = 1;
-				this.gameHasStarted = false;
-				loadLvl();
+			
+			if (!lorannModel.getPlayer().getIsAlive()) {
+				if (lorannModel.getPlayer().getLife()>=2) {
+					lorannModel.getPlayer().removeLife(1);
+			        lorannView.displayMessage("You died !");
+			        lorannModel.getPlayer().setScore(lorannModel.getPlayer().getScore()-1000);
+			        if(lorannModel.getPlayer().getScore() < 0)
+			        	lorannModel.getPlayer().setScore(0);
+					loadLvl();
+				}
+				else {
+					lorannView.displayMessage("GameOver ! :(");
+					this.numlevel = 1;
+					this.gameHasStarted = false;
+					loadLvl();
+				}
 			}
-		}
-		if (lorannModel.getPlayer().getHasSucceedLvl()) {
-			String message = "You achieved the Level " + numlevel + " !";
-			lorannView.displayMessage(message);
-			if (numlevel < 16) {
-				numlevel += 1;
-			lorannModel.getPlayer().setHasSucceedLvl(false);
-			loadLvl();
-			}
-			else {
+			if (lorannModel.getPlayer().getHasSucceedLvl()) {
+				String message = "You achieved the Level " + numlevel + " !";
+				lorannView.displayMessage(message);
+				if (numlevel < 16) {
+					numlevel += 1;
 				lorannModel.getPlayer().setHasSucceedLvl(false);
-				lorannView.displayMessage("You win !!! :D");
-				lorannView.closeAll();
-				this.isGameOver=true;
+				loadLvl();
+				}
+				else {
+					lorannModel.getPlayer().setHasSucceedLvl(false);
+					lorannView.displayMessage("You win !!! :D");
+					lorannView.closeAll();
+					this.isGameOver=true;
+				}
 			}
 		}
-	}
 	}
 		
 	/**
