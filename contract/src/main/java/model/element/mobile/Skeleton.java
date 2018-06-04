@@ -17,6 +17,6 @@ public class Skeleton extends Monster{
 	 * 			the position.
 	 */
 	public Skeleton(Position position) {
-    	super('1', 0, 1, 8, Permeability.KILLER, position, Behaviour.SMART);
+    	super('1', 0, 1, 8, Permeability.KILLER, position, Behaviour.GENIUS);
 	}
 }
