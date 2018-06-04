@@ -3,4 +3,5 @@
 /main/target/*
 /model/target/*
 /view/target/*
-/target/
+/target/javadoc-bundle-options/*
+/target/site/*

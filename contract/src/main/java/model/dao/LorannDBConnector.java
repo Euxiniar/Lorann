@@ -12,10 +12,10 @@ import java.sql.Statement;
  * @author Charles Agostini/Vicente Vaz
  * @version 1.0
  */
-public final class LorannBDDConnector {
+public final class LorannDBConnector {
 
     /** The instance. */
-    private static LorannBDDConnector instance;
+    private static LorannDBConnector instance;
 
     /** The login. */
     private static String                  user     = "player";
@@ -35,7 +35,7 @@ public final class LorannBDDConnector {
     /**
      * Instantiates a new boulder dash BDD connector.
      */
-    private LorannBDDConnector() {
+    private LorannDBConnector() {
         this.open();
     }
 
@@ -44,9 +44,9 @@ public final class LorannBDDConnector {
      *
      * @return single instance of BoulderDashBDDConnector
      */
-    public static LorannBDDConnector getInstance() {
+    public static LorannDBConnector getInstance() {
         if (instance == null) {
-            setInstance(new LorannBDDConnector());
+            setInstance(new LorannDBConnector());
         }
         return instance;
     }
@@ -57,8 +57,8 @@ public final class LorannBDDConnector {
      * @param instance
      *            the new instance
      */
-    private static void setInstance(final LorannBDDConnector instance) {
-        LorannBDDConnector.instance = instance;
+    private static void setInstance(final LorannDBConnector instance) {
+        LorannDBConnector.instance = instance;
     }
 
     /**
@@ -68,8 +68,8 @@ public final class LorannBDDConnector {
      */
     private boolean open() {
         try {
-            this.connection = DriverManager.getConnection(LorannBDDConnector.url, LorannBDDConnector.user,
-                    LorannBDDConnector.password);
+            this.connection = DriverManager.getConnection(LorannDBConnector.url, LorannDBConnector.user,
+                    LorannDBConnector.password);
             this.statement = this.connection.createStatement();
             return true;
         } catch (final SQLException exception) {
