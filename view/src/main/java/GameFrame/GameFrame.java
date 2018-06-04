@@ -161,4 +161,15 @@ public class GameFrame extends JFrame implements KeyListener, Runnable {
 		this.setVisible(true);
 		
 	}
+	
+	/**
+     * just for the tests
+     * @param value
+     * true or false
+     * @param i
+     * value of boolean in tabBool
+     */
+    public void setBool(boolean value, int i) {
+        tabBool[i] = value;
+    }
 }
