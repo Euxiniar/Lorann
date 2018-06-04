@@ -11,8 +11,6 @@ import model.element.Map;
 import model.element.Permeability;
 import model.element.Position;
 import model.element.mobile.*;
-import model.element.mobile.MonsterFactory;
-import model.element.mobile.Player;
 import model.element.motionless.MotionlessElementFactory;
 import view.ILorannView;
 
@@ -34,7 +32,7 @@ public class LorannController implements IOrderPerformer{
 	/**
 	 * The thread time sleep constant.
 	 */
-	private static int TIME_SLEEP = 30;
+	private static int TIME_SLEEP = 80;
 	/**
 	 * Do the game has started.
 	 */
@@ -240,55 +238,54 @@ public class LorannController implements IOrderPerformer{
 	 */
 	@Override
 	public void orderPerform() {
-		if (lorannModel.getPlayer().getIsAlive()) {
-			try {
-				Thread.sleep(50);
-			} catch (InterruptedException e) {
-				e.printStackTrace();
+		UserOrder order = KeyToOrder();
+		if(order.getOrder() == Order.STOP) {
+			playerAnimator.start();
+		}
+		else {
+			setPlayerSprite(order.getOrder());
+		}
+		TryMove.tryMovePlayer(lorannModel.getPlayer(), order.getOrder());
+		if (!lorannModel.getSpell().getIsAlive())
+			order = KeySpellToOrder();
+		TryMove.tryMoveSpell(lorannModel.getSpell(), order.getOrder());
+		
+		if (lorannModel.getPlayer().isPlayerhasMoved()) {
+			for (IMonster monster : lorannModel.getMonsters()) {
+				if (monster.getIsAlive())
+					TryMove.tryMoveMonster(monster, lorannModel.getPlayer());
 			}
-			UserOrder order = KeyToOrder();
-			TryMove.tryMovePlayer(lorannModel.getPlayer(), order.getOrder());
-			if (!lorannModel.getSpell().getIsAlive())
-				order = KeySpellToOrder();
-			TryMove.tryMoveSpell(lorannModel.getSpell(), order.getOrder());
-			
-			if (lorannModel.getPlayer().isPlayerhasMoved()) {
-				for (IMonster monster : lorannModel.getMonsters()) {
-					if (monster.getIsAlive())
-						TryMove.tryMoveMonster(monster, lorannModel.getPlayer());
-				}
-			}
-			
-			if (!lorannModel.getPlayer().getIsAlive()) {
-				if (lorannModel.getPlayer().getLife()>=2) {
-					lorannModel.getPlayer().removeLife(1);
-			        lorannView.displayMessage("You died !");
-			        lorannModel.getPlayer().setScore(lorannModel.getPlayer().getScore()-1000);
-			        if(lorannModel.getPlayer().getScore() < 0)
-			        	lorannModel.getPlayer().setScore(0);
-					loadLvl();
-				}
-				else {
-					lorannView.displayMessage("GameOver ! :(");
-					this.numlevel = 1;
-					this.gameHasStarted = false;
-					loadLvl();
-				}
-			}
-			if (lorannModel.getPlayer().getHasSucceedLvl()) {
-				String message = "You achieved the Level " + numlevel + " !";
-				lorannView.displayMessage(message);
-				if (numlevel < 16) {
-					numlevel += 1;
-				lorannModel.getPlayer().setHasSucceedLvl(false);
+		}
+		
+		if (!lorannModel.getPlayer().getIsAlive()) {
+			if (lorannModel.getPlayer().getLife()>=2) {
+				lorannModel.getPlayer().removeLife(1);
+		        lorannView.displayMessage("You died !");
+		        lorannModel.getPlayer().setScore(lorannModel.getPlayer().getScore()-1000);
+		        if(lorannModel.getPlayer().getScore() < 0)
+		        	lorannModel.getPlayer().setScore(0);
 				loadLvl();
-				}
-				else {
-					lorannModel.getPlayer().setHasSucceedLvl(false);
-					lorannView.displayMessage("You win !!! :D");
-					lorannView.closeAll();
-					this.isGameOver=true;
-				}
+			}
+			else {
+				lorannView.displayMessage("GameOver ! :(");
+				this.numlevel = 1;
+				this.gameHasStarted = false;
+				loadLvl();
+			}
+		}
+		if (lorannModel.getPlayer().getHasSucceedLvl()) {
+			String message = "You achieved the Level " + numlevel + " !";
+			lorannView.displayMessage(message);
+			if (numlevel < 16) {
+				numlevel += 1;
+			lorannModel.getPlayer().setHasSucceedLvl(false);
+			loadLvl();
+			}
+			else {
+				lorannModel.getPlayer().setHasSucceedLvl(false);
+				lorannView.displayMessage("You win !!! :D");
+				lorannView.closeAll();
+				this.isGameOver=true;
 			}
 		}
 	}
@@ -393,6 +390,39 @@ public class LorannController implements IOrderPerformer{
 		order = new UserOrder(Order.STOP);
 		}
 		return order;
+	}
+	
+	public void setPlayerSprite(Order order) {
+		switch(order) {
+		case UP:
+			lorannModel.getPlayer().setSelectedSpriteValue(0);
+			break;
+		case DOWN:
+			lorannModel.getPlayer().setSelectedSpriteValue(4);
+			break;
+		case LEFT:
+			lorannModel.getPlayer().setSelectedSpriteValue(6);
+			break;
+		case RIGHT:
+			lorannModel.getPlayer().setSelectedSpriteValue(2);
+			break;
+		case UPLEFT:
+			lorannModel.getPlayer().setSelectedSpriteValue(7);
+    		break;
+		case UPRIGHT:
+			lorannModel.getPlayer().setSelectedSpriteValue(1);
+    		break;
+		case DOWNLEFT:
+			lorannModel.getPlayer().setSelectedSpriteValue(5);
+			break;
+		case DOWNRIGHT:
+			lorannModel.getPlayer().setSelectedSpriteValue(3);
+			break;
+		default:
+			
+			break;
+		}
+		
 	}
 }
 
