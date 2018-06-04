@@ -17,6 +17,6 @@ public class Temple extends Monster{
 	 * 			the position.
 	 */
 	public Temple(Position position) {
-    	super('3', 0, 3, 1, Permeability.KILLER, position, Behaviour.SILLY);
+    	super('3', 0, 3, 1, Permeability.KILLER, position, Behaviour.SMART);
 	}
 }

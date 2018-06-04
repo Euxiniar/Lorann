@@ -1,5 +1,6 @@
 package controller;
 
+
 import model.ILorannModel;
 import model.element.IElement;
 import model.element.Permeability;
@@ -167,35 +168,13 @@ public class TryMove {
 	 * @return the reverse direction.
 	 */
 	public static Direction reverseDirection(Direction direction) {
-        switch(direction) {
-        case UP:
-            direction = Direction.DOWN;
-            break;
-        case DOWN:
-            direction = Direction.UP;
-            break;
-        case LEFT:
-            direction = Direction.RIGHT;
-            break;
-        case RIGHT:
-            direction = Direction.LEFT;
-            break;
-        case UPLEFT:
-            direction = Direction.DOWNRIGHT;
-            break;
-        case UPRIGHT:
-            direction = Direction.DOWNLEFT;
-            break;
-        case DOWNLEFT:
-            direction = Direction.UPRIGHT;
-            break;
-        case DOWNRIGHT:
-            direction = Direction.UPLEFT;
-            break;
-        default:
-            break;
-        }
-        return direction;
+		Direction tabParameter[] = {Direction.UP, Direction.UPRIGHT, Direction.RIGHT, Direction.DOWNRIGHT, Direction.DOWN, Direction.DOWNLEFT, Direction.LEFT, Direction.UPLEFT, Direction.STATIC};
+		Direction tabResult[] =    {Direction.DOWN, Direction.DOWNLEFT, Direction.LEFT, Direction.UPLEFT, Direction.UP, Direction.UPRIGHT, Direction.RIGHT, Direction.DOWNRIGHT, Direction.STATIC};
+		Direction directionOut = null;
+		for(int i = 0; i < 8; i++){
+			if(direction == tabParameter[i]) {
+				directionOut = tabResult[i];}}
+        return directionOut;
 	}
 	
 	/**
@@ -205,35 +184,13 @@ public class TryMove {
 	 * @return the new direction.
 	 */
 	public static Direction changeClockwiseMonsterDirection(Direction direction) {
-		switch(direction) {
-        case UP:
-            direction = Direction.UPRIGHT;
-            break;
-        case UPRIGHT:
-            direction = Direction.RIGHT;
-            break;
-        case RIGHT:
-            direction = Direction.DOWNRIGHT;
-            break;
-        case DOWNRIGHT:
-            direction = Direction.DOWN;
-            break;
-        case DOWN:
-            direction = Direction.DOWNLEFT;
-            break;
-        case DOWNLEFT:
-            direction = Direction.LEFT;
-            break;
-        case LEFT:
-            direction = Direction.UPLEFT;
-            break;
-        case UPLEFT:
-            direction = Direction.UP;
-            break;
-        default:
-            break;
-        }
-        return direction;
+		Direction tabParameter[] = {Direction.UP, Direction.UPRIGHT, Direction.RIGHT, Direction.DOWNRIGHT, Direction.DOWN, Direction.DOWNLEFT, Direction.LEFT, Direction.UPLEFT, Direction.STATIC};
+		Direction tabResult[] =    {Direction.UPRIGHT, Direction.RIGHT, Direction.DOWNRIGHT, Direction.DOWN, Direction.DOWNLEFT, Direction.LEFT, Direction.UPLEFT, Direction.UP, Direction.STATIC};
+		Direction directionOut = null;
+		for(int i = 0; i < 8; i++){
+			if(direction == tabParameter[i]) {
+				directionOut = tabResult[i];}}
+        return directionOut;
 	}
 	
 	/**
@@ -243,34 +200,27 @@ public class TryMove {
 	 * @return the new direction.
 	 */
 	public static Direction changeCounterclockwiseMonsterDirection(Direction direction) {
-		switch(direction) {
-        case UP:
-            direction = Direction.UPLEFT;
-            break;
-        case UPLEFT:
-            direction = Direction.LEFT;
-            break;
-        case LEFT:
-            direction = Direction.DOWNLEFT;
-            break;
-        case DOWNLEFT:
-            direction = Direction.DOWN;
-            break;
-        case DOWN:
-            direction = Direction.DOWNRIGHT;
-            break;
-        case DOWNRIGHT:
-            direction = Direction.RIGHT;
-            break;
-        case RIGHT:
-            direction = Direction.UPRIGHT;
-            break;
-        case UPRIGHT:
-            direction = Direction.UP;
-            break;
-        default:
-            break;
-        }
+		Direction tabParameter[] = {Direction.UP, Direction.UPLEFT, Direction.LEFT, Direction.DOWNLEFT, Direction.DOWN, Direction.DOWNRIGHT, Direction.RIGHT, Direction.UPRIGHT};
+		Direction tabResult[] =    {Direction.UPLEFT, Direction.LEFT, Direction.DOWNLEFT, Direction.DOWN, Direction.DOWNRIGHT, Direction.RIGHT, Direction.UPRIGHT, Direction.UP};
+		for(int i = 0; i < 8; i++){
+			if(direction == tabParameter[i]) {
+				direction = tabResult[i];}}
+        return direction;
+	}
+	
+	/**
+	 * Randomly change the monster direction.
+	 * @param randNumb
+	 * 			the random number
+	 * @param direction
+	 * 			the direction.
+	 * @return the new direction.
+	 */
+	public static Direction changeRandomlyMonsterDirection(int randNumb, Direction direction) {
+		Direction tabResult[] = {Direction.UPLEFT, Direction.LEFT, Direction.DOWNLEFT, Direction.DOWN, Direction.DOWNRIGHT, Direction.RIGHT, Direction.UPRIGHT, Direction.UP};
+		for(int i = 0; i < 8; i++){
+			if(i == randNumb) {
+				direction = tabResult[i];}}
         return direction;
 	}
 	
@@ -362,6 +312,9 @@ public class TryMove {
 		case SMART:
 			movementMonster3(monster, theoricalPosition, player);
 			break;
+		case GENIUS:
+			movementMonster4(monster, theoricalPosition, player);
+			break;
 		default:
 			break;
 		}
@@ -383,11 +336,11 @@ public class TryMove {
 	 */
 	public static void movementMonster1(IMonster monster, Position theoricalPosition, Player player) {
 		if (Collisions.testNextCaseWall(monster, theoricalPosition, lorannModel) || Collisions.testNextCaseObjectGrabable(monster, theoricalPosition, lorannModel) || Collisions.testNextCaseDoor(monster, theoricalPosition, lorannModel))
-			if (Collisions.testNextCaseWall(monster, getTheoricalPositionElement(monster, getMonsterDirection(monster, player)), lorannModel) || Collisions.testNextCaseObjectGrabable(monster, theoricalPosition, lorannModel) || Collisions.testNextCaseDoor(monster, theoricalPosition, lorannModel))
+			if (Collisions.testNextCaseWall(monster, getTheoricalPositionElement(monster, getMonsterDirection(monster, player)), lorannModel) || Collisions.testNextCaseObjectGrabable(monster, theoricalPosition, lorannModel) || Collisions.testNextCaseDoor(monster, theoricalPosition, lorannModel)) {
 				monster.setDirection(reverseDirection(monster.getDirection()));
+			}
 			else {
 				monster.setDirection(getMonsterDirection(monster, player));
-				monster.setPosition(getTheoricalPositionElement(monster, monster.getDirection()));
 			}
 	else {
 		monster.setPosition(theoricalPosition);
@@ -415,7 +368,6 @@ public class TryMove {
             }
 			else {
 				monster.setDirection(getMonsterDirection(monster, player));
-				//monster.setPosition(getTheoricalPositionElement(monster, monster.getDirection()));
 				theoricalPosition = getTheoricalPositionElement(monster, monster.getDirection());
 				movementMonster2(monster, theoricalPosition, player);
 			}
@@ -436,7 +388,6 @@ public class TryMove {
 	 * 			the player.
 	 */
 	public static void movementMonster3(IMonster monster, Position theoricalPosition, Player player) {
-        //theoricalPosition = getTheoricalPositionElement(monster, monster.getDirection());
 		if(monster.getCounter() == 8) {
             monster.setCounter(0);
             monster.setRotationDirection(!(monster.isRotationDirection()));
@@ -463,7 +414,6 @@ public class TryMove {
                 }
             else {
                 monster.setDirection(getMonsterDirection(monster, player));
-                //monster.setPosition(getTheoricalPositionElement(monster, monster.getDirection()));
                 theoricalPosition = getTheoricalPositionElement(monster, monster.getDirection());
                 movementMonster3(monster, theoricalPosition, player);
             }
@@ -473,7 +423,40 @@ public class TryMove {
         }
     }
 //___________________________________________________________________________________________________________________________________
+//______________________Movement of the monster with the behaviour 4_________________________________________________________________
+		/**
+		 * The second type of monster movement.
+		 * @param monster
+		 * 			the monster.
+		 * @param theoricalPosition
+		 * 			the theorical position.
+		 * @param player
+		 * 			the player.
+		 */
+		public static void movementMonster4(IMonster monster, Position theoricalPosition, Player player) {
+			//theoricalPosition = getTheoricalPositionElement(monster, monster.getDirection());
 
+			if (Collisions.testNextCaseWall(monster, theoricalPosition, lorannModel) || Collisions.testNextCaseObjectGrabable(monster, theoricalPosition, lorannModel) || Collisions.testNextCaseDoor(monster, theoricalPosition, lorannModel)) {
+				if (Collisions.testNextCaseWall(monster, getTheoricalPositionElement(monster, getMonsterDirection(monster, player)), lorannModel) || Collisions.testNextCaseObjectGrabable(monster, getTheoricalPositionElement(monster, getMonsterDirection(monster, player)), lorannModel) || Collisions.testNextCaseDoor(monster, getTheoricalPositionElement(monster, getMonsterDirection(monster, player)), lorannModel)) {
+	                int randNumb = (int) (Math.random()*8);
+					monster.setDirection(changeRandomlyMonsterDirection(randNumb, monster.getDirection()));
+	                theoricalPosition = getTheoricalPositionElement(monster, monster.getDirection());
+	                movementMonster2(monster, theoricalPosition, player);
+	            }
+				else {
+					monster.setDirection(getMonsterDirection(monster, player));
+					theoricalPosition = getTheoricalPositionElement(monster, monster.getDirection());
+					movementMonster2(monster, theoricalPosition, player);
+				}
+			}
+			else {
+				monster.setPosition(theoricalPosition); 
+			}
+		}
+	//___________________________________________________________________________________________________________________________________
+	
+	
+	
 	/**
 	 * Try to move the spell.
 	 * @param spell
