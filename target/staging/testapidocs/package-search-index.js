@@ -1,1 +1,1 @@
-packageSearchIndex = [{"l":"GameFrame"},{"l":"model.element"}]
+packageSearchIndex = [{"l":"model.element"},{"l":"view.gameFrame"}]
