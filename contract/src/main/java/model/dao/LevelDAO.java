@@ -1,9 +1,3 @@
-/**
- * <h1>The LevelDAO.java Class.</h1>
- *
- * @author Charles Agostini
- * @version 1.0
- */
 package model.dao;
 
 import java.sql.CallableStatement;
@@ -13,14 +7,24 @@ import java.sql.SQLException;
 import model.Level;
 
 /**
- * @author vazvi
+ * <h1>The LevelDAO.java Class.</h1>
  *
+ * @author Charles Agostini/Vicente Vaz
+ * @version 1.0
  */
 public class LevelDAO extends AbstractDAO{
     
     /** The string used for draw the level's map */ 
 	private static String codeLevel   = "{CALL recuperer_code_niveau(?)}";
     
+	/**
+	 * Gets the code to generate a level, from a database.
+	 * @param id
+	 * 		the id.
+	 * @return the string code.
+	 * @throws SQLException
+	 * 			the SQL exception.
+	 */
     public static Level getCodeLevel(final int id) throws SQLException {
     	final CallableStatement callStatement = prepareCall(codeLevel);
     	Level level = null;

@@ -1,9 +1,19 @@
 package GameFrame;
 
 import java.awt.Graphics;
-import java.awt.image.ImageObserver;
 
+/**
+ * <h1>The IGraphicsBuilder.java Class.</h1>
+ *
+ * @author Anatole Couasnon
+ * @version 1.0
+ */
 public interface IGraphicsBuilder {
-	public void applyModelToGraphic(Graphics graphics, ImageObserver observer);
+	/**
+	 * Draw All the components.
+	 * @param graphics
+	 * 		the graphics.
+	 */
+	public void applyModelToGraphic(Graphics graphics);
 
 }

@@ -9,12 +9,14 @@ import model.element.Position;
  * @author Charles Agostini
  * @version 1.0
  */
-class BallBone extends MotionlessElement {
+public class BallBone extends MotionlessElement {
     
     /**
-     * Instantiates a new VerticalBone.
+     * Instantiates a new BallBone.
+     * @param position
+     * 			the position.
      */
-	BallBone(Position position) {
+	public BallBone(Position position) {
     	super('O', 2, 6, Permeability.BLOCKING, position);
     }
 }

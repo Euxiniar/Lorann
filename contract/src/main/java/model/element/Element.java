@@ -10,12 +10,42 @@ import java.util.ArrayList;
  * @version 1.0
  */
 public abstract class Element implements IElement{
+	/**
+	 * the selected value.
+	 */
 	private int selectedSpriteValue = 0;
+	/**
+	 * the alive state.
+	 */
 	private boolean isAlive = true;
+	/**
+	 * the position value.
+	 */
 	private Position position = new Position();
+	/**
+	 * the spriteArray containing all the sprites to draw.
+	 */
 	private ArrayList<Sprite> spriteArray = new ArrayList<Sprite>();
+	/**
+	 * The permeability value.
+	 */
 	private Permeability permeability;
 	
+	/**
+	 * Instanciate the Element, and his sprites associated
+	 * @param symbol
+	 * 			the element symbol.
+	 * @param xImagePos
+	 * 			the x Image position on the sprite.
+	 * @param yImagePos
+	 * 			the y Image position on the sprite.
+	 * @param nbSprites
+	 * 			the Element sprites number.
+	 * @param permeability
+	 * 			the permeability.
+	 * @param position
+	 * 			the Element position.
+	 */
 	public Element(char symbol, int xImagePos, int yImagePos, int nbSprites, Permeability permeability, Position position) {
 		setPosition(position);
 		setPermeability(permeability);
@@ -50,15 +80,33 @@ public abstract class Element implements IElement{
 		return this.permeability;
 	}
 	
+	/* (non-Javadoc)
+	 * @see model.element.IElement#setSpriteArraySize()
+	 */
 	@Override
 	public void setPermeability(Permeability permeability) {
 		this.permeability = permeability;
 	}
 
+	/**
+	 * Gets the selected sprite.
+	 * @return the selected sprite.
+	 */
 	private Sprite getSelectedSprite() {
 		return this.spriteArray.get(selectedSpriteValue);
 	}
 	
+	/**
+	 * Creates and fill the sprite array.
+	 * @param symbol
+	 * 			the element symbol.
+	 * @param xImagePos
+	 * 			the x Image position on the sprite.
+	 * @param yImagePos
+	 * 			the y Image position on the sprite.
+	 * @param nbSprites
+	 * 			the Element sprites number.
+	 */
 	private void createSpriteArray(char symbol, int xPos, int yPos, int nbSprites) {
 		ArrayList<Sprite> spriteArray = new ArrayList<Sprite>();
 		for(int i = 0; i < nbSprites; i++) {
@@ -138,6 +186,4 @@ public abstract class Element implements IElement{
 	public Position getPosition() {
 		return this.position;
 	}
-	
-	
 }

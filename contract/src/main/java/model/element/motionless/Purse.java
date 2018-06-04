@@ -11,10 +11,12 @@ import model.element.Position;
  */
 public class Purse extends MotionlessElement {
     
-    /**
-     * Instantiates a new VerticalBone.
+	/**
+     * Instantiates a new Purse.
+     * @param position
+     * 			the position.
      */
-	Purse(Position position) {
+	public Purse(Position position) {
     	super('P', 0, 8, Permeability.GRABABLE, position);
     }
 }

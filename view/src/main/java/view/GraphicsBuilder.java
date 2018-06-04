@@ -3,14 +3,18 @@ package view;
 import java.awt.Color;
 import java.awt.Font;
 import java.awt.Graphics;
-import java.awt.image.ImageObserver;
 
 import GameFrame.IGraphicsBuilder;
 import model.ILorannModel;
 import model.element.IElement;
 import model.element.Position;
 import model.element.mobile.IMonster;
-
+/**
+ * <h1>The GraphicsBuilder.java Class.</h1>
+ *
+ * @author Charles Agostini / Anatole Couasnon
+ * @version 1.0
+ */
 class GraphicsBuilder implements IGraphicsBuilder {
 	private final ILorannModel lorannModel;
 
@@ -19,12 +23,12 @@ class GraphicsBuilder implements IGraphicsBuilder {
 	}
 
 	@Override
-	public void applyModelToGraphic(final Graphics graphics, final ImageObserver observer) {
+	public void applyModelToGraphic(final Graphics graphics) {
 		if(lorannModel.getMap() != null && lorannModel.getPlayer() != null && lorannModel.getMonsters() != null) {
 	        clearScreen(graphics);
 	        buildMapGraph(graphics);
 	        drawMonsters(graphics);
-	        drawPlayer(graphics, observer);
+	        drawPlayer(graphics);
 	        drawSpell(graphics);
 	        drawScore(graphics);
 	        drawLife(graphics);
@@ -32,11 +36,21 @@ class GraphicsBuilder implements IGraphicsBuilder {
 
 	}
 	
+	/**
+	 * Clear the screen
+	 * @param g
+	 * to paint on the gamePanel
+	 */
 	private void clearScreen(Graphics g) {
 		g.setColor(Color.BLACK);
 		g.fillRect(0, 0, 1000, 800);
 	}
 	
+	/**
+	 * draw the map
+	 * @param g
+	 * to paint on the gamePanel
+	 */
 	private void buildMapGraph(Graphics g) {
 		int x = 0, y = 0;
 		Position position = new Position(x,y);
@@ -54,25 +68,47 @@ class GraphicsBuilder implements IGraphicsBuilder {
 		}
 	}
 	
-	private void drawPlayer(Graphics g, ImageObserver observer) {
+	/**
+	 * draw the player
+	 * @param g
+	 * to paint on the gamePanel
+	 */
+	private void drawPlayer(Graphics g) {
 		if (lorannModel.getPlayer().getIsAlive() == true)
 			g.drawImage(lorannModel.getPlayer().getSelectedImage(), lorannModel.getPlayer().getPosition().getX()*50, lorannModel.getPlayer().getPosition().getY()*50, 50, 50, null);
 	}
 	
+	/**
+	 * draw the spell
+	 * @param g
+	 * to paint on the gamePanel
+	 */
 	private void drawSpell(Graphics g) {
 		if (lorannModel.getSpell().getIsAlive() == true) {
 			g.drawImage(lorannModel.getSpell().getSelectedImage(), lorannModel.getSpell().getPosition().getX()*50, lorannModel.getSpell().getPosition().getY()*50, 50, 50, null);
 		}
 	}
 	
+	/**
+	 * draw all the monsters
+	 * @param g
+	 * to paint on the gamePanel
+	 */
 	private void drawMonsters(Graphics g) {
-		for (IMonster monster : lorannModel.getMonsters()) {
-			if (monster.getIsAlive() == true) {
-				g.drawImage(monster.getSelectedImage(), monster.getPosition().getX()*50, monster.getPosition().getY()*50, 50, 50, null);
+		if(!lorannModel.getMonsters().isEmpty()) {
+			for (IMonster monster : lorannModel.getMonsters()) {
+				if (monster.getIsAlive() == true) {
+					g.drawImage(monster.getSelectedImage(), monster.getPosition().getX()*50, monster.getPosition().getY()*50, 50, 50, null);
+				}
 			}
 		}
 	}
 	
+	/**
+	 * draw the score
+	 * @param g
+	 * to paint on the gamePanel
+	 */
 	private void drawScore(Graphics g) {
 		Font font = new Font("Courier", Font.BOLD, 30);
         g.setFont(font);
@@ -84,6 +120,11 @@ class GraphicsBuilder implements IGraphicsBuilder {
         g.drawString(String.valueOf(lorannModel.getPlayer().getScore()), 300, 680);
 	}
 	
+	/**
+	 * draw the life
+	 * @param g
+	 * to paint on the gamePanel
+	 */
 	private void drawLife(Graphics g) {
 		Font font = new Font("Courier", Font.BOLD, 30);
         g.setFont(font);

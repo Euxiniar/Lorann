@@ -9,12 +9,14 @@ import model.element.Position;
  * @author Charles Agostini
  * @version 1.0
  */
-class Key extends MotionlessElement {
+public class Key extends MotionlessElement {
     
-    /**
-     * Instantiates a new VerticalBone.
+	/**
+     * Instantiates a new Key.
+     * @param position
+     * 			the position.
      */
-	Key(Position position) {
+	public Key(Position position) {
     	super('K', 0, 7, Permeability.GRABABLE, position);
     }
 }
