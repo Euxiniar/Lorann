@@ -144,7 +144,14 @@ public abstract class Element implements IElement{
 	 */
 	@Override
 	public void setSelectedSpriteValue(int value) {
-		this.selectedSpriteValue = value;
+		if (selectedSpriteValue < 0 && selectedSpriteValue > 7) {
+			try {
+				throw new Exception("SpriteValue out of range");
+			} catch (Exception e) {
+		}
+	}
+	this.selectedSpriteValue = value;
+		
 	}
 
 	/* (non-Javadoc)
@@ -168,6 +175,12 @@ public abstract class Element implements IElement{
 	 */
 	@Override
 	public void setPosition(int x, int y) {
+		if((x < 0 || x >= 21) && (y < 0 || y >= 14)) {
+			try {
+				throw new Exception("Position out of range");
+			} catch (Exception e) {
+			}
+		}
 		this.position.setPosition(x, y);
 	}
 
@@ -176,6 +189,12 @@ public abstract class Element implements IElement{
 	 */
 	@Override
 	public void setPosition(Position position) {
+		if((position.getX() < 0 || position.getX() >= 21) && (position.getY() < 0 || position.getY() >= 14)) {
+			try {
+				throw new Exception("Position out of range");
+			} catch (Exception e) {
+			}
+		}
 		this.position = position;
 	}
 
