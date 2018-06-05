@@ -60,4 +60,32 @@ public class LorannView implements ILorannView{
 	public void resetBools() {
 		this.gameFrame.resetBools();
 	}
+	
+	/**
+	 * Gets the gameFrame.
+	 * @return the gameFrame.
+	 */
+	public GameFrame getGameFrame() {
+        return gameFrame;
+    }
+
+	/**
+	 * Sets the gameFrame.
+	 * @param gameFrame
+	 * 			the gameFrame.
+	 */
+    public void setGameFrame(GameFrame gameFrame) {
+        this.gameFrame = gameFrame;
+    }
+
+    /**
+     * Sets the bools.
+     * @param bools
+     * 			the bools.
+     */
+    public void setBools(boolean[] bools) {
+        for (int i = 0; i < bools.length; i++) {
+            this.gameFrame.setBool(bools[i], i);
+        }
+    }
 }
