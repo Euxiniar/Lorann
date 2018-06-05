@@ -31,12 +31,13 @@ public class Collisions {
             if (element.getPermeability() == Permeability.BLOCKING && 
             		element.getPosition().getX() == lorannModel.getMonsters().get(i).getPosition().getX() && 
             		element.getPosition().getY() == lorannModel.getMonsters().get(i).getPosition().getY()) {
-                    element.setAlive(false);
+                    if(element.getPermeability() == Permeability.BLOCKING) {
+                    	element.setAlive(false);}
                     return true;
                 }
                 
             //if it is a spell
-            else if(element.getPermeability() == Permeability.KILLER && 
+            else if(element.getPermeability() == Permeability.KILLER && element.getSymbol() == 'S' &&
             		element.getPosition().getX() == lorannModel.getMonsters().get(i).getPosition().getX() && 
             		element.getPosition().getY() == lorannModel.getMonsters().get(i).getPosition().getY()) {
                 if (lorannModel.getMonsters().get(i).getIsAlive() && element.getIsAlive()) {
@@ -151,6 +152,14 @@ public class Collisions {
 		return false;
 	}
 	
+	public static boolean testNextCaseMonster(IElement element, Position nextPosition, ILorannModel lorannModel) {
+		if (lorannModel.getMap().getOnTheMap(nextPosition).getIsAlive()) {
+			if (lorannModel.getMap().getOnTheMap(nextPosition).getPermeability() == Permeability.KILLER && (lorannModel.getMap().getOnTheMap(nextPosition).getSymbol() == '1' || lorannModel.getMap().getOnTheMap(nextPosition).getSymbol() == '2' || lorannModel.getMap().getOnTheMap(nextPosition).getSymbol() == '3' || lorannModel.getMap().getOnTheMap(nextPosition).getSymbol() == '4')) {
+				return true;
+			}
+		}
+		return false;
+	}
 	/**
 	 * Test next case Spell for IElement.
 	 * @param element
