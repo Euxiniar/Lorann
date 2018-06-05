@@ -18,11 +18,16 @@ import model.element.mobile.MonsterFactory;
 import model.element.mobile.Player;
 
 /**
- * @author vazvi
+ * @author Vicente
  *
  */
 public class TryMoveTest {
-
+	private Position positionPlayer;
+	private Position positionMonster;
+	private IMonster monster;
+	private Player player;
+	Direction result;
+	Direction direction;
 	/**
 	 * @throws java.lang.Exception
 	 */
@@ -42,6 +47,10 @@ public class TryMoveTest {
 	 */
 	@Before
 	public void setUp() throws Exception {
+		this.positionPlayer = new Position();
+		this.positionMonster = new Position();
+		this.monster = MonsterFactory.getFromSymbol('3', positionMonster);
+		this.player = new Player(positionPlayer);
 	}
 
 	/**
@@ -70,7 +79,7 @@ public class TryMoveTest {
 		for(int i = 0; i < 8; i++)
 		{
 			Order order = tabParameter[i];
-			Direction result = tabExpected[i];
+			this.result = tabExpected[i];
 			assertEquals(result, TryMove.getOrderToDirection(order));
 		}
 	}
@@ -80,10 +89,10 @@ public class TryMoveTest {
 	 */
 	@Test
 	public void testGetMonsterDirection() {
-		Position positionPlayer = new Position(0, 0);
-		Position positionMonster = new Position(1, 1);
-		IMonster monster = MonsterFactory.getFromSymbol('3', positionMonster);
-		Player player = new Player(positionPlayer);
+		this.positionPlayer.setPosition(0, 0);
+		this.positionMonster.setPosition(1, 1);
+		this.monster.setPosition(this.positionMonster);
+		this.player.setPosition(positionPlayer);
 		int tabPositionXPlayerParameter[] =  {0, 0, 0, 1, 1, 1, 0, 0, 0};
 		int tabPositionYPlayerParameter[] =  {0, 1, 0, 0, 1, 0, 0, 1, 0};
 		int tabPositionXMonsterParameter[] = {1, 1, 1, 0, 0, 0, 0, 0, 0};
@@ -91,11 +100,11 @@ public class TryMoveTest {
 		Direction tabExpected[] = {Direction.UPLEFT, Direction.DOWNLEFT, Direction.LEFT, Direction.UPRIGHT, Direction.DOWNRIGHT, Direction.RIGHT, Direction.UP, Direction.DOWN, Direction.UP};
 		for(int i = 0; i < 9; i++)
 		{
-			positionPlayer.setPosition(tabPositionXPlayerParameter[i], tabPositionYPlayerParameter[i]);
-			positionMonster.setPosition(tabPositionXMonsterParameter[i], tabPositionYMonsterParameter[i]);
-			player.setPosition(positionPlayer);
-			monster.setPosition(positionMonster);
-			Direction result = tabExpected[i];
+			this.positionPlayer.setPosition(tabPositionXPlayerParameter[i], tabPositionYPlayerParameter[i]);
+			this.positionMonster.setPosition(tabPositionXMonsterParameter[i], tabPositionYMonsterParameter[i]);
+			this.player.setPosition(positionPlayer);
+			this.monster.setPosition(positionMonster);
+			this.result = tabExpected[i];
 			assertEquals(result, TryMove.getMonsterDirection(monster, player));
 		}
 	}
@@ -109,8 +118,8 @@ public class TryMoveTest {
 		Direction tabExpected[] =  {Direction.DOWN, Direction.DOWNLEFT, Direction.LEFT, Direction.UPLEFT, Direction.UP, Direction.UPRIGHT, Direction.RIGHT, Direction.DOWNRIGHT};
 		for(int i = 0; i < 8; i++)
 		{
-			Direction direction = tabParameter[i];
-			Direction result = tabExpected[i];
+			this.direction = tabParameter[i];
+			this.result = tabExpected[i];
 			assertEquals(result, TryMove.reverseDirection(direction));
 		}
 	}
@@ -124,8 +133,8 @@ public class TryMoveTest {
 		Direction tabExpected[] =  {Direction.UPRIGHT, Direction.RIGHT, Direction.DOWNRIGHT, Direction.DOWN, Direction.DOWNLEFT, Direction.LEFT, Direction.UPLEFT, Direction.UP};
 		for(int i = 0; i < 8; i++)
 		{
-			Direction direction = tabParameter[i];
-			Direction result = tabExpected[i];
+			this.direction = tabParameter[i];
+			this.result = tabExpected[i];
 			assertEquals(result, TryMove.changeClockwiseMonsterDirection(direction));
 		}
 	}
@@ -140,8 +149,8 @@ public class TryMoveTest {
 		
 		for(int i = 0; i < 8; i++)
 		{
-			Direction direction = tabParameter[i];
-			Direction result = tabExpected[i];
+			this.direction = tabParameter[i];
+			this.result = tabExpected[i];
 			assertEquals(result, TryMove.changeCounterclockwiseMonsterDirection(direction));
 		}
 	}
@@ -151,14 +160,24 @@ public class TryMoveTest {
 	 */
 	@Test
 	public void testChangeRandomlyMonsterDirection() {
-		Direction direction = null;
+		this.direction = null;
 		Direction tabExpected[] = {Direction.UPLEFT, Direction.LEFT, Direction.DOWNLEFT, Direction.DOWN, Direction.DOWNRIGHT, Direction.RIGHT, Direction.UPRIGHT, Direction.UP};
 		for(int i = 0; i < 8; i++)
 		{
-			Direction result = tabExpected[i];
+			this.result = tabExpected[i];
 			assertEquals(result, TryMove.changeRandomlyMonsterDirection(i, direction));
 		}
 	}
+	/**
+	 * Test method for {@link controller.TryMove#tryMovePlayer(model.element.mobile.Player, controller.Order)}.
+	 */
+//	public void testTryMovePlayer() {
+//		Order order;
+//		Position position = new Position();
+//		Player player = new Player(position);
+//		TryMove.tryMovePlayer(player, order);
+//	}
+	
 	/**
 	 * Test method for {@link controller.TryMove#tryMoveMonster(model.element.mobile.IMonster, model.element.mobile.Player)}.
 	 */
