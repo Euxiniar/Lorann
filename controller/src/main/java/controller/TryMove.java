@@ -271,14 +271,16 @@ public class TryMove {
         }
         else {
             Collisions.testMonsterOnTheCaseThenKill(lorannModel.getPlayer(), lorannModel);
+            
+            if (Collisions.testCaseDoorClose(lorannModel.getPlayer(), lorannModel)) {
+            	lorannModel.getPlayer().setAlive(false);
+            }
             if (Collisions.testCaseDoorOpen(lorannModel.getPlayer(), lorannModel)) {
             	lorannModel.getPlayer().setHasSucceedLvl(true);
-            //     Win() (ou retour au menu);
             }
         }
     }
 
-//__________________________Set the position of the monster____________________________________________________________________________________
 	/**
 	 * Try to move the monster.
 	 * @param monster
