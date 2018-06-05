@@ -4,8 +4,8 @@ import java.util.Observable;
 
 import javax.swing.JOptionPane;
 
-import GameFrame.GameFrame;
 import model.ILorannModel;
+import view.gameFrame.GameFrame;
 
 /**
  * <h1>The LorannView Class.</h1>

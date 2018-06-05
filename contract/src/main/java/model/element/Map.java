@@ -59,6 +59,12 @@ public class Map {
 	 * @return the IElement.
 	 */
 	public IElement getOnTheMap(Position position) {
+		if((position.getX() < 0 || position.getX() >= WIDTH) && (position.getY() < 0 || position.getY() >= HEIGHT)) {
+			try {
+				throw new Exception("Position out of range");
+			} catch (Exception e) {
+			}
+		}
 		return map[position.getX()][position.getY()];
 	}
 	

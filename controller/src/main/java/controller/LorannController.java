@@ -11,8 +11,6 @@ import model.element.Map;
 import model.element.Permeability;
 import model.element.Position;
 import model.element.mobile.*;
-import model.element.mobile.MonsterFactory;
-import model.element.mobile.Player;
 import model.element.motionless.MotionlessElementFactory;
 import view.ILorannView;
 
@@ -30,11 +28,11 @@ public class LorannController implements IOrderPerformer{
 	/**
 	 * The level number.
 	 */
-	private static int numlevel = 4;
+	private int numlevel = 1;
 	/**
 	 * The thread time sleep constant.
 	 */
-	private static int TIME_SLEEP = 30;
+	private static int TIME_SLEEP = 80;
 	/**
 	 * Do the game has started.
 	 */
@@ -54,7 +52,7 @@ public class LorannController implements IOrderPerformer{
 	/**
 	 * The local map.
 	 */
-	private String mapString = 	"O------------------OE"
+	private String localLevel = "O------------------OE"
 			+ 					"| P                |E"
 			+ 					"|       | * |      |E"
 			+ 					"|  K    | D |      |E"
@@ -95,6 +93,40 @@ public class LorannController implements IOrderPerformer{
 		this.lorannModel = lorannModel;
 		this.lorannView = lorannView;
 		TryMove.setLorannModel(lorannModel);
+	}
+	
+	/**
+	 * Sets the num level.
+	 * @param numLevel
+	 * 			the num level.
+	 */
+	public void setNumLevel(int numLevel) {
+		this.numlevel = numLevel;
+	}
+	
+	/**
+	 * Gets the num level.
+	 * @return the num level.
+	 */
+	public int getNumLevel() {
+		return this.numlevel;
+	}
+
+	/**
+	 * Sets the local level.
+	 * @param localLevel
+	 * 			the local Level.
+	 */
+	public void setLocalLevel(String localLevel) {
+		this.localLevel = localLevel;
+	}
+	
+	/**
+	 * Gets the local level.
+	 * @return the local level.
+	 */
+	public String getLocalLevel() {
+		return this.localLevel;
 	}
 	
 	/**
@@ -165,7 +197,7 @@ public class LorannController implements IOrderPerformer{
 	 * build the map, fill the monster array, and the player.
 	 */
 	public void buildMap() {
-		Level level = new Level(1, mapString, this.mapHeight, this.mapWidth);
+		Level level = new Level(1, localLevel, this.mapHeight, this.mapWidth);
 		if(USE_DB) {
 			level = catchMapFromDB(numlevel);
 		}
@@ -206,13 +238,13 @@ public class LorannController implements IOrderPerformer{
 	 */
 	@Override
 	public void orderPerform() {
-		if (lorannModel.getPlayer().getIsAlive()) {
-		try {
-			Thread.sleep(50);
-		} catch (InterruptedException e) {
-			e.printStackTrace();
-		}
 		UserOrder order = KeyToOrder();
+		if(order.getOrder() == Order.STOP) {
+			playerAnimator.start();
+		}
+		else {
+			setPlayerSprite(order.getOrder());
+		}
 		TryMove.tryMovePlayer(lorannModel.getPlayer(), order.getOrder());
 		if (!lorannModel.getSpell().getIsAlive())
 			order = KeySpellToOrder();
@@ -236,7 +268,7 @@ public class LorannController implements IOrderPerformer{
 			}
 			else {
 				lorannView.displayMessage("GameOver ! :(");
-				LorannController.numlevel = 1;
+				this.numlevel = 1;
 				this.gameHasStarted = false;
 				loadLvl();
 			}
@@ -256,7 +288,6 @@ public class LorannController implements IOrderPerformer{
 				this.isGameOver=true;
 			}
 		}
-	}
 	}
 		
 	/**
@@ -359,6 +390,39 @@ public class LorannController implements IOrderPerformer{
 		order = new UserOrder(Order.STOP);
 		}
 		return order;
+	}
+	
+	public void setPlayerSprite(Order order) {
+		switch(order) {
+		case UP:
+			lorannModel.getPlayer().setSelectedSpriteValue(0);
+			break;
+		case DOWN:
+			lorannModel.getPlayer().setSelectedSpriteValue(4);
+			break;
+		case LEFT:
+			lorannModel.getPlayer().setSelectedSpriteValue(6);
+			break;
+		case RIGHT:
+			lorannModel.getPlayer().setSelectedSpriteValue(2);
+			break;
+		case UPLEFT:
+			lorannModel.getPlayer().setSelectedSpriteValue(7);
+    		break;
+		case UPRIGHT:
+			lorannModel.getPlayer().setSelectedSpriteValue(1);
+    		break;
+		case DOWNLEFT:
+			lorannModel.getPlayer().setSelectedSpriteValue(5);
+			break;
+		case DOWNRIGHT:
+			lorannModel.getPlayer().setSelectedSpriteValue(3);
+			break;
+		default:
+			
+			break;
+		}
+		
 	}
 }
 
