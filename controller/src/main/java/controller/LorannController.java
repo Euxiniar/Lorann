@@ -333,7 +333,7 @@ public class LorannController implements IOrderPerformer{
 	 */
 	private UserOrder keyToOrder() {
 		boolean[] bools= lorannView.getBools();
-		for (int i = 0; i < bools.length -1; i++) {
+		for (int i = 0; i < bools.length ; i++) {
 		}
 		
 		UserOrder order = null;
