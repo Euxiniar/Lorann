@@ -32,7 +32,7 @@ public class LorannController implements IOrderPerformer{
 	/**
 	 * The thread time sleep constant.
 	 */
-	private static int TIME_SLEEP = 80;
+	private static int TIME_SLEEP = 75;
 	/**
 	 * Do the game has started.
 	 */
@@ -54,16 +54,16 @@ public class LorannController implements IOrderPerformer{
 	 */
 	private String localLevel = "O------------------OE"
 			+ 					"| P                |E"
-			+ 					"|       | * |      |E"
+			+ 					"|       |   |      |E"
 			+ 					"|  K    | D |      |E"
 			+ 					"|       O---O      |E"
-			+ 					"|       1   2      |E"
+			+ 					"|                  |E"
 			+ 					"| O--------------O |E"
 			+ 					"|                  |E"
 			+ 					"|P-----------------|E"
-			+ 					"|P  P            P |E"
+			+ 					"|P  P           *P1|E"
 			+ 					"|----------------- |E"
-			+ 					"| K1  P  4P  3 P   |E"
+			+ 					"| K   P   P    P   |E"
 			+ 					"O------------------OEF";
 	/**
 	 * the local map width.
@@ -116,9 +116,15 @@ public class LorannController implements IOrderPerformer{
 	 * Sets the local level.
 	 * @param localLevel
 	 * 			the local Level.
+	 * @param width
+	 * 			the width.
+	 * @param height
+	 * 			the height.
 	 */
-	public void setLocalLevel(String localLevel) {
+	public void setLocalLevel(String localLevel, int width, int height) {
 		this.localLevel = localLevel;
+		this.mapWidth = width;
+		this.mapHeight = height;
 	}
 	
 	/**
@@ -127,6 +133,15 @@ public class LorannController implements IOrderPerformer{
 	 */
 	public String getLocalLevel() {
 		return this.localLevel;
+	}
+	
+	/**
+	 * Use the database or not.
+	 * @param useDB
+	 * 			the use of the database.
+	 */
+	public void setUseDB(boolean useDB) {
+		LorannController.USE_DB = useDB;
 	}
 	
 	/**
@@ -188,8 +203,8 @@ public class LorannController implements IOrderPerformer{
 			monstersAnimator.update(System.currentTimeMillis());
 			spellAnimator.update(System.currentTimeMillis());
 			
-			this.lorannModel.setMobilesHavesMoved();
 			orderPerform();
+			this.lorannModel.setMobilesHavesMoved();
 		}
 	}
 	
@@ -238,7 +253,7 @@ public class LorannController implements IOrderPerformer{
 	 */
 	@Override
 	public void orderPerform() {
-		UserOrder order = KeyToOrder();
+		UserOrder order = keyToOrder();
 		if(order.getOrder() == Order.STOP) {
 			playerAnimator.start();
 		}
@@ -246,16 +261,17 @@ public class LorannController implements IOrderPerformer{
 			setPlayerSprite(order.getOrder());
 		}
 		TryMove.tryMovePlayer(lorannModel.getPlayer(), order.getOrder());
-		if (!lorannModel.getSpell().getIsAlive())
-			order = KeySpellToOrder();
-		TryMove.tryMoveSpell(lorannModel.getSpell(), order.getOrder());
-		
 		if (lorannModel.getPlayer().isPlayerhasMoved()) {
 			for (IMonster monster : lorannModel.getMonsters()) {
 				if (monster.getIsAlive())
 					TryMove.tryMoveMonster(monster, lorannModel.getPlayer());
 			}
 		}
+		if (!lorannModel.getSpell().getIsAlive())
+			order = KeySpellToOrder();
+		TryMove.tryMoveSpell(lorannModel.getSpell(), order.getOrder());
+		
+		
 		
 		if (!lorannModel.getPlayer().getIsAlive()) {
 			if (lorannModel.getPlayer().getLife()>=2) {
@@ -294,7 +310,6 @@ public class LorannController implements IOrderPerformer{
 	 * Load the next level.
 	 */
 	private void loadLvl() {
-        System.out.println(lorannModel.getPlayer().getLife());
         IElement element = null;
         for(int y = 0; y < lorannModel.getMap().getHeight(); y++) {
             for(int x = 0; x < lorannModel.getMap().getWidth(); x++) {
@@ -316,7 +331,7 @@ public class LorannController implements IOrderPerformer{
 	 * Gets the booleans from the view and transform it to Orders.
 	 * @return the user orders.
 	 */
-	private UserOrder KeyToOrder() {
+	private UserOrder keyToOrder() {
 		boolean[] bools= lorannView.getBools();
 		for (int i = 0; i < bools.length -1; i++) {
 		}
@@ -392,6 +407,11 @@ public class LorannController implements IOrderPerformer{
 		return order;
 	}
 	
+	/**
+	 * Change the player image, thanks to the order.
+	 * @param order
+	 * 			the order
+	 */
 	public void setPlayerSprite(Order order) {
 		switch(order) {
 		case UP:
@@ -419,7 +439,6 @@ public class LorannController implements IOrderPerformer{
 			lorannModel.getPlayer().setSelectedSpriteValue(3);
 			break;
 		default:
-			
 			break;
 		}
 		
