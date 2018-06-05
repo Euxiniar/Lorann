@@ -15,7 +15,7 @@ import model.Level;
 public class LevelDAO extends AbstractDAO{
     
     /** The string used for draw the level's map */ 
-	private static String codeLevel   = "{CALL recuperer_code_niveau(?)}";
+	private static String codeLevel   = "{CALL get_code_level(?)}";
     
 	/**
 	 * Gets the code to generate a level, from a database.
