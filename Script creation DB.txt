@@ -1,0 +1,68 @@
+/*	Create the table niveaux containing all of the levels */
+DROP TABLE IF EXISTS niveaux;
+CREATE TABLE niveaux
+(
+    id INT AUTO_INCREMENT PRIMARY KEY NOT NULL,
+    codeText TEXT(350)
+    id_dimension(3),
+    FOREIGN KEY (id_dimension)	
+)
+/*---------------------------------------------------------*/
+
+/*	Create the table dimension containing all of the dimensions */
+DROP TABLE IF EXISTS dimension;
+CREATE TABLE dimension
+(
+	id INT AUTO_INCREMENT PRIMARY KEY NOT NULL,
+	id_niveaux INT(3),
+	FOREIGN KEY (id_niveaux) REFERENCES niveaux(id),
+	height INT(3),
+	width INT(3)
+)
+/*---------------------------------------------------------------*/
+
+/*	Create the procedure used for get the code of the level wanted	*/
+USE `lorannvalc`;
+DROP procedure IF EXISTS `get_code_level`;
+
+DELIMITER $$
+USE `lorannvalc`$$
+CREATE DEFINER=`root`@`localhost` PROCEDURE `get_code_level`(IN `id_level_wanted` INT)
+BEGIN
+    SELECT levels.id, levels.codeText, dimension.height, dimension.width
+    FROM levels, dimension
+    WHERE levels.id_dimension = dimension.id AND levels.id = id_level_wanted;
+END$$
+
+DELIMITER ;
+/*------------------------------------------------------------------*/
+
+
+/*	Script used for insert the data	in the table dimension*/
+INSERT INTO dimension VALUES ('1', '17', '20');
+INSERT INTO dimension VALUES ('2', '16', '20');
+INSERT INTO dimension VALUES ('3', '12', '20');
+INSERT INTO dimension VALUES ('4', '13', '20');
+INSERT INTO dimension VALUES ('5', '15', '20');
+/*--------------------------------------------------------*/
+
+/*	Script used for insert the data	in the table niveaux*/
+INSERT INTO levels VALUES ('1', 'O------------------OE|P                P|E|       O * O      |E|       | D |      |E|       O---O      |E|         1        |E|                  |E|                  |E| O----------------|E|P               P |E|----------------O |E|K 3  P    4      P|EO------------------OEF', '4');
+INSERT INTO levels VALUES ('2', 'OOOOOOOOOOOOOOOOOOOOEO   DOOO  1 OOOK 2 OEO  OOOP      POOO  OEO OO            OO OEO O              O OEOPO- O--------O -OPOE|                  |E|                  |EO o----------------OE|     |   -        |E|O            |   *|E|3 |     |       O |EO------------------OEF', '4');
+INSERT INTO levels VALUES ('3', '                    EO-----O--------O--O E|     O       OO  |OE| *   OO     OO   |OE|      OO  4 O    |OE|   OO  OO  OO    |OE| OOO      OO     |OEOOO   1  K  3  OO |OE|      O        OO|OE|    OOO  2  OO  OOOE|   OO        OO   OEO---O----------OO DOE OOOOOOOOOOOOOOOOOOOEF', '4');
+INSERT INTO levels VALUES ('4', 'O------------------OE|P|3            2|*|E| |              | |E| |              | |E|OP  O---------O PO|E|   O     P     O  |E|   |P   POP   P|  |E|   O     P     O  |E|OP  O---------O PO|E| |              | |E| |              | |E|K|1             |D|EO------------------OEF', '4');
+INSERT INTO levels VALUES ('5', '                    EO------------------OE|            4    K|E| O-O   O-O   2    |E| O            3   |E|   O-O P O-O   1  |E|   O            P |E|     O-O P O-O   P|E|     O            |E|       O-O P O-O  |E|  *    O          |E|D        O-O P O--OEO---------O O---O   EF', '4');
+INSERT INTO levels VALUES ('6', '                    EO------OO           E|      KO--O        E| O---O   PO--O     E|4       O   PO--O  E| O--O O   O    PO-OE|1       O |   *  P|E| O--O O   O    PO-OE|3       O   PO--O  E| O---O   PO--O     EOD      O--O        E O-----OO           E                    EF', '4');
+INSERT INTO levels VALUES ('7', 'O------------------OE|PPP      1     PPP|E|--------PPP-------|E|         *        |E| 3       D     4  |E|      --OO--      |E|-----P      P-----|E|      --OO--      |E|   O    ||    O   |E|        ||        |E|--    1    2    --|E|KP PP P 34 P PP PP|EO-------OOO--------OEF', '4');
+INSERT INTO levels VALUES ('8', 'O------------------OE|P                P|E| O--------------O |E| |P            P| |E| | O----------O | |E| | |P   3    P| | |E| | | O------O |2| |E| |4| | D1 P   | | |E| | | O--------O | |E| | |P          P| |E| | O------------O |E|*|p              K|EO------------------OEF', '4');
+INSERT INTO levels VALUES ('9', 'O-------O------O---OE|      *|      | 2 |E| O-----O      O   |E|                  |EO------O O---O-O-OP|E|P           |     |EO----------- O K3  |E|4           |     |E|PO-O-----O--O--P--OE|   |     | 1      |EO-P-O     O------- OE|D  P              |EO---O-----O--------OEF', '4');
+INSERT INTO levels VALUES ('10', 'O------O----O------OE|      | 4  |2     |E|     *|    |D     |E|  O---O----O---O  |E|                  |E|                  |E|P------OO--------P|E|       ||P      P3|E|       ||       P |E|       ||       P |E|       ||       P |E|K1     ||P       P|EO------------------OEF', '4');
+INSERT INTO levels VALUES ('11', 'O-------OOOO-------OE|1    OO    OO    2|E|    O        O    |E|    O        O    |E|   O          O   |E|   O    OO    O   |E|   OO  O *O  OO   |E|   OPOOO  OOOPO   |E|    O   OO   O    |E|    O        O    |E|     OO    OO     |E|D--    OOOO    --K|EO------------------OEF', '4');
+INSERT INTO levels VALUES ('12', 'O------------------OE|*                D|E|       OOOO       |E|     OO    OO     |E|     O      O     |E|    O  PP  PPO    |E|    O PPK PPKO    |E|    O  PP  PPO    |E|    O        O    |E|    O        O    |E|    O        O    |E|----O1O4OO3O1O----|EO------------------OEF', '4');
+INSERT INTO levels VALUES ('13', 'O------------------OE|K3              3P|E|      O     O     |E|       O   O      |E|      OOOOOOO     |E|     OO OOO OO    |E|    OOOOOOOOOOO   |E|    O2OOOOOOO1O   |E|    O OP D PO O   |E|       OO*OO      |E|                  |E|P                P|EO------------------OEF', '4');
+INSERT INTO levels VALUES ('14', 'O----O O--O  O-----OE|2   OOOPPOOOO  OP3|E| O             OO |E| O OOOOO O OOO O  |E| O     O4O   O    |E|   OOO O OOOKO    |E|OO O       OOOO OO|E|   O O OOO        |E| OOO OOOPO O O  OP|E| O       OPO O    |E| O OOOOO OOO OOOO |E|*      OD        1|EO------------------OEF', '4');
+INSERT INTO levels VALUES ('15', 'O------O    O------OE|P 32 P|    |P 14 D|E|      |    |      |EO-O  O-O    |      |E|      |    |      |E|      O----O      |E|                  |E|      O----O      |E|      |    |      |E|      |    O-O  O-OE|      |    |*     |E|K    P|    |P    P|EO------O    O------OEF', '4');
+INSERT INTO levels VALUES ('16', 'O------------------OE|                  |E|                  |E|*       OO       1|EO-O  O  K||P  O  O-OE| OO | O-OO-O | OO  E| O | O-OO-O | O    E|   |  P||D  | OO   E| O   |   ||   |OOOOE|OO   O   ||   O  OOE|        OO        |E|1                2|EO------------------OEF', '4');
+INSERT INTO levels VALUES ('17', 'O------------------OE|1       PP       2|E| P--------------O |E| |              | |E| |     O--O     | |E| |    O    O    | |E| |   4| D* |3   |K|E| |    O    O    | |E| |     O--O     | |E| |              | |E| P--------------O |E|2       PP       1|EO------------------OEF', '4');
+INSERT INTO levels VALUES ('50', 'O------------------OE| | |   O   O    | |E|1|   O   O     -K DE| | |   O   O    | |E| | | O   O     -| |E|2| |   O   O    | |E|   | O   O     -| |E| | |   O   O    | |E|3| | O   O     -| |E| | |   O   O    | |E| |   O   O     -|*|E|4| |   O   O    | |EO------------------OEF', '4');
+/*------------------------------------------------------*/
