@@ -292,7 +292,7 @@ public class LorannController implements IOrderPerformer{
 		if (lorannModel.getPlayer().getHasSucceedLvl()) {
 			String message = "You achieved the Level " + numlevel + " !";
 			lorannView.displayMessage(message);
-			if (numlevel < 16) {
+			if (numlevel < 18) {
 				numlevel += 1;
 			lorannModel.getPlayer().setHasSucceedLvl(false);
 			loadLvl();
