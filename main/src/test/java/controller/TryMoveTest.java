@@ -71,5 +71,4 @@ public class TryMoveTest {
 		else
 			fail("The grabable object seems to be already dead !");
 	}
-
 }

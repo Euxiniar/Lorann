@@ -1,1 +1,1 @@
-typeSearchIndex = [{"p":"view.gameFrame","l":"GameFrameTest"},{"p":"model.element","l":"MapTest"}]
+typeSearchIndex = [{"p":"model.element","l":"ElementTest"},{"p":"view.gameFrame","l":"GameFrameTest"},{"p":"controller","l":"LorannControllerTest"},{"p":"model.element","l":"MapTest"},{"p":"controller","l":"TryMoveTest"}]

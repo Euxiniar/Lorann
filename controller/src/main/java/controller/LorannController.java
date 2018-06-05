@@ -331,7 +331,7 @@ public class LorannController implements IOrderPerformer{
 	 * Gets the booleans from the view and transform it to Orders.
 	 * @return the user orders.
 	 */
-	private UserOrder keyToOrder() {
+	public UserOrder keyToOrder() {
 		boolean[] bools= lorannView.getBools();
 		for (int i = 0; i < bools.length ; i++) {
 		}
