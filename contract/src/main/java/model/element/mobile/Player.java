@@ -113,6 +113,13 @@ public class Player extends MobileElement{
 	}
 	
 	/**
+	 * Increment the score.
+	 */
+	public void incrementScore(int score) {
+    	this.setScore(this.getScore() + score);
+	}
+	
+	/**
 	 * Reset the score.
 	 */
 	public void resetScore() {

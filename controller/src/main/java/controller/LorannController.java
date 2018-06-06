@@ -53,15 +53,15 @@ public class LorannController implements IOrderPerformer{
 	 * The local map.
 	 */
 	private String localLevel = "O------------------OE"
-			+ 					"| P                |E"
-			+ 					"|       |   |      |E"
-			+ 					"|  K    | D |      |E"
-			+ 					"|       O---O      |E"
 			+ 					"|                  |E"
-			+ 					"| O--------------O |E"
+			+ 					"|                  |E"
+			+ 					"|    K  *  D       |E"
+			+ 					"|       1          |E"
+			+ 					"|                  |E"
+			+ 					"| O---O----------O |E"
 			+ 					"|                  |E"
 			+ 					"|P-----------------|E"
-			+ 					"|P  P           *P1|E"
+			+ 					"|P  P            P1|E"
 			+ 					"|----------------- |E"
 			+ 					"| K   P   P    P   |E"
 			+ 					"O------------------OEF";

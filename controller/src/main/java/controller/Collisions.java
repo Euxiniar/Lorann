@@ -42,6 +42,7 @@ public class Collisions {
             		element.getPosition().getY() == lorannModel.getMonsters().get(i).getPosition().getY()) {
                 if (lorannModel.getMonsters().get(i).getIsAlive() && element.getIsAlive()) {
                     lorannModel.getMonsters().get(i).setAlive(false);
+                    lorannModel.getPlayer().incrementScore(200);
                     return true;
                 }
             }
